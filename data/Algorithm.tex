@@ -2,3 +2,28 @@
 \label{cha:Algorithm}
 
 本章基于马尔可夫链和Perron–Frobenius算法阐述一种新的用于分布式电力系统经济调度的过渡矩阵Q优化方法
+
+\section{概述}
+
+
+\section{分布式经济调度模型}
+
+\subsection{物理模型}
+
+现阶段研究的物理模型公式如下，其中，N为机组数量，$p_{i}$为机组出力，$W_{i}\left(p_{i}\right)$为机组出力成本函数，$\lambda_{i}\left(p_{i}\right)$为边际成本函数，$\alpha_{i}$ $\beta_{i}$ $\gamma_{i}$ 均为机组出力成本函数中的参数，其中$\alpha_{i}$为机组的假想最低成本，$\beta_{i}$为边际成本关于机组出力边际增长率的倒数，可称为“出力-价格灵敏度”，$\gamma_{i}$为线性外推得到的零边际成本下的假想机组出力。$L_{i}$为节点i处的负荷。$\underline{p}_{i}$和$\bar{p}_{i}$分别是机组出力上限与下限。
+
+\begin{equation}
+    \begin{aligned}
+    &\min W(\mathbf{P})=\sum_{i=1}^{N} W_{i}\left(p_{i}\right)\\
+    &\sum_{i=1}^{N} p_{i}=\sum_{i=1}^{N} L_{i}\\
+    &\underline{p}_{i} \leq p_{i} \leq \bar{p}_{i}, \forall i\\
+    &W_{i}\left(p_{i}\right)=\frac{\left(p_{i}-\alpha_{i}\right)^{2}}{2 \beta_{i}}+\gamma_{i}, i=1,2, \ldots, N\\
+    &\lambda_{i}\left(p_{i}\right)=\frac{\partial W_{i}\left(p_{i}\right)}{\partial p_{i}}=\frac{1}{\beta_{i}}\left(p_{i}-\alpha_{i}\right), i=1,2, \ldots, N\\
+    &p_{i}=\beta_{i} \lambda_{i}+\alpha_{i}
+    \end{aligned}
+\end{equation}
+
+在边际成本函数的基础上，目标函数(2-1)等价于求价格共识$\lambda$，其含义是：
+1) 各节点处都有边际成本$\lambda_{i}$，必须保证全部$\lambda_{i}$相等或足够接近。
+2) 在$\lambda_{i}$下，由(2-6)决定的机组出力$p_{i}$必须满足全部约束条件。
+
