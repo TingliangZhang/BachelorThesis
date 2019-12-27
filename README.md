@@ -4,6 +4,13 @@
 [![GitHub release](https://img.shields.io/github/release/xueruini/thuthesis/all.svg)](https://github.com/xueruini/thuthesis/releases/latest)
 [![GitHub commits](https://img.shields.io/github/commits-since/xueruini/thuthesis/latest.svg)](https://github.com/xueruini/thuthesis/commits/master)
 
+# Note
+Windows 用户在文件夹空白处按`Shift+鼠标右键`，点击“在此处打开命令行窗口”）：
+
+    xetex thuthesis.ins
+
+即可得到 `thuthesis.cls` 等模板文件。
+
 # What's ThuThesis?
 ThuThesis is an abbreviation of <b>T</b>sing<b>h</b>ua <b>U</b>niversity <b>Thesis</b> LaTeX Template.
 

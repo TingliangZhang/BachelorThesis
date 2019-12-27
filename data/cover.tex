@@ -14,31 +14,31 @@
   %=========
   % 中文信息
   %=========
-  ctitle={清华大学学位论文 \LaTeX\ 模板\\使用示例文档 v\version},
-  cdegree={工学硕士},
-  cdepartment={计算机科学与技术系},
-  cmajor={计算机科学与技术},
-  cauthor={薛瑞尼},
-  csupervisor={郑纬民教授},
-  cassosupervisor={陈文光教授}, % 副指导老师
-  ccosupervisor={某某某教授}, % 联合指导老师
+  ctitle={分布式能源资源的自治优化仿真平台研发},
+  cdegree={工学学士},
+  cdepartment={电机工程与应用电子技术系},
+  cmajor={电气工程及其自动化},
+  cauthor={张庭梁},
+  csupervisor={钟海旺副教授},
+  % cassosupervisor={陈文光教授}, % 副指导老师
+  % ccosupervisor={某某某教授}, % 联合指导老师
   % 日期自动使用当前时间，若需指定按如下方式修改：
   % cdate={超新星纪元},
   %
   % 博士后专有部分
-  catalognumber     = {分类号},  % 可以留空
-  udc               = {UDC},  % 可以留空
-  id                = {编号},  % 可以留空： id={},
-  cfirstdiscipline  = {计算机科学与技术},  % 流动站（一级学科）名称
-  cseconddiscipline = {系统结构},  % 专 业（二级学科）名称
-  postdoctordate    = {2009 年 7 月——2011 年 7 月},  % 工作完成日期
-  postdocstartdate  = {2009 年 7 月 1 日},  % 研究工作起始时间
-  postdocenddate    = {2011 年 7 月 1 日},  % 研究工作期满时间
+  % catalognumber     = {分类号},  % 可以留空
+  % udc               = {UDC},  % 可以留空
+  % id                = {编号},  % 可以留空： id={},
+  % cfirstdiscipline  = {计算机科学与技术},  % 流动站（一级学科）名称
+  % cseconddiscipline = {系统结构},  % 专 业（二级学科）名称
+  % postdoctordate    = {2009 年 7 月——2011 年 7 月},  % 工作完成日期
+  % postdocstartdate  = {2009 年 7 月 1 日},  % 研究工作起始时间
+  % postdocenddate    = {2011 年 7 月 1 日},  % 研究工作期满时间
   %
   %=========
   % 英文信息
   %=========
-  etitle={An Introduction to \LaTeX{} Thesis Template of Tsinghua University v\version},
+  etitle={Research and development of autonomous optimization simulation platform for distributed energy resources},
   % 这块比较复杂，需要分情况讨论：
   % 1. 学术型硕士
   %    edegree：必须为Master of Arts或Master of Science（注意大小写）
@@ -54,65 +54,51 @@
   % 4. 专业型博士
   %    edegree：“填写专业学位英文名称全称”
   %    emajor：不填写此项
-  edegree={Doctor of Engineering},
-  emajor={Computer Science and Technology},
-  eauthor={Xue Ruini},
-  esupervisor={Professor Zheng Weimin},
-  eassosupervisor={Chen Wenguang},
+  edegree={Bachelor of Engineering},
+  emajor={Electric Engineering},
+  eauthor={Zhang Tingliang},
+  esupervisor={Associate Professor Zhong Haiwang},
+  %eassosupervisor={Chen Wenguang},
   % 日期自动生成，若需指定按如下方式修改：
   % edate={December, 2005},
   %
   % 关键词用“英文逗号”分割
-  ckeywords={TeX, LaTeX, CJK, 模板, 论文},
-  ekeywords={TeX, LaTeX, CJK, template, thesis}
+  ckeywords={共识算法, 智能电网, 分布式算法, 可视化硬件平台, 电力市场},
+  ekeywords={Consensus Algorithm, Smart Grid, Distributed Algorithm, Visual Hardware Platform, Electricity Market}
 }
 
 % 定义中英文摘要和关键字
 \begin{cabstract}
-  论文的摘要是对论文研究内容和成果的高度概括。摘要应对论文所研究的问题及其研究目
-  的进行描述，对研究方法和过程进行简单介绍，对研究成果和所得结论进行概括。摘要应
-  具有独立性和自明性，其内容应包含与论文全文同等量的主要信息。使读者即使不阅读全
-  文，通过摘要就能了解论文的总体内容和主要成果。
+  基于区块链技术和共识算法，面向泛在电力物联网建设，考虑实际应用环境中的问题（如噪音、干扰、局部通信中断等问题），开发了一套测试平台并模拟实际应用，以应对传统集中式优化通信负担过重、过度依赖部分节点、灵活性不足等问题的挑战。
 
-  论文摘要的书写应力求精确、简明。切忌写成对论文书写内容进行提要的形式，尤其要避
-  免“第 1 章……；第 2 章……；……”这种或类似的陈述方式。
-
-  本文介绍清华大学论文模板 \thuthesis{} 的使用方法。本模板符合学校的本科、硕士、
-  博士论文格式要求。
+  通过嵌入式可视化集群硬件平台来直观的表现算法的运行，同时也探索一种新的展示算法的方式。
 
   本文的创新点主要有：
+
   \begin{itemize}
-    \item 用例子来解释模板的使用方法；
-    \item 用废话来填充无关紧要的部分；
-    \item 一边学习摸索一边编写新代码。
+    \item 将分布式算法用于电力市场调度中，实现了去中心化，增强了电力系统的可靠性。
+    \item 开发了一套集群可视化平台，探索了一种新的展示算法的方式。
+    \item 考虑了硬件存在的通信中断和恶意节点等现实问题。
   \end{itemize}
 
-  关键词是为了文献标引工作、用以表示全文主要内容信息的单词或术语。关键词不超过 5
-  个，每个关键词中间用分号分隔。（模板作者注：关键词分隔符不用考虑，模板会自动处
-  理。英文关键词同理。）
 \end{cabstract}
 
 % 如果习惯关键字跟在摘要文字后面，可以用直接命令来设置，如下：
 % \ckeywords{\TeX, \LaTeX, CJK, 模板, 论文}
 
 \begin{eabstract}
-   An abstract of a dissertation is a summary and extraction of research work
-   and contributions. Included in an abstract should be description of research
-   topic and research objective, brief introduction to methodology and research
-   process, and summarization of conclusion and contributions of the
-   research. An abstract should be characterized by independence and clarity and
-   carry identical information with the dissertation. It should be such that the
-   general idea and major contributions of the dissertation are conveyed without
-   reading the dissertation.
+  Based on blockchain technology and consensus algorithms, for the construction of ubiquitous electric power IoT, considering the problems in the actual application environment (such as noise, interference, local communication interruption, etc.), a test platform has been developed and simulated for practical applications Traditional centralized optimization challenges such as excessive communication burden, excessive dependence on some nodes, and insufficient flexibility.
 
-   An abstract should be concise and to the point. It is a misunderstanding to
-   make an abstract an outline of the dissertation and words ``the first
-   chapter'', ``the second chapter'' and the like should be avoided in the
-   abstract.
+  The embedded visualization cluster hardware platform is used to intuitively express the operation of the algorithm, and also explore a new way to display the algorithm.
+  
+  The innovations of this article are:
 
-   Key words are terms used in a dissertation for indexing, reflecting core
-   information of the dissertation. An abstract may contain a maximum of 5 key
-   words, with semi-colons used in between to separate one another.
+  \begin{itemize}
+    \item The distributed algorithm is used in power market dispatching to achieve decentralization and enhance the reliability of power systems.
+    \item developed a cluster visualization platform and explored a new way to display algorithms.
+    \item takes into account the practical problems of communication interruptions and malicious nodes in the hardware.
+  \end{itemize}
+
 \end{eabstract}
 
 % \ekeywords{\TeX, \LaTeX, CJK, template, thesis}

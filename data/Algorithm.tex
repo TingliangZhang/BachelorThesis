@@ -10,7 +10,7 @@
 
 \subsection{物理模型}
 
-现阶段研究的物理模型公式如下，其中，N为机组数量，$p_{i}$为机组出力，$W_{i}\left(p_{i}\right)$为机组出力成本函数，$\lambda_{i}\left(p_{i}\right)$为边际成本函数，$\alpha_{i}$ $\beta_{i}$ $\gamma_{i}$ 均为机组出力成本函数中的参数，其中$\alpha_{i}$为机组的假想最低成本，$\beta_{i}$为边际成本关于机组出力边际增长率的倒数，可称为“出力-价格灵敏度”，$\gamma_{i}$为线性外推得到的零边际成本下的假想机组出力。$L_{i}$为节点i处的负荷。$\underline{p}_{i}$和$\bar{p}_{i}$分别是机组出力上限与下限。
+现阶段研究的物理模型公式如式~\ref{eq:phymodel}，其中，N为机组数量，$p_{i}$为机组出力，$W_{i}\left(p_{i}\right)$为机组出力成本函数，$\lambda_{i}\left(p_{i}\right)$为边际成本函数，$\alpha_{i}$ $\beta_{i}$ $\gamma_{i}$ 均为机组出力成本函数中的参数，其中$\alpha_{i}$为机组的假想最低成本，$\beta_{i}$为边际成本关于机组出力边际增长率的倒数，可称为“出力-价格灵敏度”，$\gamma_{i}$为线性外推得到的零边际成本下的假想机组出力。$L_{i}$为节点i处的负荷。$\underline{p}_{i}$和$\bar{p}_{i}$分别是机组出力上限与下限。
 
 \begin{equation}
     \begin{aligned}
@@ -21,9 +21,14 @@
     &\lambda_{i}\left(p_{i}\right)=\frac{\partial W_{i}\left(p_{i}\right)}{\partial p_{i}}=\frac{1}{\beta_{i}}\left(p_{i}-\alpha_{i}\right), i=1,2, \ldots, N\\
     &p_{i}=\beta_{i} \lambda_{i}+\alpha_{i}
     \end{aligned}
+    \label{eq:phymodel} 
 \end{equation}
 
-在边际成本函数的基础上，目标函数(2-1)等价于求价格共识$\lambda$，其含义是：
-1) 各节点处都有边际成本$\lambda_{i}$，必须保证全部$\lambda_{i}$相等或足够接近。
-2) 在$\lambda_{i}$下，由(2-6)决定的机组出力$p_{i}$必须满足全部约束条件。
+在边际成本函数的基础上，目标函数等价于求价格共识$\lambda$，其含义是：
+
+\begin{itemize}
+    \item 各节点处都有边际成本$\lambda_{i}$，必须保证全部$\lambda_{i}$相等或足够接近。
+    \item 在$\lambda_{i}$下，由式~\ref{eq:phymodel}-6决定的机组出力$p_{i}$必须满足全部约束条件。
+\end{itemize}
+
 
