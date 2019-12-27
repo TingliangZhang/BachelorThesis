@@ -1,10 +1,9 @@
 \chapter{基于马尔可夫链和Perron–Frobenius算法用于分布式电力系统经济调度的过渡矩阵Q优化}
 \label{cha:Algorithm}
 
-本章基于马尔可夫链和Perron–Frobenius算法阐述一种新的用于分布式电力系统经济调度的过渡矩阵Q优化方法
-
 \section{概述}
 
+本章基于马尔可夫链和Perron–Frobenius算法阐述一种新的用于分布式电力系统经济调度的过渡矩阵Q优化方法，提出了一套完整的分布式ED问题的物理和数学模型，实现了尽可能快的迭代。构建了分布式通信协议，并证明了迭代结束时一定可以得到的是帕累托最优。最后通过一个算例说明了共识达到的具体方法。
 
 \section{分布式经济调度模型}
 
@@ -169,7 +168,7 @@
     \sum_{j=1}^{N} q_{i j} \beta_{j}=\beta_{i}, i=1,2, \ldots, N
 \end{equation}
 
-为使得链式通信协议收敛于过渡矩阵Q，需保证过渡矩阵的Perron向量恰好等于出力-价格灵敏度向量$\boldsymbol{\beta}=\left[\beta_{1}, \beta_{2}, \ldots, \beta_{N}\right]^{T}$，即保证出力比稳定为$\boldsymbol{\beta}_{1}: \boldsymbol{\beta}_{2} \ldots$。
+为使得链式通信协议收敛于过渡矩阵Q，需保证过渡矩阵的Perron向量恰好等于出力-价格灵敏度向量$\boldsymbol{\beta}=\left[\beta_{1}, \beta_{2}, \ldots, \beta_{N}\right]^{T}$，即保证出力比稳定为$\boldsymbol{\beta}_{1}: \boldsymbol{\beta}_{2} \ldots$。其中$\lambda_{i}=p_{i} / \beta_{i}$，即机组i的成本微增率与出力成正比，$\boldsymbol{\beta}$为出力/价格比例系数。
 
 \begin{equation}
     \mathbf{Q} \boldsymbol{\beta}=\boldsymbol{\beta}
@@ -213,3 +212,123 @@
 \end{equation}
 
 将x*的每个元素的值还原到过渡矩阵Q的相应位置上，可得到经优化的过渡阵。
+
+\section{分布式ED协议的实现方式}
+
+每个节点独立算出$\beta_{i}$出力/价格比例系数，
+
+出力-价格灵敏度向量$\boldsymbol{\beta}$与邻接矩阵$\boldsymbol{A}$结合，得出优化后的过渡矩阵$\boldsymbol{Q}$
+
+根据过渡矩阵与链式通信拓扑有向图权重的对应关系，的第j列元素代表始端节点与机组j的边的权重。因此把过渡矩阵$\boldsymbol{Q}$按列拆分，将第j列元素发送给机组j的节点。
+
+节点i独立算出其初始溢价出力量$s_{i}^{(0)}=L_{i}-\alpha_{i}$
+
+按过渡矩阵Q，迭代运行链式通信协议。
+
+\begin{equation}
+    s_{i}^{(k+1)}=\sum_{j=1}^{N} q_{i j} s_{j}^{(k)}, i=1,2, \ldots, N
+\end{equation}
+
+节点j计算出$q_{i j} s_{j}^{(k)}, i=1,2, \ldots, N$，并分别将$q_{i j} s_{j}^{(k)}$发给节点i。（若$A_{i j}$为0，则此项为0，不影响其他节点）
+
+k次迭代后，节点i的出力和电价为：
+
+\begin{equation}
+    \begin{aligned}
+    &p_{i}^{(k)}=s_{i}^{(k)}+\alpha_{i}\\
+    &\lambda_{i}^{(k)}=s_{i}^{(k)} / \beta_{i}
+    \end{aligned}
+\end{equation}
+
+当迭代过程中式~\ref{eq:delta}条件满足，则价格达成共识，可以执行目前的定价。
+
+\begin{equation}
+    \left|\lambda_{i}^{(k+1)}-\lambda_{i}^{(k)}\right|<\delta
+    \label{eq:delta}    
+\end{equation}
+
+其中$\delta$为误差容限，表示电价求解精度。
+
+\section{迭代结束将得到帕雷托最优的证明}
+
+本节证明迭代结束时各节点出力达到帕雷托最优（Pareto Optimality），即在误差允许的范围内ED最优解。
+
+\begin{equation}
+    \mathbf{1}^{T} \mathbf{s}^{(k+1)}=\mathbf{1}^{T} \mathbf{Q} \mathbf{s}^{(k)}=\mathbf{1}^{T} \mathbf{s}^{(k)}=\mathbf{1}^{T} \mathbf{s}^{(0)}=\sum_{i=1}^{N}\left(L_{i}-\alpha_{i}\right)
+\end{equation}
+
+由于终止时各变量趋于稳定，由Perron-由Perron–Frobenius定理：
+
+\begin{equation}
+    \mathbf{s}^{(k)}=r \boldsymbol{\beta}
+\end{equation}
+
+得：
+
+\begin{equation}
+    r=\sum_{i=1}^{N}\left(L_{i}-\alpha_{i}\right) / \sum_{i=1}^{N} \beta_{i}=\lambda_{i}^{(k)}
+\end{equation}
+
+表明达到价格共识，并满足功率平衡约束：
+
+\begin{equation}
+    \sum_{i=1}^{N}\left(\beta_{i} \lambda_{i}^{(k)}+\alpha_{i}\right)=\sum_{i=1}^{N} L_{i}
+\end{equation}
+
+\section{考虑每个节点出力上下限的处理}
+
+当某节点的出力超上下限时，可用虚拟功率法调整出力分配。
+
+\begin{equation}
+    S_{i}^{(k+1)}=\left(\sum_{j=1}^{n} q_{i j}\left(s_{j}^{(k)}+\Delta p_{j}^{(k)}\right)\right)-\Delta p_{i}^{(k)}
+\end{equation}
+
+\begin{equation}
+    \Delta p_{i}^{(k+1)}=\max \left\{\Delta p_{i}^{(k)}+r_{i}^{(k)}\left(s_{i}^{(k)}+\alpha-\bar{p}_{i}\right), 0\right\}
+\end{equation}
+
+k能被t整除时为1，反之为0：
+
+\begin{equation}
+    r_{i}^{(k)}=\left\{\begin{array}{l}
+    {1} \\
+    {0}
+    \end{array}\right.
+\end{equation}
+
+
+终止条件增加一条：$\Delta p_{i}^{(k)}=0$
+
+$\Delta p_{i}^{(k)}$为机组i引进的虚拟功率，取值为非负数。当机组i的出力到达上限时，由于向外发送了出力，导致整个系统价格抬高。
+
+
+\section{算例}
+
+设想一个四节点机组网络有向图如图~\ref{fig:Directed-graph}：
+
+\begin{figure}[htbp] % use float package if you want it here
+    \centering
+    \includegraphics{Directed-graph.pdf}
+    \caption{四节点机组网络有向图}
+    \label{fig:Directed-graph}
+\end{figure}
+
+各节点处机组参数与负荷如表~\ref{tab:example}：
+
+\begin{table}[]
+    \centering
+%    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}ccccc@{}}
+    \toprule
+    \multicolumn{1}{c}{Node} & $\alpha_{i}(\mathrm{MW})$  & $\beta_{i} \quad\left(\mathrm{MW}^{2} / \mathrm{S}\right)$ & $\gamma_{i}(\mathrm{S})$   & $L_{i}(\mathrm{MW})$    \\ \midrule
+    1                        & -1 & 1 & 0.2 & 15.5 \\
+    2                        & -2 & 2 & 0.1 & 0    \\
+    3                        & -3 & 3 & 0.5 & 15.5 \\
+    4                        & -1 & 2 & 0.7 & 0    \\ \bottomrule
+    \end{tabular}
+%    }缩放表格（字会变得很大）
+    \caption{4节点算例机组参数与实时负荷}
+    \label{tab:example}
+\end{table}
+
+随着迭代各机组的价格曲线如图所示
