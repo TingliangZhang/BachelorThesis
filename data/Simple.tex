@@ -1,0 +1,37 @@
+\chapter{传统共识算法概述}
+\label{cha:Simple}
+
+\section{最简单的共识算法}
+
+我们使用有向图的邻接矩阵A来描述其通信拓扑：
+
+\begin{equation}
+    \mathbf{A}=\left[a_{i j}\right]_{N \times N}
+\end{equation}
+
+$a_{\mathrm{ij}}$为A中的元素：
+
+\begin{equation}
+    a_{\mathrm{ij}}=\left\{\begin{array}{ll}
+    {1} & {\text { if } j \in N_{i}} \\
+    {0} & {\text { Otherwise }}
+    \end{array}\right.
+\end{equation}
+
+其中N为与i节点相连通的节点集合。
+
+\begin{equation}
+    x_{\mathrm{i}}(t)=x_{\mathrm{i}}(t)+u_{\mathrm{i}}(t) \quad i=1,2,3,4 \ldots \ldots, n
+\end{equation}
+
+$u_{\mathrm{i}}(t)$为$x_{\mathrm{i}}(t)$的控制变量，服从：
+
+\begin{equation}
+    u_{i}(t)=\frac{1}{N_{\mathrm{i}}}\sum_{j=1}^{n} a_{i j}(t)\left[x_{j}(t)-x_{i}(t)\right]
+\end{equation}
+
+其中$N_{\mathrm{i}}$为与i节点相连通的节点数。
+
+上述算法的物理含义即：
+
+在第i次迭代过程中，同时对和每个节点相连通的所有节点取平均并赋值给此节点\cite{8706900}。
