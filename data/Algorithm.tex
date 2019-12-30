@@ -120,7 +120,7 @@
 在这里有：
 
 \begin{equation}
-    \|\mathbf{Q}\|_{F}=\sqrt{\sum_{i=1}^{N} \sum_{i=1}^{N}\left|q_{i j}\right|^{2}}
+    \|\mathbf{Q}\|_{F}=\sqrt{\sum_{i=1}^{N} \sum_{j=1}^{N}\left|q_{i j}\right|^{2}}
 \end{equation}
 
 \begin{equation}
@@ -134,7 +134,7 @@
 优化目标函数：
 
 \begin{equation}
-    \min \|\mathbf{Q}\|_{F}^{2}=\sum_{i=1}^{N} \sum_{i=1}^{N}\left|q_{i j}\right|
+    \min \|\mathbf{Q}\|_{F}^{2}=\sum_{i=1}^{N} \sum_{j=1}^{N}\left|q_{i j}\right|
 \end{equation}
 
 优化目标函数物理意义：最小化F范数，相当于最小化次大特征值，优化收敛速率
@@ -159,13 +159,13 @@
 还需要保证总出力不变：
 
 \begin{equation}
-    \mathbf{1}^{T} \mathbf{Q}=\mathbf{1}^{T}
+    \mathbf{Q} \mathbf{1}^{T}=\mathbf{1}^{T}
 \end{equation}
 
 即：
 
 \begin{equation}
-    \sum_{j=1}^{N} q_{i j} \beta_{j}=\beta_{i}, i=1,2, \ldots, N
+    \sum_{j=1}^{N} q_{i j}=1, i=1,2, \ldots, N
 \end{equation}
 
 为使得链式通信协议收敛于过渡矩阵Q，需保证过渡矩阵的Perron向量恰好等于出力-价格灵敏度向量$\boldsymbol{\beta}=\left[\beta_{1}, \beta_{2}, \ldots, \beta_{N}\right]^{T}$，即保证出力比稳定为$\boldsymbol{\beta}_{1}: \boldsymbol{\beta}_{2} \ldots$。其中$\lambda_{i}=p_{i} / \beta_{i}$，即机组i的成本微增率与出力成正比，$\boldsymbol{\beta}$为出力/价格比例系数。
@@ -186,12 +186,12 @@
 
 \begin{equation}
     \begin{aligned}
-    &\min _{q_{y}}\|\mathbf{Q}\|_{F}^{2}=\sum_{i=1}^{N} \sum_{i=1}^{N}\left|q_{i j}\right|^{2}\\
+    &\min _{q_{y}}\|\mathbf{Q}\|_{F}^{2}=\sum_{j=1}^{N} \sum_{i=1}^{N}\left|q_{i j}\right|^{2}\\
     &\text { s.t. } \quad q_{i j}\left\{\begin{array}{ll}
     {\geq 0} & {\quad a_{i j}=1} \\
     {=0} & {\quad a_{i j}=0}
     \end{array}\right.\\
-    &\mathbf{1}^{T} \mathbf{Q}=\mathbf{1}^{T}\\
+    &\mathbf{Q} \mathbf{1}^{T}=\mathbf{1}^{T}\\
     &\mathbf{Q} \boldsymbol{\beta}=\boldsymbol{\beta}
     \end{aligned}
 \end{equation}
@@ -300,37 +300,3 @@ k能被t整除时为1，反之为0：
 终止条件增加一条：$\Delta p_{i}^{(k)}=0$
 
 $\Delta p_{i}^{(k)}$为机组i引进的虚拟功率，取值为非负数。当机组i的出力到达上限时，由于向外发送了出力，导致整个系统价格抬高。
-
-
-\section{算例}
-
-设想一个四节点机组网络有向图如图~\ref{fig:Directed-graph}：
-
-%去除Visio白边：http://www.mamicode.com/info-detail-2181323.html
-
-\begin{figure}[htbp] % use float package if you want it here
-    \centering
-    \includegraphics{Directed-graph.pdf}
-    \caption{四节点机组网络有向图}
-    \label{fig:Directed-graph}
-\end{figure}
-
-各节点处机组参数与负荷如表~\ref{tab:example}：
-
-\begin{table}[]
-    \centering
-%    \resizebox{\textwidth}{!}{%
-    \begin{tabular}{@{}ccccc@{}}
-    \toprule
-    \multicolumn{1}{c}{Node} & $\alpha_{i}(\mathrm{MW})$  & $\beta_{i} \quad\left(\mathrm{MW}^{2} / \mathrm{S}\right)$ & $\gamma_{i}(\mathrm{S})$   & $L_{i}(\mathrm{MW})$    \\ \midrule
-    1                        & -1 & 1 & 0.2 & 15.5 \\
-    2                        & -2 & 2 & 0.1 & 0    \\
-    3                        & -3 & 3 & 0.5 & 15.5 \\
-    4                        & -1 & 2 & 0.7 & 0    \\ \bottomrule
-    \end{tabular}
-%    }缩放表格（字会变得很大）
-    \caption{4节点算例机组参数与实时负荷}
-    \label{tab:example}
-\end{table}
-
-随着迭代各机组的价格曲线如图所示
