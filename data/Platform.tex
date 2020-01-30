@@ -1,6 +1,71 @@
 \chapter{移动平台设计和制造}
 \label{cha:Platform}
 
+\section{现有平台对比}
+
+从各类文献和实验平台中总结出各种移动平台的技术参数：
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[height=8cm]{Pheeno.jpg}
+    \caption{COMPARISON OF CURRENTLY AVAILABLE MULTI-ROBOT PLATFORMS\cite{wilson2016pheeno}}
+    \label{fig:Pheeno}
+\end{figure}
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% \usepackage{lscape}
+\begin{landscape}
+    \begin{table}[]
+    \centering
+    \begin{tabular}{l|lllll}
+    \hline
+    Name        & Processor                                                                  & Sensing                                                                                                                & Comm.                                                                     & Imaging                                                                              & Cost                 \\ \hline
+    \rowcolor[HTML]{EFEFEF} 
+    R-One       & \begin{tabular}[c]{@{}l@{}}ARM Cortex-M3, \\ 50 MHz, 64KB RAM\end{tabular} & \begin{tabular}[c]{@{}l@{}}Accelerometer,\\ Gyroscope, Bump, \\ IR, Ambient Light\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}Radio (2 Mbps), \\ IR (1.25 Kbps)\end{tabular} & None                                                                                 & \$220 (Parts)        \\
+    E-puck      & \begin{tabular}[c]{@{}l@{}}dsPIC 30F6014A, \\ 64MHz, 8KB RAM\end{tabular}  & \begin{tabular}[c]{@{}l@{}}IR, Accelerometer, \\ Microphone, Camera\end{tabular}                                       & Serial, Bluetooth, IR                                                     & \begin{tabular}[c]{@{}l@{}}40x40 pixels @ 4 FPS. \\ External processing\end{tabular} & \$340 (Parts)        \\
+    \rowcolor[HTML]{EFEFEF} 
+    MarXBot     & \begin{tabular}[c]{@{}l@{}}ARM11, 533 MHz, \\ 128MB RAM\end{tabular}       & \begin{tabular}[c]{@{}l@{}}Camera,\\ Accelerometer, \\ Gyroscope, RFID, \\ 2D Force, \\ Microphone\end{tabular}        & WiFi, Bluetooth                                                           & \begin{tabular}[c]{@{}l@{}}Up to 2048x1536\\ pixel s @ 12 FPS\end{tabular}           & N/A                  \\
+    Khepera III & \begin{tabular}[c]{@{}l@{}}XScale, 600MHz, \\ 128MB RAM\end{tabular}       & \begin{tabular}[c]{@{}l@{}}IR, Ambient Light,\\ Ultrasonic, Camera\end{tabular}                                        & WiFi, Bluetooth                                                           & 640x480 pixels @ 15 FPS                                                              & \textgreater{}\$2000 \\
+    \rowcolor[HTML]{EFEFEF} 
+    CITRIC      & \begin{tabular}[c]{@{}l@{}}XScale, 624 MHz, \\ 64MB RAM\end{tabular}       & \begin{tabular}[c]{@{}l@{}}Camera, \\ Microphone\end{tabular}                                                          & Zigbee                                                                    & 1280x1024 pixels @ 15FPS                                                             & \$600                \\
+    WolfBot     & \begin{tabular}[c]{@{}l@{}}ARM Cortex-A8, 1GHz, \\ 512MB RAM\end{tabular}  & \begin{tabular}[c]{@{}l@{}}IR, Camera, \\ Microphone, \\ Ambient Light, \\ Accelerometer, \\ Magnetometer\end{tabular} & WiFi, Zigbee                                                              & Up to 1280x720 pixels @ 50 FPS                                                       & \$550 (Parts)       
+    \end{tabular}
+    \caption{Mobile Sensing Platform Comparison\cite{betthauser2014wolfbot}}
+    \label{tab:Comparison}
+    \end{table}
+\end{landscape}
+
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{lscape}
+\begin{landscape}
+    \begin{table}[]
+    \centering
+    \begin{tabular}{l|lllllll}
+    \hline
+    robot/author     & size          & battery                                                             & mobility    & perception                                                                  & interaction                                                         & comm.           & processing  \\ \hline
+    Jasmine          & 2.6x2.6x2.6cm & \begin{tabular}[c]{@{}l@{}}LiPo, \\ 2 h autonomy\end{tabular}       & wheels      & none                                                                        & none                                                                & radio           & none        \\
+    AmigoBot         & 33x28x15cm    & \begin{tabular}[c]{@{}l@{}}Pb, 26Wh,\\ 2 h autonomy\end{tabular}    & wheels      & \begin{tabular}[c]{@{}l@{}}ultrasound, \\ opt. vision\end{tabular}          & none                                                                & opt. radio      & ad hoc      \\
+    Kobot            & 12x7cm        & \begin{tabular}[c]{@{}l@{}}LiPo, 7Wh,\\ 10 h autonomy\end{tabular}  & wheels      & opt. omnicam                                                                & none                                                                & Xbee            & opt. PXA255 \\
+    Zeero            & $\sim$25 cm   & 4xAA, 9Wh                                                           & wheels      & \begin{tabular}[c]{@{}l@{}}pan-tilt CMUcam2, \\ ultrasound, IR\end{tabular} & none                                                                & Bluetooth       & PXA255      \\
+    FlockBots        & 18cm          & \begin{tabular}[c]{@{}l@{}}NiMH, 16Wh, \\ 2 h autonomy\end{tabular} & wheels      & \begin{tabular}[c]{@{}l@{}}pan-tilt CMUCam2, \\ IR\end{tabular}             & simple grip-per                                                     & Wi-Fi           & PXA255      \\
+    Molecubes        & 66x66x66cm    & \begin{tabular}[c]{@{}l@{}}16 Wh \\ 1 h autonomy\end{tabular}       & opt. wheels & opt. vision                                                                 & \begin{tabular}[c]{@{}l@{}}assembling, \\ gripper\end{tabular}      & opt. Blue-tooth & opt. ARM 11 \\
+    Mindart          & 29x24x37cm    & NiCad, 20 Wh                                                        & tracks      & beacon \& vision                                                            & gripper                                                             & none            & Scenix SX   \\
+    Yoo, K.H. et al. & n.a.          & n.a.                                                                & tracks      & vision                                                                      & self-assembling                                                     & RF              & off-board   \\
+    JL-1             & 35x25x15cm    & 4 h autonomy                                                        & tracks      & vision                                                                      & self-assembling                                                     & Wi-Fi           & PXA255      \\
+    S-bot            & 12x15cm       & \begin{tabular}[c]{@{}l@{}}Lion, 10Wh, \\ 2 h autonomy\end{tabular} & treels      & omnicam                                                                     & \begin{tabular}[c]{@{}l@{}}gripper, \\ self-assembling\end{tabular} & Wi-Fi           & PXA255     
+    \end{tabular}
+    \caption{A selection of robots that have been used recently for collective experiments. The perception column lists the long range (\textgreater 20 cm) sensing capabilities of the robot, which excludes proximity sensors and bumpers. The processing column lists the vision-capable processing unit of the robot (\textgreater 100 MIPS), which excludes microcontrollers.\cite{bonani2010marxbot}}
+    \label{tab:collective}
+    \end{table}
+\end{landscape}
+
+
+
 \section{平台设计初始思路}
 形式：
 
@@ -331,13 +396,13 @@ $\Sigma_{3} / \Sigma_{2}$ (roll/wheel) 是绕$b$的旋转，因此，$C$的瞬�
     \end{array}\right)
 \end{equation}
 
-\begin{theorem}\label{the:theorem1}
+\begin{theorem}\label{the:theorem-en}
     The direct kinematics of a robot with three Mecanum wheels has a unique solution if and only if the wheels are arranged so that the roll axes are not concurrent or parallel.\hfill —— A. Gfrerrer
 \end{theorem}
 
 即：
 
-\begin{theorem}\label{the:theorem1}
+\begin{theorem}\label{the:theorem-cn}
     当且仅当车轮排布使得小轮不平行时，3-Mecanum轮机器人才具有运动学唯一解。
 \end{theorem}
 
