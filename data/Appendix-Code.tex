@@ -1,6 +1,5 @@
 \chapter{相关代码}
 \label{cha:Code}
-\title{Python}
 
 \section{平均值分布式算法收敛性检测}
 % minted需要latexmk 加入 --shell-escape 参数，即 $ latexmk -xelatex --shell-escape main.tex
@@ -25,9 +24,25 @@
 % 必要时注意重启VS Code以更新环境变量
 
 
-\begin{minted}{c++}
-    int main() {
-        printf("hello, world");
-        return 0;
-    }
-\end{minted}
+% \begin{minted}{c++}
+%     int main() {
+%         printf("hello, world");
+%         return 0;
+%     }
+% \end{minted}
+
+
+% Using different styles
+% The full syntax is \usemintedstyle[hlanguagei]{hstylei}
+% To get a list of all available stylesheets, see the online demo at the Pygments website or execute the following command on the command line:
+% $ pygmentize -L styles
+
+% Supported languages
+% Pygments supports over 300 different programming languages, template languages, and other markup languages. To see an exhaustive list of the currently supported languages, use the command
+% $ pygmentize -L lexers
+
+% Finally, there’s the \inputminted command to read and format whole files. Its syntax is \inputminted[hoptionsi]{hlanguagei}{hfilenamei}.
+\inputminted[mathescape, linenos, breaklines]{python3}{Code/Consensus.py}
+% mathescape  在注释中显示Latex格式的公式
+% linenos  显示行号
+% breaklines  自动换行
