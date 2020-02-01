@@ -3,15 +3,15 @@
 
 \section{现有平台对比}
 
-从各类文献和实验平台中总结出各种移动平台的技术参数：
+从各类文献和实验平台中总结出各种移动平台的技术参数见表~\ref{tab:Comparison}，
 
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[height=8cm]{Pheeno.jpg}
-    \caption{COMPARISON OF CURRENTLY AVAILABLE MULTI-ROBOT PLATFORMS\cite{wilson2016pheeno}}
-    \label{fig:Pheeno}
-\end{figure}
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[height=8cm]{Pheeno.jpg}
+%     \caption{COMPARISON OF CURRENTLY AVAILABLE MULTI-ROBOT PLATFORMS\cite{wilson2016pheeno}}
+%     \label{fig:Pheeno}
+% \end{figure}
 
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
@@ -20,7 +20,7 @@
 \begin{landscape}
     \begin{table}[]
     \centering
-    \begin{tabular}{l|lllll}
+    \begin{tabular}{lllllll}
     \hline
     Name        & Processor                                                                  & Sensing                                                                                                                & Comm.                                                                     & Imaging                                                                              & Cost                 \\ \hline
     \rowcolor[HTML]{EFEFEF} 
@@ -38,35 +38,7 @@
     \end{table}
 \end{landscape}
 
-
-
-% Please add the following required packages to your document preamble:
-% \usepackage{lscape}
-\begin{landscape}
-    \begin{table}[]
-    \centering
-    \begin{tabular}{l|lllllll}
-    \hline
-    robot/author     & size          & battery                                                             & mobility    & perception                                                                  & interaction                                                         & comm.           & processing  \\ \hline
-    Jasmine          & 2.6x2.6x2.6cm & \begin{tabular}[c]{@{}l@{}}LiPo, \\ 2 h autonomy\end{tabular}       & wheels      & none                                                                        & none                                                                & radio           & none        \\
-    AmigoBot         & 33x28x15cm    & \begin{tabular}[c]{@{}l@{}}Pb, 26Wh,\\ 2 h autonomy\end{tabular}    & wheels      & \begin{tabular}[c]{@{}l@{}}ultrasound, \\ opt. vision\end{tabular}          & none                                                                & opt. radio      & ad hoc      \\
-    Kobot            & 12x7cm        & \begin{tabular}[c]{@{}l@{}}LiPo, 7Wh,\\ 10 h autonomy\end{tabular}  & wheels      & opt. omnicam                                                                & none                                                                & Xbee            & opt. PXA255 \\
-    Zeero            & $\sim$25 cm   & 4xAA, 9Wh                                                           & wheels      & \begin{tabular}[c]{@{}l@{}}pan-tilt CMUcam2, \\ ultrasound, IR\end{tabular} & none                                                                & Bluetooth       & PXA255      \\
-    FlockBots        & 18cm          & \begin{tabular}[c]{@{}l@{}}NiMH, 16Wh, \\ 2 h autonomy\end{tabular} & wheels      & \begin{tabular}[c]{@{}l@{}}pan-tilt CMUCam2, \\ IR\end{tabular}             & simple grip-per                                                     & Wi-Fi           & PXA255      \\
-    Molecubes        & 66x66x66cm    & \begin{tabular}[c]{@{}l@{}}16 Wh \\ 1 h autonomy\end{tabular}       & opt. wheels & opt. vision                                                                 & \begin{tabular}[c]{@{}l@{}}assembling, \\ gripper\end{tabular}      & opt. Blue-tooth & opt. ARM 11 \\
-    Mindart          & 29x24x37cm    & NiCad, 20 Wh                                                        & tracks      & beacon \& vision                                                            & gripper                                                             & none            & Scenix SX   \\
-    Yoo, K.H. et al. & n.a.          & n.a.                                                                & tracks      & vision                                                                      & self-assembling                                                     & RF              & off-board   \\
-    JL-1             & 35x25x15cm    & 4 h autonomy                                                        & tracks      & vision                                                                      & self-assembling                                                     & Wi-Fi           & PXA255      \\
-    S-bot            & 12x15cm       & \begin{tabular}[c]{@{}l@{}}Lion, 10Wh, \\ 2 h autonomy\end{tabular} & treels      & omnicam                                                                     & \begin{tabular}[c]{@{}l@{}}gripper, \\ self-assembling\end{tabular} & Wi-Fi           & PXA255     
-    \end{tabular}
-    \caption{A selection of robots that have been used recently for collective experiments. The perception column lists the long range (\textgreater 20 cm) sensing capabilities of the robot, which excludes proximity sensors and bumpers. The processing column lists the vision-capable processing unit of the robot (\textgreater 100 MIPS), which excludes microcontrollers.\cite{bonani2010marxbot}}
-    \label{tab:collective}
-    \end{table}
-\end{landscape}
-
-
-
-\section{平台设计初始思路}
+\section{平台设计思路}
 形式：
 
 每个小车为一个数据点，在1-3维坐标系内动态运动（如果和ShapeBots\cite{suzuki2019shapebots}一样具备升降平台或者和SwarmOS一样具备可变色LED点阵则可以进行三维变量显示）

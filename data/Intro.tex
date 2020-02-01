@@ -107,6 +107,37 @@ Paxos 问题是指分布式的系统中存在故障（crash fault），但不存
 
 节点级解耦则考虑的是现实场景下的一致性问题，通过成本微增率共识原则求解最优解。
 
+\section{移动平台概述}
+
+用于教育等交互领域的移动机器人机器人平台在近几年的研发进展迅速（见表~\ref{tab:collective}），一方面得益于科技及制造业的发展，运算能力越来越强大的芯片和嵌入式CV得以普及，体积很小的平台上可以搭载强大的数据或图像处理芯片，甚至有的小车上搭载了操作系统。另一方面，人们为了探索未来人机交互方式，对于各式各样的移动协作平台的需求越来越大。
+
+% Please add the following required packages to your document preamble:
+% \usepackage{lscape}
+\begin{landscape}
+    \begin{table}[]
+    \centering
+    \begin{tabular}{l|lllllll}
+    \hline
+    robot/author     & size          & battery                                                             & mobility    & perception                                                                  & interaction                                                         & comm.           & processing  \\ \hline
+    Jasmine          & 2.6x2.6x2.6cm & \begin{tabular}[c]{@{}l@{}}LiPo, \\ 2 h autonomy\end{tabular}       & wheels      & none                                                                        & none                                                                & radio           & none        \\
+    AmigoBot         & 33x28x15cm    & \begin{tabular}[c]{@{}l@{}}Pb, 26Wh,\\ 2 h autonomy\end{tabular}    & wheels      & \begin{tabular}[c]{@{}l@{}}ultrasound, \\ opt. vision\end{tabular}          & none                                                                & opt. radio      & ad hoc      \\
+    Kobot            & 12x7cm        & \begin{tabular}[c]{@{}l@{}}LiPo, 7Wh,\\ 10 h autonomy\end{tabular}  & wheels      & opt. omnicam                                                                & none                                                                & Xbee            & opt. PXA255 \\
+    Zeero            & $\sim$25 cm   & 4xAA, 9Wh                                                           & wheels      & \begin{tabular}[c]{@{}l@{}}pan-tilt CMUcam2, \\ ultrasound, IR\end{tabular} & none                                                                & Bluetooth       & PXA255      \\
+    FlockBots        & 18cm          & \begin{tabular}[c]{@{}l@{}}NiMH, 16Wh, \\ 2 h autonomy\end{tabular} & wheels      & \begin{tabular}[c]{@{}l@{}}pan-tilt CMUCam2, \\ IR\end{tabular}             & simple grip-per                                                     & Wi-Fi           & PXA255      \\
+    Molecubes        & 66x66x66cm    & \begin{tabular}[c]{@{}l@{}}16 Wh \\ 1 h autonomy\end{tabular}       & opt. wheels & opt. vision                                                                 & \begin{tabular}[c]{@{}l@{}}assembling, \\ gripper\end{tabular}      & opt. Blue-tooth & opt. ARM 11 \\
+    Mindart          & 29x24x37cm    & NiCad, 20 Wh                                                        & tracks      & beacon \& vision                                                            & gripper                                                             & none            & Scenix SX   \\
+    Yoo, K.H. et al. & n.a.          & n.a.                                                                & tracks      & vision                                                                      & self-assembling                                                     & RF              & off-board   \\
+    JL-1             & 35x25x15cm    & 4 h autonomy                                                        & tracks      & vision                                                                      & self-assembling                                                     & Wi-Fi           & PXA255      \\
+    S-bot            & 12x15cm       & \begin{tabular}[c]{@{}l@{}}Lion, 10Wh, \\ 2 h autonomy\end{tabular} & treels      & omnicam                                                                     & \begin{tabular}[c]{@{}l@{}}gripper, \\ self-assembling\end{tabular} & Wi-Fi           & PXA255     
+    \end{tabular}
+    \caption{A selection of robots that have been used recently for collective experiments. The perception column lists the long range (\textgreater 20 cm) sensing capabilities of the robot, which excludes proximity sensors and bumpers. The processing column lists the vision-capable processing unit of the robot (\textgreater 100 MIPS), which excludes microcontrollers.\cite{bonani2010marxbot}}
+    \label{tab:collective}
+    \end{table}
+\end{landscape}
+
+
 \section{本研究意义}
 
 本文利用改进的分布式算法求解节点级解耦的一致性问题，并将算法在硬件上成功运行展示。解决了一些硬件特有的问题并尽可能控制成本，为将来在泛在电力物联网中广泛运用打好了基础。
+
+同时提出了一种实用的移动平台，不仅在本次设计中展现出了其实用性，还在很多领域有可扩展的应用前景。

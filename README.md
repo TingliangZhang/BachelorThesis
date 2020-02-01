@@ -23,6 +23,12 @@ latexmk -xelatex --shell-escape main.tex
 
 
 
+## VSCode相关
+
+表格对齐自动换行
+
+using the ALT+Z keyboard shortcut to *Toggle Word Wrap*
+
 ## Tools
 
 PDF转Excel：
