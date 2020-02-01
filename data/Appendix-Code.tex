@@ -1,0 +1,33 @@
+\chapter{相关代码}
+\label{cha:Code}
+\title{Python}
+
+\section{平均值分布式算法收敛性检测}
+% minted需要latexmk 加入 --shell-escape 参数，即 $ latexmk -xelatex --shell-escape main.tex
+% \usepackage[cache=false]{minted}  % 代码高亮
+
+% 如果出现一堆 Undefined control sequence.  那应该是没加 [cache=false]
+
+% Package minted Error: You must have `pygmentize' installed to use this packag
+% Solution:应该是Python的包Pygments的问题了，用pip安装了这个包
+%    pip install pygments
+
+% Windows 10 1903下Python命令关联到了Microsoft Store里面，如果没安装python：
+% 去 https://www.python.org/downloads/ 下载下来 直接默认路径+添加到PATH即可
+
+% 你可以通过以下命令来判断是否已安装pip：
+% pip --version
+% 下载pip：https://pypi.python.org/pypi/pip#downloads
+% 之后 python setup.py install 安装
+% 搜索 环境变量 
+% 把C:\Users\ZTL\AppData\Local\Programs\Python\Python37-32\Scripts 加到Path里
+
+% 必要时注意重启VS Code以更新环境变量
+
+
+\begin{minted}{c++}
+    int main() {
+        printf("hello, world");
+        return 0;
+    }
+\end{minted}
