@@ -29,6 +29,12 @@ latexmk -xelatex --shell-escape main.tex
 
 using the ALT+Z keyboard shortcut to *Toggle Word Wrap*
 
+## Latex相关
+
+#### [Why should I put a ~ before \ref or \cite?](https://tex.stackexchange.com/questions/9633/why-should-i-put-a-before-ref-or-cite)
+
+The `~` is a non-breaking space, (not really a symbol) so when you write in your text `Table~\ref{mytable}` it ensures that the `Table` part is kept together with the number. This is generally considered to be good for readability.
+
 ## Tools
 
 PDF转Excel：
