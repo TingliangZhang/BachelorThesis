@@ -1,0 +1,11 @@
+
+
+
+
+Inspired from vector graphics authoring tools, we have implemented a swarm version of a freehand drawing tool, shown in Figure 2: initially, the freehand drawing zooid stands in the center of the working surface, while unassigned zooids wait at the top, in an idle state (Figure 2- 1). When the user drags the freehand drawing zooid, the previously idle zooids move to the path of the drawing zooid to form a physical trail (Figure 2- 2 and 3). When the system runs out of idle zooids, the trail follows the freehand drawing tool like a snake. The curve can also be deformed by dragging its constituent zooids individually (Figure 2- 4), or by moving many of them simultaneously, e.g., by pushing them with the side of the arm.
+
+Figure 3. Circle swarm drawing, where zooids are automatically inserted (2) or discarded (3) depending on the circle’s diameter.
+
+
+
+We are used to program graphics on computer displays where the elements (pixels) are arranged on a regular grid, and only their color is controlled. Although elements of swarm UIs can also have different colors (in our system, each zooid embeds a color LED), a major difference is that they can be positioned freely. Even at equal resolution between the two systems, the way elements can be combined into shapes is very different (see Figure 11). In general, free positioning allows finer shape control than simply turning pixels on and off. At the same time, this extra flexibility comes at the cost of slower response time and higher engineering complexity, with algorithmic problems such as collision avoidance and optimal element-target assignment. In addition, with systems with few elements such as zooids, designers need to think carefully about how to use every zooid optimally, the same way designers from the 80’s had to think carefully about how to best use every pixel. It will become less of a concern as the resolution of swarm UIs increases, but on the other hand, engineering and algorithmic challenges will likely become harder. In addition, as shown in Figure 8, the display elements may be homogeneous, as with zooids, or heterogeneous.
