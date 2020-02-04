@@ -98,19 +98,47 @@ USB在速度上远比并行端口（例如EPP、LPT）与串行接口（例如RS
 
 由于不需要过快的数据交换速度，选用USB 2.0（USB 2.0 HiSpeed）协议进行数据交换。
 
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-\begin{table}[]
-    \centering
-    \begin{tabular}{@{}llll@{}}
-    \toprule
-    类别     & Type-A & Type-C & Micro-B \\ \midrule
-    插头（公头） &        &        &         \\
-    插座（母头） &        &        &         \\ \bottomrule
-    \end{tabular}
+% https://tex.stackexchange.com/questions/316435/how-to-put-6-images-in-3-columns-2-rows/316444
+% 在此环境插入png会报错，得是pdf
+% https://tex.stackexchange.com/questions/17734/cannot-determine-size-of-graphic
+\begin{figure}[htbp]
+        \centering % <-- added
+    \begin{subfigure}{0.25\textwidth}
+    \includegraphics[width=\linewidth]{USB_Type-A.pdf}
+    \caption{USB Type-A 公头}
+    \label{fig:USB-1}
+    \end{subfigure}\hfil % <-- added
+    \begin{subfigure}{0.25\textwidth}
+    \includegraphics[width=\linewidth]{USB_Micro-B.pdf}
+    \caption{USB Micro-B 公头}
+    \label{fig:USB-2}
+    \end{subfigure}\hfil % <-- added
+    \begin{subfigure}{0.25\textwidth}
+    \includegraphics[width=\linewidth]{USB_Type-C_icon.pdf}
+    \caption{USB Type-C 公头}
+    \label{fig:USB-3}
+    \end{subfigure}
+
+    \medskip
+    \begin{subfigure}{0.25\textwidth}
+    \includegraphics[width=\linewidth]{USB_Type-A_receptacle.pdf}
+    \caption{USB Type-A 母头}
+    \label{fig:USB-4}
+    \end{subfigure}\hfil % <-- added
+    \begin{subfigure}{0.25\textwidth}
+    \includegraphics[width=\linewidth]{USB_Micro-B_receptacle.pdf}
+    \caption{USB Micro-B 母头}
+    \label{fig:USB-5}
+    \end{subfigure}\hfil % <-- added
+    \begin{subfigure}{0.25\textwidth}
+    \includegraphics[width=\linewidth]{USB_Type-C_receptacle.pdf}
+    \caption{USB Type-C 母头}
+    \label{fig:USB-6}
+    \end{subfigure}
     \caption{USB 2.0 机械电子标准一览}
-    \label{tab:USB-M}
-\end{table}
+    \label{fig:USB-M}
+\end{figure}
+
 
 如表~\ref{tab:USB-M}，USB的连接器分为A、B两种，分别用于主机和设备；其各自的小型化的连接器是Mini-A, Mini-B 和 Micro-A, Micro-B，另外还有Mini-AB（可支持Mini-A及Mini-B）的插口。USB 3.1版本中引入了支持正反面不区分插入的C型。
 
@@ -143,12 +171,13 @@ Micro-USB除了第4针外，其他接口功能皆与标准USB相同如表~\ref{t
 \begin{table}[]
     \centering
     \begin{tabular}{@{}lll@{}}
-    触点 & 功能                & 颜色 \\
+    \toprule
+    触点 & 功能                & 颜色 \\ \midrule
     1  & V BUS（4.4–5.25 V） & 红  \\
     2  & D−                & 白  \\
     3  & D+                & 绿  \\
     4  & ID                &    \\
-    5  & 接地                & 黑 
+    5  & 接地                & 黑 \\ \bottomrule
     \end{tabular}
     \caption{Micro USB连接器触点}
     \label{tab:MicroUSB}
@@ -181,10 +210,9 @@ Micro-USB除了第4针外，其他接口功能皆与标准USB相同如表~\ref{t
 
 如图~\ref{fig:Mega2560-USB}，
 
-USB口外壳和内部引线之间并联了可变电阻和磁珠
+USB口外壳和内部引线之间并联了可变电阻和磁珠。
 
 \section{扩展接口}
 
 三明治扩展。
 
-\section{接口}
