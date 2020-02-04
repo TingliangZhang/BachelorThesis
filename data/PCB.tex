@@ -1,18 +1,18 @@
 \chapter{主板及扩展板PCB设计}
 \label{cha:PCB}
 
-主板PCB设计如图：
+主板PCB设计如图~\ref{fig:CorePCB}：
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[]{ArduinoMega2560-Core-White-Crop.pdf}
+    \includegraphics[width=\columnwidth]{ArduinoMega2560-Core-White-Crop.pdf}
     \caption{Mega 2560主板设计}
     \label{fig:CorePCB}
 \end{figure}
 
-\section{ATmega2560-16AU}
+\section{主控ATmega2560-16AU}
 
-主控芯片拟采用ARDUINO MEGA 2560 REV3\cite{arduino_mega-2560-r3}上使用的ATmega2560-16U芯片\footnote{\href{http://www.atmel.com/Images/Atmel-2549-8-bit-AVR-Microcontroller-ATmega640-1280-1281-2560-2561_datasheet.pdf}{ATmega2560 Datasheet}}，并参考MEGA 2560的芯片外设和烧写器设计。引脚映射图见附录~\ref{cha:Appendix-PCB}。
+主控芯片采用ARDUINO MEGA 2560 REV3\cite{arduino_mega-2560-r3}上使用的ATmega2560-16U芯片\footnote{\href{http://www.atmel.com/Images/Atmel-2549-8-bit-AVR-Microcontroller-ATmega640-1280-1281-2560-2561_datasheet.pdf}{ATmega2560 Datasheet}}，并参考MEGA 2560的芯片外设和烧写器设计。引脚映射图见附录~\ref{sec:Pin2560}。
 
 \begin{figure}[htbp]
     \centering
@@ -21,6 +21,7 @@
     \label{fig:PinMap2560}
 \end{figure}
 
+ATmega2560是高性能，低功耗基于Microchip 8位AVR RISC的微控制器(MCU)，256KB ISP闪存，8KB SRAM，4KB EEPROM，86个GPIO，32个通用工作寄存器，实时计数器，六个具有比较模式的灵活定时器/计数器，PWM，4个USART，面向字节的2线串行接口，16通道10位A/D转换器以及用于片上调试的JTAG接口。该器件在16 MHz时可达到16 MIPS的吞吐量，并在4.5至5.5伏之间工作。通过在单个时钟周期内执行指令，该设备可实现接近1MIPS/MHz的吞吐量，从而平衡了功耗和处理速度。
 
 \begin{figure}[htbp]
     \centering
