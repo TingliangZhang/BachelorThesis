@@ -30,12 +30,131 @@ ATmega2560是高性能，低功耗基于Microchip 8位AVR RISC的微控制器(MC
     \label{fig:Mega2560-ATmega2560-16AU}
 \end{figure}
 
-\section{扩展接口}
+\section{供电和稳压电路}
 
-三明治扩展。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{Mega2560-Power.pdf}
+    \caption{供电和稳压电路}
+    \label{fig:Mega2560-Power}
+\end{figure}
 
-\section{接口}
-为了紧跟潮流，我们使用USB Type-C接口进行供电和烧写程序：
+如图~\ref{fig:Mega2560-Power}，外部锂电通过PWRIN接口输入7-15v直流，两级滤波，使用小电容100nF滤除高频干扰，大电容47uF消除低频干扰，M7为二极管，防止错误输入负电压。低压差线性稳压(LDO)降压芯片LD1117S50CTR完成电平转换，输出5V直流，在输出端也加入了一个47uF的滤波电容，滤除输出5V中的低频谐波。
+
+AVCC是端口F和A/D转换器的电源电压引脚。即使不使用ADC，它也应从外部连接到VCC。如果使用ADC，则应通过低通滤波器将其连接到VCC。
+
+LP2985-33DBVR则是另一个低压差线性稳压(LDO)，它将5V降到3.3V。根据Datasheet，在布线时，旁路电容器的放置应尽可能的接近器件的VIN和系统的GND，注意使旁路电容器连接VIN引脚和系统的GND引脚形成的环路面积最小。
+
+绿色LED串联1KOhm保护电阻，当电路接上电源时，ON LED将发光作为提示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{Mega2560-USB-POWER.pdf}
+    \caption{USB供电选择电路}
+    \label{fig:Mega2560-USB-POWER}
+\end{figure}
+
+如图~\ref{fig:Mega2560-USB-POWER}，LM358DR2G为增益带宽积(GBP)1MHz的通用双路运放，AO3401A则为P沟道MOS(场效应管)，低电平导通。
+
+LM358DR2G的B路运放在这里作为电压比较器使用，若VIN大于6.6V，即有锂电输入，此时运放输出高电平，PMOS关断，此时板上供电由锂电提供，同时也切断了USB，防止通过锂电给USB供电的情况出现。当VIN没有输入，即没有锂电输入，如果此时USB接通，PMOS导通，USB可以直接给板子供应5V直流。
+
+\section{MCU附属IO}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{Mega2560-Core-IO.pdf}
+    \caption{MCU附属IO}
+    \label{fig:Mega2560-Core-IO}
+\end{figure}
+
+如图~\ref{fig:Mega2560-Core-IO}，LM358DR2G的A路运放在这里作为电压跟随器，作为黄色LED的驱动，接收PB7即D13引脚的数字输入，控制黄色LED的亮灭。
+
+2x3的端子是ICSP (In-Circuit Serial Programming) 端口，可以通过这个6Pin端口给ATmega2560 MCU烧写程序。结合AVR-ISP (in-system programmer)比如Arduino ISP\footnote{https://store.arduino.cc/usa/arduino-isp}使用。
+
+使用Arduino ISP，可以上传脚本并在任何基于AVR的板上烧写引导程序。通过使用外部编程器上传Sketch，可以删除引导程序bootloader。Arduino ISP还可用于刻录Arduino bootloader，因此，如果不小心损坏了bootloader，则可以用它来恢复。当使用新的ATmega MCU时，也有必要刷引导程序，将希望使用的引导程序通过USB-Serial连接上传。
+
+SCL和SDA为I2C（Inter-Integrated Circuit）集成电路总线，是一种串行通讯汇流排，使用多主从架构，只使用两条双向漏极开路（Open Drain）（串行资料（SDA）及串行时脉（SCL））并利用电阻将电位上拉。这里两个10kOhm电阻即为I2C上拉电阻。
+
+按下轻触开关，MCU的RESET从高电平变为低电平，MCU中的程序复位，相当于重启。
+
+CSTCE16M0V53为16MHz晶振，内置电容，作为MCU的外部时钟晶振使用。
+
+\section{ATmega16U2}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{Mega2560-ATmega16U2-MU.pdf}
+    \caption{Mega2560-ATmega16U2-MU}
+    \label{fig:Mega2560-ATmega16U2-MU}
+\end{figure}
+
+如图~\ref{fig:Mega2560-ATmega16U2-MU}，板上的ATmega16U2芯片充当计算机的USB端口和主处理器ATmega2560-16AU的串行端口之间的桥梁。它运行称为固件的软件（之所以这样命名，是因为一旦在芯片中对其进行编程就无法更改），该软件可以通过称为DFU（设备固件更新）的特殊USB协议\footnote{https://www.arduino.cc/en/Hacking/DFUProgramming8U2}进行更新。
+
+\section{USB接口}
+
+通过通用串行总线（英语：U niversal S erial B us，缩写：USB）对MCU进行程序烧写和部分数据交换，同时可以给电路板供电。
+
+USB在速度上远比并行端口（例如EPP、LPT）与串行接口（例如RS-232）等传统电脑用标准汇流排快上许多。USB 2.0（USB 2.0 HiSpeed）为480Mbps，USB 3.0（USB 3.2 Gen1）为5Gbps，USB 3.1（USB 3.2 Gen2x1）为10Gbps，而USB 3.2（USB 3.2 Gen2x2）更达20Gbps。
+
+由于不需要过快的数据交换速度，选用USB 2.0（USB 2.0 HiSpeed）协议进行数据交换。
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+    \centering
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+    类别     & Type-A & Type-C & Micro-B \\ \midrule
+    插头（公头） &        &        &         \\
+    插座（母头） &        &        &         \\ \bottomrule
+    \end{tabular}
+    \caption{USB 2.0 机械电子标准一览}
+    \label{tab:USB-M}
+\end{table}
+
+如表~\ref{tab:USB-M}，USB的连接器分为A、B两种，分别用于主机和设备；其各自的小型化的连接器是Mini-A, Mini-B 和 Micro-A, Micro-B，另外还有Mini-AB（可支持Mini-A及Mini-B）的插口。USB 3.1版本中引入了支持正反面不区分插入的C型。
+
+普通电脑上使用的是Type-A口，所以连接电路板时会使用Type-A转Micro USB或Type-C的USB2.0数据线。
+
+在标准USB接口Type-A中，有四个连接器触点如表~\ref{tab:USB-4}，USB信号使用分别标记为D+和D-的双绞线传输，它们各自使用半双工的差分信号并协同工作，以抵消长导线的电磁干扰。
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+    \centering
+    \begin{tabular}{@{}lll@{}}
+    \toprule
+    触点 & 功能（主机）             & 功能（设备）            \\ \midrule
+    1  & V BUS（4.75－5.25 V） & V BUS（4.4－5.25 V） \\
+    2  & D-                 & D-                \\
+    3  & D+                 & D+                \\
+    4  & 接地                 & 接地                \\ \bottomrule
+    \end{tabular}
+    \caption{标准USB Type-A连接器触点}
+    \label{tab:USB-4}
+\end{table}
+
+使用Micro-USB机械电子标准的USB插座（母头），此标准常用于移动电话、平板电脑等。Micro-USB将成为移动设备数据和电源的标准接口。
+
+Micro-USB除了第4针外，其他接口功能皆与标准USB相同如表~\ref{tab:MicroUSB}。第4针成为ID，地线在Micro-USB上连接到第5针，在Micro-USB可以悬空亦可连接到第5针。
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+    \centering
+    \begin{tabular}{@{}lll@{}}
+    触点 & 功能                & 颜色 \\
+    1  & V BUS（4.4–5.25 V） & 红  \\
+    2  & D−                & 白  \\
+    3  & D+                & 绿  \\
+    4  & ID                &    \\
+    5  & 接地                & 黑 
+    \end{tabular}
+    \caption{Micro USB连接器触点}
+    \label{tab:MicroUSB}
+\end{table}
+
+也可以使用支持正反插的USB Type-C接口进行供电和烧写程序，USB Type-C接口常用于新式计算机、移动电话、平板电脑等。其通讯协议和标准见图~\ref{fig:USB-Type-C-pins}和图~\ref{fig:USB-TypeC}。
 
 \begin{figure}[htbp]
     \centering
@@ -50,3 +169,22 @@ ATmega2560是高性能，低功耗基于Microchip 8位AVR RISC的微控制器(MC
     \caption{USB-TypeC}
     \label{fig:USB-TypeC}
 \end{figure}
+
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{Mega2560-USB.pdf}
+    \caption{Mega2560-USB}
+    \label{fig:Mega2560-USB}
+\end{figure}
+
+如图~\ref{fig:Mega2560-USB}，
+
+USB口外壳和内部引线之间并联了可变电阻和磁珠
+
+\section{扩展接口}
+
+三明治扩展。
+
+\section{接口}
