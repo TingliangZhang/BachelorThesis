@@ -90,6 +90,21 @@ CSTCE16M0V53为16MHz晶振，内置电容，作为MCU的外部时钟晶振使用
 
 如图~\ref{fig:Mega2560-ATmega16U2-MU}，板上的ATmega16U2芯片充当计算机的USB端口和主处理器ATmega2560-16AU的串行端口之间的桥梁。它运行称为固件的软件（之所以这样命名，是因为一旦在芯片中对其进行编程就无法更改），该软件可以通过称为DFU（设备固件更新）的特殊USB协议\footnote{https://www.arduino.cc/en/Hacking/DFUProgramming8U2}进行更新。
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{Mega2560-MU-IO.pdf}
+    \caption{Mega2560-MU-IO}
+    \label{fig:Mega2560-MU-IO}
+\end{figure}
+
+如图~\ref{fig:Mega2560-MU-IO}：
+
+2x3的端子是ICSP (In-Circuit Serial Programming) 端口，可以通过这个6Pin端口给ATmega16U2 MCU烧写程序。
+
+Rp1为一个排阻，上有四个相同阻值(1kOhm)的电阻，上面两个电阻作为两个黄灯的保护电阻，两个黄灯作为RX1和TX1数据传输的指示。另两个电阻则是从ATmega16U2到ATmega2560-16AU的通信线路上的电阻，通过ATmega2560-16AU的PE0和PE1给MCU烧写程序。
+
+RESET-EN为自动复位设计，可以通过主机复位。这样通过Arduino软件烧写程序到Mega2560中软件可以自动复位，不需要再按复位按钮。在PCB上切断"RESET EN"处两个焊盘中间的线可以禁止该功能。
+
 \section{USB接口}
 
 通过通用串行总线（英语：U niversal S erial B us，缩写：USB）对MCU进行程序烧写和部分数据交换，同时可以给电路板供电。
@@ -102,7 +117,7 @@ USB在速度上远比并行端口（例如EPP、LPT）与串行接口（例如RS
 % 在此环境插入png会报错，得是pdf
 % https://tex.stackexchange.com/questions/17734/cannot-determine-size-of-graphic
 \begin{figure}[htbp]
-        \centering % <-- added
+    \centering % <-- added
     \begin{subfigure}{0.25\textwidth}
     \includegraphics[width=\linewidth]{USB_Type-A.pdf}
     \caption{USB Type-A 公头}
@@ -140,9 +155,9 @@ USB在速度上远比并行端口（例如EPP、LPT）与串行接口（例如RS
 \end{figure}
 
 
-如表~\ref{tab:USB-M}，USB的连接器分为A、B两种，分别用于主机和设备；其各自的小型化的连接器是Mini-A, Mini-B 和 Micro-A, Micro-B，另外还有Mini-AB（可支持Mini-A及Mini-B）的插口。USB 3.1版本中引入了支持正反面不区分插入的C型。
+如表~\ref{fig:USB-M}，USB的连接器分为A、B两种，分别用于主机和设备；其各自的小型化的连接器是Mini-A, Mini-B 和 Micro-A, Micro-B，另外还有Mini-AB（可支持Mini-A及Mini-B）的插口。USB 3.1版本中引入了支持正反面不区分插入的C型。
 
-普通电脑上使用的是Type-A口，所以连接电路板时会使用Type-A转Micro USB或Type-C的USB2.0数据线。
+普通电脑上使用的是Type-A口，所以连接电路板时会使用Type-A转Micro USB或Type-C的USB2.0数据线。USB插槽本身还能提供5V的主动电压，及0.5A的电流。
 
 在标准USB接口Type-A中，有四个连接器触点如表~\ref{tab:USB-4}，USB信号使用分别标记为D+和D-的双绞线传输，它们各自使用半双工的差分信号并协同工作，以抵消长导线的电磁干扰。
 
@@ -208,9 +223,24 @@ Micro-USB除了第4针外，其他接口功能皆与标准USB相同如表~\ref{t
     \label{fig:Mega2560-USB}
 \end{figure}
 
-如图~\ref{fig:Mega2560-USB}，
+如图~\ref{fig:Mega2560-USB}：
 
-USB口外壳和内部引线之间并联了可变电阻和磁珠。
+BLM21PG300SN1D为（电感式）片式铁氧体磁珠，阻抗30Ω频率100MHz。
+
+0603ESDA-05N为ESD抑制器/TVS二极管，箝位电压	50V，反向关断电压（典型值）	5V
+
+USB口外壳和内部引线之间并联了ESD二极管和铁氧体磁珠，用于防USB浪涌电流，保护电路。
+
+SMD1812P050TF为PTC自恢复保险丝，最大电压15V，保持电流500mA，最大电流100A，跳闸电流1A，为了防止USB输入电流持续过大。
+
+USB 3.1 C TYPE DIP+SMT CONN为USB Type-C 母头，按照USB2.0协议使用，后续可添加PD或高速数据传输等功能。
+
+
+\section{电机驱动}
+
+
+\section{RGBLED}
+
 
 \section{扩展接口}
 
