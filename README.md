@@ -35,6 +35,8 @@ using the ALT+Z keyboard shortcut to *Toggle Word Wrap*
 
 The `~` is a non-breaking space, (not really a symbol) so when you write in your text `Table~\ref{mytable}` it ensures that the `Table` part is kept together with the number. This is generally considered to be good for readability.
 
+Latex源码里面注意不要出现下划线，短横线可以。
+
 ## Tools
 
 PDF转Excel：
