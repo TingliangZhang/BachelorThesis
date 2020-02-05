@@ -294,19 +294,34 @@ ESP32 WROOM 系列模组具备优化的引脚布局，外设 IO 管脚被分组�
 
 如图~\ref{fig:ESP32Reset}，当使用电池给ESP32系列芯片和模组供电时，为避免电池电压过低导致芯片进入异常状态不能正常启动，一般推荐外接Power Supply Supervisor。建议检测到供给ESP32的电压低于2.3V 时将ESP32的CHIP PU脚拉低。
 
-\begin{figure}
-    \begin{minipage}{0.48\textwidth}
-      \centering
-      \includegraphics[width=\columnwidth]{ESP32-DevKitC-functional-overview.jpg}
-      \caption{ESP32-DevKitC实物图}
-      \label{fig:ESP32-1}
-    \end{minipage}\hfill
-    \begin{minipage}{0.48\textwidth}
-      \centering
-      \includegraphics[width=\columnwidth]{ESP32-DevKitC-32D.png}
-      \caption{ESP32-DevKitC模型图}
-      \label{fig:ESP32-2}
-    \end{minipage}
+% \begin{figure}
+%     \begin{minipage}{0.48\textwidth}
+%       \centering
+%       \includegraphics[width=\columnwidth]{ESP32-DevKitC-functional-overview.jpg}
+%       \caption{ESP32-DevKitC实物图}
+%       \label{fig:ESP32-1}
+%     \end{minipage}\hfill
+%     \begin{minipage}{0.48\textwidth}
+%       \centering
+%       \includegraphics[width=\columnwidth]{ESP32-DevKitC-32D.png}
+%       \caption{ESP32-DevKitC模型图}
+%       \label{fig:ESP32-2}
+%     \end{minipage}
+% \end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{ESP32-DevKitC-functional-overview.jpg}
+    \caption{ESP32-DevKitC实物图}
+    \label{fig:ESP32-1}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.48\textwidth]{ESP32-DevKitC-32D.png}
+    \caption{ESP32-DevKitC模型图}
+    \label{fig:ESP32-2}
 \end{figure}
 
 ESP32周边程序烧写设计参考ESP32-DevKitC V4\footnote{\url{https://docs.espressif.com/projects/esp-idf/zh_CN/latest/hw-reference/get-started-devkitc.html}}。如图~\ref{fig:ESP32-1}，ESP32-DevKitC 是一款入门级开发板。板上集成的 ESP32 引脚均已引出，便于连接和使用。
@@ -317,9 +332,29 @@ ESP32周边程序烧写设计参考ESP32-DevKitC V4\footnote{\url{https://docs.e
 
 可以直接通过JTAG给ESP32烧写程序，可以通过UART烧写。
 
-CP2102N-A01-GQFN20R作为USB-UART芯片，不使用其内置3.3V电压转换模块，通过此芯片可以直接通过USB给ESP32烧写程序。
+CP2102N-A01-GQFN20R作为USB-UART芯片，不使用其内置3.3V电压转换模块，通过此芯片可以直接通过USB给ESP32烧写程序。优点：廉价，缺点则为CP2102N只能烧写程序，而不能作为USB-to-JTAG 接口进行ESP32和计算机的实时通信桥梁。
+
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[]{esp-wrover-kit-v4.1-layout-front.png}
+%     \caption{ESP WROVER KIT实物图}
+%     \label{fig:ESP32-WROVER-0}
+% \end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\columnwidth]{esp-wrover-kit-vb.png}
+    \caption{ESP WROVER KIT模型图}
+    \label{fig:ESP32-WROVER}
+\end{figure}
+
+参考ESP WROVER KIT(如图~\ref{fig:ESP32-WROVER})设计。ESP-WROVER-KIT-VB 为乐鑫 ESP-WROVER-KIT 开发板的变体，默认贴片 ESP32-WROVER-B 模组，支持 LCD 和 MircoSD 卡。板上 ESP32-WROVER-B 模组的 I/O 管脚均已引出，允许用户连接丰富的外设，满足多种开发场景。此外，本款开发板还载有支持多种协议的 USB 转接桥 (FTDI FT2232HL)，允许用户直接通过 USB 接口使用 JTAG 调试 ESP32 模组，极大地降低了二次开发的复杂度和成本。
+
+FT2232 多协议 USB 转串口桥接器。开发人员可通过 USB 接口对 FT2232 芯片进行控制和编程，与 ESP32 建立连接。FT2232 芯片可在通道 A 提供 USB-to-JTAG 接口功能，并在通道 B 提供 USB-to-Serial 接口功能，便利开发人员的应用开发与调试。详见 ESP-WROVER-KIT V4.1 原理图。
+
+
 
 \section{扩展接口}
 
-三明治扩展。
+三明治扩展形式，层层堆叠。
 
