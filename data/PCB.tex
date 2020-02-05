@@ -256,7 +256,68 @@ WS2812B是一个集控制电路与发光电路于一体的智能外控LED光源�
 LED具有低电压驱动，环保节能，亮度高，散射角度大，一致性好，超低功率，超长寿命等优点。将控制电路集成于LED上面，电路变得更加简单，体积小，安装更加简便。
 
 
-\section{通信模块}
+\section{ESP32通信模块}
+
+经过BLE4.2和ESP8266的原理性验证，选择ESP32作为通信模块和第二MCU使用。
+
+Espressif ESP32 WROOM 系列\footnote{https://www.espressif.com/zh-hans/products/hardware/esp-wroom-32/overview}，基于乐鑫先进的 SoC，ESP32 WROOM 系列模组具备高性能和丰富的外设，集成了 Wi-Fi和蓝牙功能，为先进的物联网应用提供了高度集成的解决方案。
+
+ESP32 WROOM 系列模组包括 ESP32-WROOM-32，ESP32-WROOM-32D 和 ESP32-WROOM-32U 型号，集成了 ESP32 SoC，闪存，精密离散元件和 PCB 板载天线／IPEX 天线，该天线能够在空间有限的应用中提供出色射频性能。
+
+ESP32 WROOM 系列模组具备优化的引脚布局，外设 IO 管脚被分组并引出，将外部走线降低，便于 PCB 板设计，从而使应用更加紧凑。
+
+在本设计中，我们可以灵活选择使用ESP32-WROOM-32/32D/32DC模组，它们的封装和绝大多数功能完全一样。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{esp32-wroom-32_datasheet_cn_Outside.pdf}
+    \caption{ESP32-WROOM-32 外围原理图}
+    \label{fig:ESP32Outside}
+\end{figure}
+
+如图~\ref{fig:ESP32Outside}：
+
+注意:
+
+\begin{itemize}
+    \item MTDI 应保持低电平。
+    \item ESP32-WROOM-32 管脚39，可以不焊接到底板。若将该管脚焊接到底板，确保使用适量的焊锡膏。
+    \item 为确保芯片上电时的供电正常，EN管脚处需要增加RC延迟电路。RC通常建议为R = 10kOhms，C = 0.1uF，但具体数值仍需根据模组电源的上电时序和芯片的上电复位时序进行调整。
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{esp32-wroom-32_datasheet_cn_Reset.pdf}
+    \caption{ESP32-WROOM-32复位电路}
+    \label{fig:ESP32Reset}
+\end{figure}
+
+如图~\ref{fig:ESP32Reset}，当使用电池给ESP32系列芯片和模组供电时，为避免电池电压过低导致芯片进入异常状态不能正常启动，一般推荐外接Power Supply Supervisor。建议检测到供给ESP32的电压低于2.3V 时将ESP32的CHIP PU脚拉低。
+
+\begin{figure}
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\columnwidth]{ESP32-DevKitC-functional-overview.jpg}
+      \caption{ESP32-DevKitC实物图}
+      \label{fig:ESP32-1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\columnwidth]{ESP32-DevKitC-32D.png}
+      \caption{ESP32-DevKitC模型图}
+      \label{fig:ESP32-2}
+    \end{minipage}
+\end{figure}
+
+ESP32周边程序烧写设计参考ESP32-DevKitC V4\footnote{\url{https://docs.espressif.com/projects/esp-idf/zh_CN/latest/hw-reference/get-started-devkitc.html}}。如图~\ref{fig:ESP32-1}，ESP32-DevKitC 是一款入门级开发板。板上集成的 ESP32 引脚均已引出，便于连接和使用。
+
+管脚 D0、D1、D2、D3、CMD 和 CLK 用于 ESP32 芯片与 SPI flash 间的内部通信，集中分布在开发板两侧靠近 USB 端口的位置。通常而言，这些管脚最好不连，否则可能影响 SPI flash / SPI RAM 的工作。
+
+管脚 GPIO16 和 GPIO17 仅适用于板载 ESP32-WROOM 系列和 ESP32-SOLO-1 的开发板，保留内部使用。
+
+可以直接通过JTAG给ESP32烧写程序，可以通过UART烧写。
+
+CP2102N-A01-GQFN20R作为USB-UART芯片，不使用其内置3.3V电压转换模块，通过此芯片可以直接通过USB给ESP32烧写程序。
 
 \section{扩展接口}
 
