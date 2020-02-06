@@ -9,7 +9,90 @@
 
 \subsection{初次使用烧写固件}
 
+一般来说，微控制器通过编程器被烧写程序(programmer)，除非微控制器中有一个固件(firmware)，该固件允许无需外部编程器而安装新固件。这种固件称为引导加载程序(bootloader)。新出厂的微控制器内部不含Bootloader，必须要先烧录引导程序
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{Pocket-AVR-Programmer.jpg}
+    \caption{Pocket AVR Programmer}
+    \label{fig:Pocket-AVR-Programmer}
+\end{figure}
+
+烧写Bootloader\footnote{\url{https://www.arduino.cc/en/Hacking/Bootloader}}需要先购买AVR-ISP (in-system programmer，如图~\ref{fig:Pocket-AVR-Programmer}), USBtinyISP 或者自己做一个ParallelProgrammer(并行编程器)，这些编程器需要连接到ICSP引脚(如图~\ref{fig:Isp_headers})，同时板子需要通电(USB或者电池都可以)。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{Isp_headers.pdf}
+    \caption{6- and 10-pin ISP header}
+    \label{fig:Isp_headers}
+\end{figure}
+
+在Arduino IDE中，确保 Tools > Board 选项是对的，之后开始 Tools > Burn Bootloader 等待约15秒即可。
+
+也可以使用编程器对应的软件比如AVRISP MkII的AVRStudio进行烧写操作，参考\url{https://www.arduino.cc/en/Hacking/MiniBootloader}。
+
+另外，如果不购买专用的ISP，可以通过一块Arduino Mega 2560 开发板给本项目的电路板烧写程序\footnote{参考\url{https://www.arduino.cc/en/Hacking/Upgrading16U2Due}}。事实上，本项目就是这样给每块芯片烧写引导的。
+
+做法如下：
+
+在Arduino IDE里面打开示例文件 ArduinoISP并烧写到用作烧写器的Arduino上。
+
+在 GND 和 RESET之间连接一个10uF的电容，并将Arduino Uno (or Mega)如表~\ref{tab:ICSP}所示的引脚连接到要烧写芯片的对应ICSP引脚上。
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+    \centering
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+          & Uno & Mega & 16U2 ICSP \\ \midrule
+    SCK   & 13  & 52   & 3         \\
+    MISO  & 12  & 50   & 1         \\
+    MOSI  & 11  & 51   & 4         \\
+    Reset & 10  & 10   & 5         \\
+    GND   & GND & GND  & 6         \\
+    +5V   & 5V  & 5V   & 2         \\ \bottomrule
+    \end{tabular}
+    \caption{ICSP}
+    \label{tab:ICSP}
+\end{table}
+
+最后使用avrdude命令进行固件烧写，avrdude 可以在 /path to arduino/arduino.1.8.x/hardware/tools 路径找到。
+
+要烧写进16U2的固件是 .hex 扩展名的二进制文件，首先CMD/Terminal路径设置到avrdude所在的文件夹里，之后运行如下命令：
+
+Windows:
+
+\begin{tcolorbox}
+    arduino-1.5.2/hardware/tool> avrdude.exe -C avrdude.conf -c arduino -P /dev/ttyACM0 -b 19200 -p m16u2 -vvv -U flash:w:/home/USER/newFirmware/16u2.hex:i
+\end{tcolorbox}
+
+Linux and Mac:
+
+\begin{tcolorbox}
+    /home/USER/arduino-1.5.2/hardware/tools\$ ./avrdude -C avrdude.conf -c arduino -P /dev/ttyACM0 -b 19200 -p m16u2 -vvv -U flash:w:/home/USER/newFirmware/16u2.hex:i
+\end{tcolorbox}
+
+avrdude参数解释见表~\ref{tab:avrdude}
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{ll}
+    -C avrdude.conf                              & load the configuration file for using the Arduino Uno as programmer       \\
+    -c arduino                                   & specify the programmer you want to use                                    \\
+    -P /dev/ttyACM0                              & the usb port where the programmer is attached                             \\
+    -b 19200                                     & the baudrate                                                              \\
+    -p m16u2                                     & the target device you want to program                                     \\
+    -vvv                                         & enable the verbose output                                                 \\
+    -U flash:w:/home/USER/newFirmware/16u2.hex:i & specify that you want to write (w) the  .hex file inside the flash memory
+    \end{tabular}
+    \caption{Avrdude parameter explanations}
+    \label{tab:avrdude}
+\end{table}
+
+只要找到对应的ICSP引脚，烧写ATMega2560和ATmega16U2的操作基本一致。
+
+更加具体的解释见\url{https://www.arduino.cc/en/Tutorial/ArduinoISP}
 
 \subsection{Arduino IDE}
 
@@ -24,7 +107,7 @@ IDE UI中上传按钮的作用是编译代码并且上传到选定的控制板�
 在上传之前，需要在 Tools - Board 和 Tools - Port 中选定开发板类型和端口，在本项目中，选择Arduino/Genuino Mega 2560 (Arduino/Genuino Mega 2560
 An ATmega2560 running at 16 MHz with auto-reset, 16 Analog In, 54 Digital I/O and 15 PWM.)开发板。
 
-端口在WIndows系统中，串口显示为 COM1 或 COM2，USB则显示为COM3及以上，选择对应的端口即可。
+端口在Windows系统中，串口显示为 COM1 或 COM2，USB则显示为COM3及以上，选择对应的端口即可。
 
 
 
