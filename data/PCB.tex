@@ -332,7 +332,16 @@ ESP32周边程序烧写设计参考ESP32-DevKitC V4\footnote{\url{https://docs.e
 
 可以直接通过JTAG给ESP32烧写程序，可以通过UART烧写。
 
-CP2102N-A01-GQFN20R作为USB-UART芯片，不使用其内置3.3V电压转换模块，通过此芯片可以直接通过USB给ESP32烧写程序。优点：廉价，缺点则为CP2102N只能烧写程序，而不能作为USB-to-JTAG 接口进行ESP32和计算机的实时通信桥梁。
+CP2102N-A01-GQFN20R作为USB-UART芯片，不使用其内置3.3V电压转换模块，通过此芯片可以直接通过USB给ESP32烧写程序。优点是廉价，缺点则为CP2102N只能烧写程序，而不能作为 USB-to-JTAG 接口进行ESP32和计算机的实时通信桥梁。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{CP2104-F03-GMR_System.pdf}
+    \caption{CP2104-F03-GMR系统示例图}
+    \label{fig:CP2104-F03-GMR}
+\end{figure}
+
+后更新为QFN-24_4x4x05P封装的CP2104-F03-GMR芯片，如图~\ref{fig:CP2104-F03-GMR}，这一版本的设计参考了官方Datasheet和Github开源项目ESP-Debugger\footnote{\url{https://github.com/xiongyumail/ESP-Debugger}}中的部分电路。
 
 % \begin{figure}[htbp]
 %     \centering
