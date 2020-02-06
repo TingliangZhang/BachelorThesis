@@ -34,11 +34,11 @@ ESP-IDF 需要安装一些必备工具，才能围绕 ESP32 构建固件，包�
 
 \subsection{获取 ESP-IDF}
 
-除了工具链，您还需要供 ESP32 使用的 API（软件库和源代码），具体请见 ESP-IDF 仓库。
+除了工具链，还需要供 ESP32 使用的 API（软件库和源代码），具体请见 ESP-IDF 仓库。
 
-请将 ESP-IDF 下载到您的本地。
+请将 ESP-IDF 下载到本地。
 
-获取本地副本：打开终端，切换到你要存放 ESP-IDF 的工作目录，使用 \mintinline{powershell}|git clone| 命令克隆远程仓库：
+获取本地副本：打开终端，切换到要存放 ESP-IDF 的工作目录，使用 \mintinline{powershell}|git clone| 命令克隆远程仓库：
 
 % \mint{powershell}|git clone -b v4.0-rc --recursive https://github.com/espressif/esp-idf.git|
 \begin{tcolorbox}
@@ -51,7 +51,7 @@ GitHub 中”下载 zip 文档”的功能不适用于 ESP-IDF，所以需要使
 
 如果是使用ESP-IDF工具安装器安装的，此步骤可能已经完成。
 
-ESP-IDF 所需的 Python 软件包位于 IDF-PATH/requirements.txt 中。您可以运行以下命令进行安装：
+ESP-IDF 所需的 Python 软件包位于 IDF-PATH/requirements.txt 中。可以运行以下命令进行安装：
 
 % \mint{powershell}|python -m pip install --user -r $IDFPATH/requirements.txt|
 
@@ -72,25 +72,25 @@ ESP-IDF 所需的 Python 软件包位于 IDF-PATH/requirements.txt 中。您可�
     \item 系统 PATH 变量需包括含有 idf.py 工具的目录
 \end{itemize}
 
-如果你从未用过 idf.py 命令行工具，而是直接运行 cmake 或通过 IDE 工具运行 cmake，则无需设置 PATH 变量，只需设置 IDF PATH 变量。不过，你也可以两个都设置。如果你只用过 idf.py 命令行工具，从未直接运行 cmake 或通过 IDE 工具运行 cmake，则无需设置 IDF PATH 变量。idf.py 会搜索自身包含的目录，如果没有发现 IDF PATH，则会自行进行有关设置。
+如果从未用过 idf.py 命令行工具，而是直接运行 cmake 或通过 IDE 工具运行 cmake，则无需设置 PATH 变量，只需设置 IDF PATH 变量。不过，也可以两个都设置。如果只用过 idf.py 命令行工具，从未直接运行 cmake 或通过 IDE 工具运行 cmake，则无需设置 IDF PATH 变量。idf.py 会搜索自身包含的目录，如果没有发现 IDF PATH，则会自行进行有关设置。
 
 在 Windows 10 操作系统下设置环境变量，用户应在开始菜单下搜索 “Edit Environment Variables”。
 
 在较早版本的 Windows 操作系统下设置环境变量，用户应打开系统控制面板，选择“高级”，找到环境变量按钮。
 
-你可以为本台电脑上的“所有用户”或“当前用户”设置环境变量，这取决于其他用户是否也需要使用 ESP-IDF。
+可以为本台电脑上的“所有用户”或“当前用户”设置环境变量，这取决于其他用户是否也需要使用 ESP-IDF。
 
 点击 New... （新建…） 添加名为 IDF\underline{ }PATH 的新系统变量，具体设置为包含 ESP-IDF 的目录，例如，C:/Users/user-name/esp/esp-idf。
 
-找到 Path 环境变量，双击进行编辑。在末尾添加 ;IDF\underline{ }PATH \backslash tools ，这样你就可以通过 Windows 命令窗口运行 idf.py 等其他工具了。
+找到 Path 环境变量，双击进行编辑。在末尾添加 ;IDF\underline{ }PATH \backslash tools ，这样就可以通过 Windows 命令窗口运行 idf.py 等其他工具了。
 
 \subsection{开始创建工程}
 
-现在，您可以开始准备开发 ESP32 应用程序了。您可以从 ESP-IDF 中 examples 目录下的 get-started/hello-world 工程开始。ESP-IDF 编译系统不支持带有空格的路径，可能需要复制到其他目录下再运行。
+现在，可以开始准备开发 ESP32 应用程序了。可以从 ESP-IDF 中 examples 目录下的 get-started/hello-world 工程开始。ESP-IDF 编译系统不支持带有空格的路径，可能需要复制到其他目录下再运行。
 
 \subsection{连接设备}
 
-现在，请将您的 ESP32 开发板连接到 PC，并查看开发板使用的串口。
+现在，请将 ESP32 开发板连接到 PC，并查看开发板使用的串口。
 
 通常，串口在不同操作系统下显示的名称有所不同：
 
@@ -105,9 +105,9 @@ ESP-IDF 所需的 Python 软件包位于 IDF-PATH/requirements.txt 中。您可�
 
 在使用ESP-IDF工具安装器安装的ESP-IDF Command Prompt (cmd.exe)中
 
-Python 2.7 安装程序将尝试配置 Windows，将 .py 文件与 Python 2 关联起来。如果其他程序（比如 Visual Studio Python）曾关联了其他版本 Python，则 idf.py 可能无法正常运行（文件将在 Visual Studio 中打开）。这种情况下，您可以选择每次都运行一遍 C:/Python27/python idf.py，或更改 Windows 的 .py 关联文件设置。
+Python 2.7 安装程序将尝试配置 Windows，将 .py 文件与 Python 2 关联起来。如果其他程序（比如 Visual Studio Python）曾关联了其他版本 Python，则 idf.py 可能无法正常运行（文件将在 Visual Studio 中打开）。这种情况下，可以选择每次都运行一遍 C:/Python27/python idf.py，或更改 Windows 的 .py 关联文件设置。
 
-如果您的默认 Python 版本为 3.0 以上，可能需要运行 python2 idf.py。
+如果默认 Python 版本为 3.0 以上，可能需要运行 python2 idf.py。
 
 
 在/esp/hello world示例工程路径下运行：
@@ -153,21 +153,21 @@ Python 2.7 安装程序将尝试配置 Windows，将 .py 文件与 Python 2 关�
 
 \subsection{烧录到设备}
 
-将 PORT 替换为 ESP32 开发板的串口名称，使用以下命令，将刚刚生成的二进制文件烧录至您的 ESP32 开发板：
+将 PORT 替换为 ESP32 开发板的串口名称，使用以下命令，将刚刚生成的二进制文件烧录至 ESP32 开发板：
 
 \begin{tcolorbox}
     idf.py -p PORT [-b BAUD] flash
 \end{tcolorbox}
 
-还可以将 BAUD 替换为您希望的烧录波特率。默认波特率为 460800
+还可以将 BAUD 替换为希望的烧录波特率。默认波特率为 460800
 
 如果一切顺利，烧录完成后，开发板将会复位，应用程序开始运行。
 
 \subsection{监视器}
 
-可以使用 make monitor 命令，监视ESP32的运行情况。注意，不要忘记将 PORT 替换为您的串口名称。
+可以使用 make monitor 命令，监视ESP32的运行情况。注意，不要忘记将 PORT 替换为串口名称。
 
-您也可以运行以下命令，一次性执行构建、烧录和监视过程：
+也可以运行以下命令，一次性执行构建、烧录和监视过程：
 
 \begin{tcolorbox}
     idf.py -p PORT flash monitor
