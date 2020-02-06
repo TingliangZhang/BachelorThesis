@@ -8,6 +8,15 @@
 
 \section{ESP 32开发环境配置}
 
+本节阐述搭建 ESP32 硬件开发的软件环境，软件编译和烧写流程如图~\ref{fig:ESP-Need}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\columnwidth]{ESP-Need.png}
+    \caption{ESP32 应用程序开发}
+    \label{fig:ESP-Need}
+\end{figure}
+
 \subsection{Windows平台ESP-IDF工具链的标准设置}
 
 ESP-IDF 需要安装一些必备工具，才能围绕 ESP32 构建固件，包括 Python、Git、交叉编译器、menuconfig 工具、CMake和 Ninja 编译工具等。
@@ -52,6 +61,8 @@ ESP-IDF 所需的 Python 软件包位于 IDF-PATH/requirements.txt 中。您可�
 
 \subsection{编辑环境变量}
 
+如果是使用ESP-IDF工具安装器安装的，此步骤可能已经完成。
+
 需要在用户配置文件中添加 IDF PATH 和 idf.py PATH
 
 使用基于 CMake 的构建系统和 idf.py 工具，用户需修改两处系统环境变量：
@@ -92,8 +103,72 @@ ESP-IDF 所需的 Python 软件包位于 IDF-PATH/requirements.txt 中。您可�
 
 \subsection{工程配置}
 
+在使用ESP-IDF工具安装器安装的ESP-IDF Command Prompt (cmd.exe)中
+
 Python 2.7 安装程序将尝试配置 Windows，将 .py 文件与 Python 2 关联起来。如果其他程序（比如 Visual Studio Python）曾关联了其他版本 Python，则 idf.py 可能无法正常运行（文件将在 Visual Studio 中打开）。这种情况下，您可以选择每次都运行一遍 C:/Python27/python idf.py，或更改 Windows 的 .py 关联文件设置。
 
 如果您的默认 Python 版本为 3.0 以上，可能需要运行 python2 idf.py。
 
+
+在/esp/hello world示例工程路径下运行：
+
+\begin{tcolorbox}
+    idf.py menuconfig
+\end{tcolorbox}
+
 会显示菜单：
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{ESP-IDF-Config.png}
+    \caption{ESP-IDF 设置}
+    \label{ESP-IDF-Config}
+\end{figure}
+
+\subsection{编译工程}
+
+使用以下命令，编译烧录工程：
+
+\begin{tcolorbox}
+    idf.py build
+\end{tcolorbox}
+
+运行以上命令可以编译应用程序和所有 ESP-IDF 组件，接着生成 bootloader、分区表和应用程序二进制文件。如图~\ref{fig:ESP-IDF-Build}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{ESP-IDF-Build.png}
+    \caption{ESP-IDF idf.py build}
+    \label{fig:ESP-IDF-Build}
+\end{figure}
+
+如果一切正常，编译完成后将生成 .bin 文件。如图~\ref{fig:ESP-IDF-Build-2}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{ESP-IDF-Build-2.png}
+    \caption{ESP-IDF idf.py build}
+    \label{fig:ESP-IDF-Build-2}
+\end{figure}
+
+\subsection{烧录到设备}
+
+将 PORT 替换为 ESP32 开发板的串口名称，使用以下命令，将刚刚生成的二进制文件烧录至您的 ESP32 开发板：
+
+\begin{tcolorbox}
+    idf.py -p PORT [-b BAUD] flash
+\end{tcolorbox}
+
+还可以将 BAUD 替换为您希望的烧录波特率。默认波特率为 460800
+
+如果一切顺利，烧录完成后，开发板将会复位，应用程序开始运行。
+
+\subsection{监视器}
+
+可以使用 make monitor 命令，监视ESP32的运行情况。注意，不要忘记将 PORT 替换为您的串口名称。
+
+您也可以运行以下命令，一次性执行构建、烧录和监视过程：
+
+\begin{tcolorbox}
+    idf.py -p PORT flash monitor
+\end{tcolorbox}
