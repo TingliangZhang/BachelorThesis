@@ -32,19 +32,46 @@ ESP-IDF 需要安装一些必备工具，才能围绕 ESP32 构建固件，包�
 获取本地副本：打开终端，切换到你要存放 ESP-IDF 的工作目录，使用 \mintinline{powershell}|git clone| 命令克隆远程仓库：
 
 % \mint{powershell}|git clone -b v4.0-rc --recursive https://github.com/espressif/esp-idf.git|
-
+\begin{tcolorbox}
+    git clone -b v4.0-rc --recursive https://github.com/espressif/esp-idf.git
+\end{tcolorbox}
 
 GitHub 中”下载 zip 文档”的功能不适用于 ESP-IDF，所以需要使用 git clone 命令。作为备份，可以在没有安装 Git 的环境中下载 Stable version 的 zip 归档文件。直接在\url{https://github.com/espressif/esp-idf/releases/download/v4.0-rc/esp-idf-v4.0-rc.zip}下载并解压。
 
 \subsection{安装 Python 软件包}
 
+如果是使用ESP-IDF工具安装器安装的，此步骤可能已经完成。
+
 ESP-IDF 所需的 Python 软件包位于 IDF-PATH/requirements.txt 中。您可以运行以下命令进行安装：
 
-\mint{powershell}|python -m pip install --user -r $IDFPATH/requirements.txt|
+% \mint{powershell}|python -m pip install --user -r $IDFPATH/requirements.txt|
 
 \begin{tcolorbox}
-    This is my first \textbf{tcolorbox}.
+    python -m pip install --user -r IDFPATH/requirements.txt
 \end{tcolorbox}
+
+\subsection{编辑环境变量}
+
+需要在用户配置文件中添加 IDF PATH 和 idf.py PATH
+
+使用基于 CMake 的构建系统和 idf.py 工具，用户需修改两处系统环境变量：
+
+\begin{itemize}
+    \item IDF\underline{ }PATH 需设置为含有 ESP-IDF 目录的路径
+    \item 系统 PATH 变量需包括含有 idf.py 工具的目录
+\end{itemize}
+
+如果你从未用过 idf.py 命令行工具，而是直接运行 cmake 或通过 IDE 工具运行 cmake，则无需设置 PATH 变量，只需设置 IDF PATH 变量。不过，你也可以两个都设置。如果你只用过 idf.py 命令行工具，从未直接运行 cmake 或通过 IDE 工具运行 cmake，则无需设置 IDF PATH 变量。idf.py 会搜索自身包含的目录，如果没有发现 IDF PATH，则会自行进行有关设置。
+
+在 Windows 10 操作系统下设置环境变量，用户应在开始菜单下搜索 “Edit Environment Variables”。
+
+在较早版本的 Windows 操作系统下设置环境变量，用户应打开系统控制面板，选择“高级”，找到环境变量按钮。
+
+你可以为本台电脑上的“所有用户”或“当前用户”设置环境变量，这取决于其他用户是否也需要使用 ESP-IDF。
+
+点击 New... （新建…） 添加名为 IDF\underline{ }PATH 的新系统变量，具体设置为包含 ESP-IDF 的目录，例如，C:/Users/user-name/esp/esp-idf。
+
+找到 Path 环境变量，双击进行编辑。在末尾添加 ;IDF\underline{ }PATH \backslash tools ，这样你就可以通过 Windows 命令窗口运行 idf.py 等其他工具了。
 
 \subsection{开始创建工程}
 
@@ -64,3 +91,9 @@ ESP-IDF 所需的 Python 软件包位于 IDF-PATH/requirements.txt 中。您可�
 
 
 \subsection{工程配置}
+
+Python 2.7 安装程序将尝试配置 Windows，将 .py 文件与 Python 2 关联起来。如果其他程序（比如 Visual Studio Python）曾关联了其他版本 Python，则 idf.py 可能无法正常运行（文件将在 Visual Studio 中打开）。这种情况下，您可以选择每次都运行一遍 C:/Python27/python idf.py，或更改 Windows 的 .py 关联文件设置。
+
+如果您的默认 Python 版本为 3.0 以上，可能需要运行 python2 idf.py。
+
+会显示菜单：
