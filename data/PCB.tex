@@ -352,6 +352,26 @@ CP2102N-A01-GQFN20R作为USB-UART芯片，不使用其内置3.3V电压转换模�
 
 如图~\ref{fig:CP2104-Regulator-Bypass}，在本项目中，VIO和VDD连在一起并通过4.7kOhm的电阻和RST连在一起，REGIN也和VIO VDD连起来，靠近这三个引脚的地方有1uF和100nF的接地电容滤波。另外，接入芯片VBUS的是USB输入的5V经过电阻分压得到的接近3.3V的电压。
 
+SRV05-4HTG为TVS二极管，用于防止过电压对电路的冲击，可以将电压钳位在0-5V之间。在USB口输入的时候用了一个SRV05-4来防止USB输入的静电冲击，在CP2104和ESP32之间用一个SRV05-4防止CP2104可能的工作异常导致ESP32的损坏，经过查阅ESP32的Datasheet发现，ESP32接受的输入电压为3.3V，而非5V，所以这里将电压钳位在0-3.3V之间，并设置一个2x3 UART口作为引出测试用。
+
+NPN三极管S8050用作 DTR RTS --\textgreater EN IO0 逻辑转换，于用驱动EN IO0自动烧写程序，其逻辑真值表见表~\ref{tab:LogicTab}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+    \centering
+    \begin{tabular}{@{}llll@{}}
+    \toprule
+    DTR & RTS & EN & IO0 \\ \midrule
+    1   & 1   & 1  & 1   \\
+    0   & 0   & 1  & 1   \\
+    1   & 0   & 0  & 1   \\
+    0   & 1   & 1  & 0   \\ \bottomrule
+    \end{tabular}
+    \caption{DTR RTS --\textgreater EN IO0 逻辑真值表}
+    \label{tab:LogicTab}
+\end{table}
+
 % 无法Resize的PNG
 % \begin{figure}[htbp]
 %     \centering
