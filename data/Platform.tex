@@ -381,3 +381,40 @@ $\Sigma_{3} / \Sigma_{2}$ (roll/wheel) 是绕$b$的旋转，因此，$C$的瞬�
     当且仅当车轮排布使得小轮不平行时，3-Mecanum轮机器人才具有运动学唯一解。
 \end{theorem}
 
+\section{本项目平台选型}
+
+由于在未来的集群中，单位小车的体积对于总平台需要的面积影响狠大，本项目平台选型首要考量是在功能完备的前提下尽可能缩小平台的体积，特别是直径，同时适度考虑成本。
+
+\subsection{全向轮}
+
+1.5 inch 38mm 90°塑料全向轮（omni wheel）14184 （\url{https://item.taobao.com/item.htm?id=43211511556}） 是目前能找到的直径最小的全向轮，净重约20g。配套的连轴器（Universal hubs）有3MM及4MM六角铜柱，用来连接电机的D形轴。
+
+\subsection{电机}
+
+电机需要提供足够的扭矩，驱动全向轮转动，由于三轮全向轮平台对于各轮转速精确性要求很高，电机需要有反馈，以便进行PID控制，及时调整各电机工作状态。
+
+综上，目前符合要求的电机有两类：一类是微型步进减速电机，步进电机驱动器可以较为精确地控制步进电机的角度值。永磁减速电机加装磁性霍尔或光电编码盘后，码盘可以反馈目前电机的转动方向和转速。
+
+电机有两种备选方案：
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.46\columnwidth]{CHS-GM12-10BY.jpg}
+    \caption{CHS-GM12-10BY}
+    \label{fig:CHS-GM12-10BY}
+\end{figure}
+
+一是使用驰海电机CHS-GM12-10BY 微型步进减速电机 2相4线 电机与轴同向倒装结构 DC5V ， 需要定制改变引线方向，现在默认的引线会蹭到轮子，如图~\ref{CHS-GM12-10BY}所示。
+
+由于微型步进减速电机反折之后比较短小，约为20mm（含出轴和接线端子），可以塞到三个轮子中间。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.46\columnwidth]{CHW-GW12-N20VA.jpg}
+    \caption{CHW-GW12-N20VA}
+    \label{fig:CHW-GW12-N20VA}
+\end{figure}
+
+CHW-GW12-N20VA永磁蜗轮蜗杆齿轮减速电机（有蜗杆改变90度传动方向），定制加装磁性霍尔编码盘，驱动电压5V，空载转速控制在60rpm，如图~\ref{CHW-GW12-N20VA}所示。
+
+蜗杆齿轮减速电机可以垂直装配，占用高度约为40mm。
