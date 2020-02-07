@@ -9,6 +9,17 @@
 
 \subsection{初次使用烧写固件}
 
+在AVR单片机的每次复位时都执行了一段特殊的代码，并使用特定的协议和速度从串行/ USB端口上载了Sketch。如果未检测到连接，则执行将传递到Sketch的代码。
+
+这小段代码（通常为512字节）被称为“Bootloader”，如图~\ref{fig:MemoryMap}，它位于微控制器的内存区域中地址空间的末尾，被设计为用于引导，不能重新编程为常规Sketch。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{MemoryMap.jpg}
+    \caption{ATmega328P 内存映射}
+    \label{fig:MemoryMap}
+\end{figure}
+
 一般来说，微控制器通过编程器被烧写程序(programmer)，除非微控制器中有一个固件(firmware)，该固件允许无需外部编程器而安装新固件。这种固件称为引导加载程序(bootloader)。新出厂的微控制器内部不含Bootloader，必须要先烧录引导程序
 
 \begin{figure}[htbp]
@@ -37,7 +48,7 @@
 
 在Arduino IDE里面打开示例文件 ArduinoISP并烧写到用作烧写器的Arduino上。
 
-在 GND 和 RESET之间连接一个10uF的电容，并将Arduino Uno (or Mega)如表~\ref{tab:ICSP}所示的引脚连接到要烧写芯片的对应ICSP引脚上。
+在 GND 和 RESET之间连接一个10uF的电容，并将Arduino Uno (or Mega)如表~\ref{tab:ICSP}所示的引脚连接到要烧写芯片的对应ICSP引脚上，如图~\ref{fig:Arduino-Mega-Mega-Sketch}。
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -56,6 +67,13 @@
     \caption{ICSP}
     \label{tab:ICSP}
 \end{table}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Arduino-Mega-Mega-Sketch.pdf}
+    \caption{Arduino-Mega-Mega-Sketch}
+    \label{fig:Arduino-Mega-Mega-Sketch}
+\end{figure}
 
 最后使用avrdude命令进行固件烧写，avrdude 可以在 /path to arduino/arduino.1.8.x/hardware/tools 路径找到。
 
@@ -90,16 +108,9 @@ avrdude参数解释见表~\ref{tab:avrdude}
     \label{tab:avrdude}
 \end{table}
 
-只要找到对应的ICSP引脚，烧写ATMega2560和ATmega16U2的操作基本一致。
+只要找到对应的ICSP引脚，烧写ATMega2560和ATmega16U2的操作基本一致。如图~\ref{fig:Arduino-Mega-UNO-Sketch}。
 
 更加具体的解释见\url{https://www.arduino.cc/en/Tutorial/ArduinoISP}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\columnwidth]{Arduino-Fritzing.pdf}
-    \caption{Arduino Mega}
-    \label{fig:Arduino-Fritzing}
-\end{figure}
 
 \begin{figure}[htbp]
     \centering
@@ -108,17 +119,16 @@ avrdude参数解释见表~\ref{tab:avrdude}
     \label{fig:Arduino-Mega-UNO-Sketch}
 \end{figure}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\columnwidth]{Arduino-Mega-Mega-Sketch.pdf}
-    \caption{Arduino-Mega-Mega-Sketch}
-    \label{fig:Arduino-Mega-Mega-Sketch}
-\end{figure}
-
-
 \subsection{Arduino IDE}
 
 本项目使用的ATmega2560-16AU和ATmega16U2-MU芯片组是Arduino IDE支持的，对应ARDUINO MEGA 2560 REV3开发板，因此，本开发环境将基于Arduino IDE(\url{https://www.arduino.cc/en/Main/Software})进行搭建。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Arduino-Fritzing.pdf}
+    \caption{Arduino Mega}
+    \label{fig:Arduino-Fritzing}
+\end{figure}
 
 Arduino集成开发环境（Arduino IDE）包含了一个用于写代码的文本编辑器、一个消息区、一个文本控制台以及一个带有常用功能按钮和文本菜单的工具栏。连接Arduino之后，软件能给所连接的控制板上传程序，还能与控制板相互通信。
 
