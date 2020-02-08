@@ -73,3 +73,10 @@ STBY信号由 PG2 ( ALE ) Digital pin 39统一给出，即所有电机统一使�
     \caption{通过Library Manager安装Adafruit NeoPixel库}
     \label{fig:Adafruit-NeoPixel-Installation}
 \end{figure}
+
+本项目测试程序在原有Adafruit NeoPixel库示例程序strandtest上修改而成，可以让9个RGB LED以各种规律发光以测试功能的完备性。
+
+
+\section{ESP32}
+
+在Arduino IDE内也可以添加对ESP32 Boards的支持，在Arduino IDE设置里的"Additional Board Manager URLs"中添加\url{https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json} 以英文逗号和其他网址分隔，之后在Tools > Board > Boards Manager… 内安装 "ESP32 by Espressif Systems"即可。
