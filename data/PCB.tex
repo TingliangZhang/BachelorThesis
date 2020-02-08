@@ -428,7 +428,7 @@ TB6612FNG的布线按照Datasheet的推荐布线（如图~\ref{fig:TB6612FNG-Con
 如果未来搭建更大的平台，使用10A级别的电机可以使用ST powerSTEP01 (System-in-package integrating microstepping controller and
 10 A power MOSFETs) 作为2相步进电机驱动，在Altium Designer 20环境下也有相应的封装可用，目前平台较小，没有必要使用powerSTEP01。
 
-ST powerSTEP01可以放在额外的驱动板上，作为扩展板使用。ST powerSTEP01支持SPI串行通信。可以只通过一个SPI Bus总线控制多个电机。
+ST powerSTEP01可以放在额外的驱动板上，作为扩展板使用。ST powerSTEP01支持SPI串行通信，可以只通过一个SPI Bus总线控制多个电机。注意，ST powerSTEP01供电电压是7.5 V - 85 V，所以2S锂电的7.4V不足以供电，须使用3S及以上锂电池驱动系统，或另加升压模块（不建议）。
 
 \section{电机接口}
 
