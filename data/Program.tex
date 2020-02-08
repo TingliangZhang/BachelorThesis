@@ -1,0 +1,16 @@
+\chapter{程序编写}
+\label{cha:Program}
+
+\section{TB6612电机测试程序}
+
+在引脚分配时，我们将两片TB6612连接在Mega2560上。
+
+四个PWM调速信号输出引脚由能输出PWM波的PH 3 4 5 6承担，分别接到PWM A B C D，在Arduino IDE程序中对应 Digital pin 6 7 8 9 (PWM)。
+
+每个电机控制的IN1 IN2 分别由 PA0-PA7 8个引脚承担，对应Digital pin 22 - 29，由于只是使能信号，普通数字引脚即可，不需要特定的PWM引脚。
+
+STBY信号由 PG2 ( ALE ) Digital pin 39统一给出，即所有电机统一使能或待机。
+
+\section{WS2812B测试程序}
+
+由PE5 ( OC3C/INT5 ) Digital pin 3 (PWM)引脚提供串行通信信号。

@@ -246,10 +246,6 @@ SMD1812P050TF为PTC自恢复保险丝，最大电压15V，保持电流500mA，�
 
 USB 3.1 C TYPE DIP+SMT CONN为USB Type-C 母头，按照USB2.0协议使用，后续可添加PD或高速数据传输等功能。
 
-
-\section{电机驱动}
-之前使用的TB6612芯片近期国内断货，所以改用A4950、L293D等替代，但是没找到封装。
-
 \section{RGBLED}
 
 WS2812B是一个集控制电路与发光电路于一体的智能外控LED光源。其外型与一个5050LED灯珠相同，每个元件即为一个像素点。像素点内部包含了智能数字接口数据锁存信号整形放大驱动电路，还包含有高精度的内部振荡器和12V高压可编程定电流控制部分，有效保证了像素点光的颜色高度一致。
@@ -399,6 +395,26 @@ FT2232 多协议 USB 转串口桥接器。开发人员可通过 USB 接口对 FT
 在更成熟版本的开发中，还可以让FT2232的A路输出到Mega2560，B路输出到ESP32，实现一个芯片和USB口对两个芯片编程。
 
 \section{电机驱动}
+
+TB6612FNG\footnote{之前使用的TB6612芯片近期国内断货，所以改用A4950、L293D等替代，但是没找到封装。}是双H桥直流电机驱动器，该模块相对于传统的L298N效率上提高很多,体积上也大幅度减少。TB6612FNG每通道输出最高1.2 A的连续驱动电流，启动峰值电流达2A/3.2 A(连续脉冲/单脉冲)，4种电机控制模式：正转/反转/制动/停止，PWM支持频率高达100 kHz。
+
+H桥驱动如图~\ref{fig:TB6612FNG-H}所示，可以控制电机正反转，t2和t4为防止短路的死区时间。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[height=8cm]{TB6612FNG-H.pdf}
+    \caption{H桥原理图}
+    \label{fig:TB6612FNG-H}
+\end{figure}
+
+TB6612FNG的布线按照Datasheet的推荐布线（如图~\ref{fig:TB6612FNG-Connection}）设置。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{TB6612FNG-Connection.pdf}
+    \caption{TB6612FNG典型应用接线图}
+    \label{fig:TB6612FNG-Connection}
+\end{figure}
 
 步进电机驱动可以采用L6226QTR。
 
