@@ -398,10 +398,16 @@ FT2232 多协议 USB 转串口桥接器。开发人员可通过 USB 接口对 FT
 
 在更成熟版本的开发中，还可以让FT2232的A路输出到Mega2560，B路输出到ESP32，实现一个芯片和USB口对两个芯片编程。
 
+\section{电机驱动}
 
-\section{电机驱动及接口}
 
-使用JST端子(\url{https://en.wikipedia.org/wiki/JST_connector})作为电机线缆连接器
+
+如果未来搭建更大的平台，使用10A级别的电机可以使用ST powerSTEP01 (System-in-package integrating microstepping controller and
+10 A power MOSFETs) 作为2相步进电机驱动，在Altium Designer 20环境下也有相应的封装可用，目前平台较小，没有必要使用powerSTEP01。
+
+\section{电机接口}
+
+使用JST端子(\url{https://en.wikipedia.org/wiki/JST_connector})作为电机线缆连接器。
 
 每个代号都是一个系列的产品，他们最大的区别就是Pitch（间距）不一样。
 
