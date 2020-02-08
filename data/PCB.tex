@@ -433,9 +433,26 @@ CHW-GW12-N20VA永磁蜗轮蜗杆齿轮减速电机（有蜗杆改变90度传动�
 
 XBEE模块是可提供与设备的无线端点连接的嵌入式解决方案。（如图~\ref{fig:XB}）模块使用IEEE 802.15.4网络协议进行快速的点对点网络或对等网络。专为要求低延迟和可预测通信时序的高吞吐量应用而设计\footnote{\url{https://www.sparkfun.com/pages/xbee_guide}}。
 
-DIGI XBEE 3 MICRO FORM FACTOR 只有13mm x 19mm，可以直接SMT到PCB上，是本应用场景下体积性能的最优解。
+DIGI XBEE 3 MICRO FORM FACTOR (XB3-24Z8CM  Digi XBee 3 PRO ZigBee 3.0, 2.4 GHz, Micro, Chip Ant, MMT) 只有13mm x 19mm，可以直接SMT到PCB上，是本应用场景下体积性能的最优解。
 
 XBEE模块直接通过TX-RX和MCU通信，也可以选择直插式模块XBEE-Pro用排针座连接到本项目主板上。模块选型见\url{https://www.digi.com/xbee}
+
+在Altium Designer 20环境下绘制的PCB选取了37 Pin 21.996x33.782mm Pitch 2.007mm的SMT表贴封装，同时兼容XBEE-3系列如XB3-24Z8PS(Digi XBee 3 PRO, 2.4 Ghz Zigbee 3.0, PCB Ant, SMT)和XBEE-S2C系列模块如XB24CZ7PIS-004(Digi XBee ZigBee SMT, PCB Antenna)，可以在PCB上直接更换，如图~\ref{fig:XB24CZ7RIS-004}和图~\ref{fig:xbee3}
+
+\begin{figure}
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[height=4cm]{xbee-zigbee-smt-XB24CZ7RIS-004.jpg}
+      \caption{Digi XBee ZigBee SMT, PCB Antenna}
+      \label{fig:XB24CZ7RIS-004}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[height=4cm]{digi-xbee3-smt-pcb-hero.jpg}
+      \caption{Digi XBee3, PCB Ant, SMT}
+      \label{fig:xbee3}
+    \end{minipage}
+\end{figure}
 
 \section{扩展接口}
 
