@@ -422,7 +422,20 @@ CHW-GW12-N20VA永磁蜗轮蜗杆齿轮减速电机（有蜗杆改变90度传动�
 2s锂电池的接口是JST SFHR 2Pin母头，需要使用 SM02B-SFHRS-TF(LF)(SN) 针脚座连接。如果没有此针脚座封装，可以自行改成PH2.0。
 
 
+\section{XBEE}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\columnwidth]{XB-ecosys-hardware-featured.png}
+    \caption{Digi XBee RF Modules}
+    \label{fig:XB}
+\end{figure}
+
+XBEE模块是可提供与设备的无线端点连接的嵌入式解决方案。（如图~\ref{fig:XB}）模块使用IEEE 802.15.4网络协议进行快速的点对点网络或对等网络。专为要求低延迟和可预测通信时序的高吞吐量应用而设计\footnote{\url{https://www.sparkfun.com/pages/xbee_guide}}。
+
+DIGI XBEE 3 MICRO FORM FACTOR 只有13mm x 19mm，可以直接SMT到PCB上，是本应用场景下体积性能的最优解。
+
+XBEE模块直接通过TX-RX和MCU通信，也可以选择直插式模块XBEE-Pro用排针座连接到本项目主板上。模块选型见\url{https://www.digi.com/xbee}
 
 \section{扩展接口}
 
