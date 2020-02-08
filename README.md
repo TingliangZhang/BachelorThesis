@@ -29,13 +29,33 @@ latexmk -xelatex --shell-escape main.tex
 
 using the ALT+Z keyboard shortcut to *Toggle Word Wrap*
 
+My VSCode Settings
+
+```json
+{
+
+  "window.zoomLevel": 0,
+
+  "git.autofetch": true,
+
+  "latex-workshop.latex.autoBuild.run": "never",
+
+  "editor.fontSize": 18,
+
+  "editor.wordWrap": "on",
+
+  "arduino.path": "C:\\Program Files (x86)\\Arduino"
+
+}
+```
+
 ## Latex相关
 
 #### [Why should I put a ~ before \ref or \cite?](https://tex.stackexchange.com/questions/9633/why-should-i-put-a-before-ref-or-cite)
 
 The `~` is a non-breaking space, (not really a symbol) so when you write in your text `Table~\ref{mytable}` it ensures that the `Table` part is kept together with the number. This is generally considered to be good for readability.
 
-Latex源码里面注意不要出现下划线，短横线可以。可以用\underline{ }做为下划线、
+Latex源码里面注意不要出现下划线，短横线可以。可以用\\_做为下划线，\textbackslash{}作为反斜杠。
 
 [LaTeX 黑魔法（一）：tcolorbox 宏包简明教程](https://liam.page/2016/07/22/using-the-tcolorbox-package-to-create-a-new-theorem-environment/)
 

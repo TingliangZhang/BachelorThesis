@@ -1,6 +1,56 @@
 \chapter{程序编写}
 \label{cha:Program}
 
+\section{VS Code下Arduino编程环境配置}
+
+VS Code下Arduino编程环境配置\footnote{\url{https://docs.microsoft.com/zh-cn/azure/iot-hub/iot-hub-arduino-iot-devkit-az3166-get-started}}
+方法如下：
+
+\begin{enumerate}
+
+    \item
+        安装 \href{https://www.arduino.cc/en/Main/Software}{Arduino IDE}。此IDE 提供必要的工具链用于编译和上传 Arduino 代码。
+        
+        \begin{itemize}
+        \item
+            \textbf{Windows}：使用 Windows Installer 版本，不要从应用商店安装。
+        \item
+            \textbf{macOS}：将解压缩的 \textbf{Arduino.app} 拖放到\texttt{/Applications} 文件夹中。
+        \item
+            \textbf{Ubuntu}：解压缩到某个文件夹中，例如 \texttt{\$HOME/Downloads/arduino-1.8.8}
+        \end{itemize}
+    \item
+         安装\href{https://code.visualstudio.com/}{Visual Studio Code}是一个跨平台源代码编辑器，其中包含功能强大的intellisense、代码完成和调试支持以及可从 marketplace 安装丰富的扩展。
+    \item
+        启动 VS Code，在扩展市场中找到 \textbf{Arduino} 并安装它。此扩展提供在 Arduino 平台上进行开发的增强体验。
+    \item
+        为 VS Code 配置 Arduino 设置。
+        
+        在 Visual Studio Code 中，单击 "\textbf{文件" \textgreater{} 首选项 \textgreater{} 设置}（在 macOS 上，\textbf{代码 \textgreater{} 首选项 \textgreater{} 设置}）。 然后单击 "\emph{设置}" 页右上角的 "\textbf{打开设置（JSON）} " 图标。
+
+        根据你的平台添加以下行来配置 Arduino：
+    
+        \textbf{Windows}：
+        \begin{tcolorbox}
+            "arduino.path": "C:\textbackslash{}\textbackslash{}Program Files (x86)\textbackslash{}\textbackslash{}Arduino",
+        \end{tcolorbox}
+
+        \textbf{macOS}：
+    
+        \begin{tcolorbox}    
+            "arduino.path": "/Applications",
+        \end{tcolorbox}
+
+        \textbf{Ubuntu}：
+    
+        将下面的 \textbf{\{username\}} 占位符替换为你的用户名。
+        \begin{tcolorbox}
+            "arduino.path": "/home/\{username\}/Downloads/arduino-1.8.8",
+        \end{tcolorbox}
+    \end{enumerate}
+
+
+
 \section{TB6612电机测试程序}
 
 在引脚分配时，我们将两片TB6612连接在Mega2560上。
