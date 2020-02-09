@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="svg2" inkscape:output_extension="org.inkscape.output.svg.inkscape" inkscape:version="0.45" sodipodi:docbase="/home/cburnett/wikipedia/images/electronics" sodipodi:docname="SPI single slave.svg" sodipodi:modified="true" sodipodi:version="0.32" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 375.7 95"
+	 style="enable-background:new 0 0 375.7 95;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.7755;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.7749;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.8068;}
+	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#FFC2A1;stroke:#000000;stroke-width:0.75;}
+	.st5{font-family:'ArialMT';}
+	.st6{font-size:12px;}
+	.st7{fill:none;stroke:#000000;}
+	.st8{fill-rule:evenodd;clip-rule:evenodd;fill:#B9E179;stroke:#000000;stroke-width:0.75;}
+</style>
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1.0" id="base" inkscape:current-layer="layer1" inkscape:cx="177.79428" inkscape:cy="27.981633" inkscape:document-units="px" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-height="962" inkscape:window-width="976" inkscape:window-x="0" inkscape:window-y="31" inkscape:zoom="4" pagecolor="#ffffff">
+	</sodipodi:namedview>
+<g id="layer1" inkscape:groupmode="layer" inkscape:label="Layer 1">
+	<g id="g1994">
+		<path id="path3144" class="st0" d="M140.1,31.3v1c44.9,0,67.4,0,78.6,0c5.6,0,8.4,0,9.8,0c0.7,0,1,0,1.2,0c0.1,0,0.1,0,0.2,0
+			c0,0,0,0,0,0v-0.5v-0.5C229.9,31.3,230,31.3,140.1,31.3z"/>
+		<path id="path2000" class="st1" d="M234.4,31.8l-6.7,3.9V28L234.4,31.8z"/>
+	</g>
+	<g id="g2002">
+		<path id="path3330" class="st0" d="M140.1,46.9v1c44.9,0,67.3,0,78.5,0c5.6,0,8.4,0,9.8,0c0.7,0,1.1,0,1.3,0c0.1,0,0.1,0,0.2,0
+			v-0.5v-0.5C229.8,46.9,229.8,46.9,140.1,46.9z"/>
+		<path id="path2008" class="st2" d="M234.3,47.4l-6.7,3.9v-7.7L234.3,47.4z"/>
+	</g>
+	<g id="g2018">
+		<path id="path3334" class="st0" d="M140.1,78.2v1c44.9,0,67.4,0,78.6,0c5.6,0,8.4,0,9.8,0c0.7,0,1,0,1.2,0c0.1,0,0.1,0,0.2,0
+			c0,0,0,0,0,0v-0.5v-0.5C229.9,78.2,230,78.2,140.1,78.2z"/>
+		<path id="path2024" class="st1" d="M234.4,78.6l-6.7,3.9v-7.8L234.4,78.6z"/>
+	</g>
+	<g id="g2010">
+		<path id="path2783" class="st0" d="M145.8,63.4v1c44.9,0,67.3,0,78.5,0c5.6,0,8.4,0,9.8,0c0.7,0,1,0,1.2,0c0.1,0,0.1,0,0.2,0
+			c0,0,0,0,0,0v-0.5v-0.5C235.5,63.4,235.5,63.4,145.8,63.4z"/>
+		<path id="path2016" class="st3" d="M141.1,63.9l7-4V68L141.1,63.9z"/>
+	</g>
+	<g id="g2395">
+		<rect id="rect1307" x="21.7" y="19.1" class="st4" width="118.3" height="72.2"/>
+		<text transform="matrix(1 0 0 1 37.1471 52.0455)" class="st5 st6">SPI</text>
+		<text transform="matrix(1 0 0 1 28.4811 67.0455)" class="st5 st6">Master</text>
+		<text transform="matrix(1 0 0 1 92.818 37.0573)" class="st5 st6">SCLK</text>
+		<text transform="matrix(1 0 0 1 92.818 52.0573)" class="st5 st6">MOSI</text>
+		<text transform="matrix(1 0 0 1 92.818 67.0573)" class="st5 st6">MISO</text>
+		<text transform="matrix(1 0 0 1 92.818 82.0573)" class="st5 st6">SS</text>
+		<path id="path2341" class="st7" d="M93.8,71.1H107"/>
+	</g>
+	<g id="g2374">
+		<rect id="rect3084" x="235.7" y="19.1" class="st8" width="118.3" height="72.2"/>
+		<text transform="matrix(1 0 0 1 319.1471 52.0455)" class="st5 st6">SPI</text>
+		<text transform="matrix(1 0 0 1 313.8092 67.0455)" class="st5 st6">Slave</text>
+		<text transform="matrix(1 0 0 1 244.818 37.0573)" class="st5 st6">SCLK</text>
+		<text transform="matrix(1 0 0 1 244.818 52.0573)" class="st5 st6">MOSI</text>
+		<text transform="matrix(1 0 0 1 244.818 67.0573)" class="st5 st6">MISO</text>
+		<text transform="matrix(1 0 0 1 244.818 82.0573)" class="st5 st6">SS</text>
+		<path id="path2343" class="st7" d="M245.4,71.1h13.2"/>
+	</g>
+</g>
+</svg>

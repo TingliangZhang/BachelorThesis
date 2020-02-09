@@ -428,7 +428,34 @@ TB6612FNG的布线按照Datasheet的推荐布线（如图~\ref{fig:TB6612FNG-Con
 如果未来搭建更大的平台，使用10A级别的电机可以使用ST powerSTEP01 (System-in-package integrating microstepping controller and
 10 A power MOSFETs) 作为2相步进电机驱动，在Altium Designer 20环境下也有相应的封装可用，目前平台较小，没有必要使用powerSTEP01。
 
-ST powerSTEP01可以放在额外的驱动板上，作为扩展板使用。ST powerSTEP01支持SPI串行通信，可以只通过一个SPI Bus总线控制多个电机。注意，ST powerSTEP01供电电压是7.5 V - 85 V，所以2S锂电的7.4V不足以供电，须使用3S及以上锂电池驱动系统，或另加升压模块（不建议）。
+ST powerSTEP01可以放在额外的驱动板上，作为扩展板使用。ST powerSTEP01支持SPI串行通信，可以只通过一个SPI Bus总线控制多个电机，以菊花链(Daisy chain，如图\ref{fig:SPI_three_slaves_daisy_chained})的形式。注意，ST powerSTEP01供电电压是7.5 V - 85 V，所以2S锂电的7.4V不足以供电，须使用3S及以上锂电池驱动系统，或另加升压模块（不建议）。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{SPI_three_slaves_daisy_chained.pdf}
+    \caption{SPI 菊花链(Daisy chain)}
+    \label{fig:SPI_three_slaves_daisy_chained}
+\end{figure}
+
+串行外设接口（Serial Peripheral Interface Bus，SPI），是一种用于芯片通信的同步串行通信接口规范，主要应用于单片机系统中。SPI设备之间使用全双工模式通信，是一个主机和一个或多个从机的主从模式。主机产生待读或待写的帧数据，多个从机通过一个片选线路决定哪个来响应主机的请求。
+
+SPI总线规定了4个保留逻辑信号接口：
+
+\begin{itemize}
+    \item SCLK/SCK（Serial Clock）：串列时脉，由主机发出
+    \item MOSI（Master Output,Slave Input）：主机输出从机输入信号，由主机发出
+    \item MISO（Master Input,Slave Output）：主机输入从机输出信号，由从机发出
+    \item SS/CS（Slave Selected）：选择信号，由主机发出，一般是低电位有效
+\end{itemize}
+
+在低速时，电压模式控制更有利，而在高速时，或者马达必须经过共振阶段，电流模式是更适合。所以布线参考ST powerSTEP01 Typical application schematic - voltage mode中的走线，如图~\ref{fig:powerstep01}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[]{powerstep01.pdf}
+    \caption{ST powerSTEP01 Typical application schematic}
+    \label{fig:powerstep01}
+\end{figure}
 
 \section{电机接口}
 

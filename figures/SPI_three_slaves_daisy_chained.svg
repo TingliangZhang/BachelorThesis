@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="svg2" inkscape:output_extension="org.inkscape.output.svg.inkscape" inkscape:version="0.45" sodipodi:docbase="/home/cburnett/wikipedia/images/electronics" sodipodi:docname="SPI three slaves daisy chained.svg" sodipodi:modified="true" sodipodi:version="0.32" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 360 284"
+	 style="enable-background:new 0 0 360 284;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.7746;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.8369;}
+	.st3{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.8285;}
+	.st4{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.7775;}
+	.st5{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.7884;}
+	.st6{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.8;}
+	.st7{fill-rule:evenodd;clip-rule:evenodd;fill:#FFC2A1;stroke:#000000;stroke-width:0.7498;}
+	.st8{font-family:'ArialMT';}
+	.st9{font-size:12px;}
+	.st10{fill:none;stroke:#000000;}
+	.st11{fill-rule:evenodd;clip-rule:evenodd;fill:#B9E179;stroke:#000000;stroke-width:0.75;}
+	.st12{fill-rule:evenodd;clip-rule:evenodd;fill:#8FBBDF;stroke:#000000;stroke-width:0.75;}
+	.st13{fill-rule:evenodd;clip-rule:evenodd;fill:#BFA1D1;stroke:#000000;stroke-width:0.75;}
+</style>
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1.0" id="base" inkscape:current-layer="layer1" inkscape:cx="217.78144" inkscape:cy="139.15758" inkscape:document-units="px" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-height="965" inkscape:window-width="1272" inkscape:window-x="0" inkscape:window-y="31" inkscape:zoom="2.0000001" pagecolor="#ffffff">
+	</sodipodi:namedview>
+<g id="layer1" inkscape:groupmode="layer" inkscape:label="Layer 1">
+	<g id="g2202">
+		<path id="path3144" class="st0" d="M131.3,25v1c44.8,0,67.3,0,78.5,0c5.6,0,8.4,0,9.8,0c0.7,0,1,0,1.2,0c0.1,0,0.1,0,0.2,0v-0.5
+			V25C220.9,25,220.9,25,131.3,25z"/>
+		<path id="path2208" class="st1" d="M225.4,25.5l-6.7,3.9v-7.7L225.4,25.5z"/>
+	</g>
+	<g id="g2210">
+		<path id="path3330" class="st0" d="M131.3,40.6v1c44.8,0,67.3,0,78.5,0c5.6,0,8.4,0,9.8,0c0.7,0,1,0,1.2,0c0.1,0,0.1,0,0.2,0v-0.5
+			v-0.5C220.9,40.6,220.9,40.6,131.3,40.6z"/>
+		<path id="path2216" class="st1" d="M225.4,41.1l-6.7,3.9v-7.7L225.4,41.1z"/>
+	</g>
+	<g id="g2226">
+		<path id="path3334" class="st0" d="M131.3,71.8v1c44.8,0,67.3,0,78.5,0c5.6,0,8.4,0,9.8,0c0.7,0,1,0,1.2,0c0.1,0,0.1,0,0.2,0v-0.5
+			v-0.5C220.9,71.8,220.9,71.8,131.3,71.8z"/>
+		<path id="path2232" class="st1" d="M225.4,72.3l-6.7,3.9v-7.7L225.4,72.3z"/>
+	</g>
+	
+		<path id="path2607" sodipodi:cx="209.65625" sodipodi:cy="43.518429" sodipodi:rx="1.9375" sodipodi:ry="1.9375" sodipodi:type="arc" d="
+		M199.5,25.5c0,1.1-0.9,1.9-1.9,1.9s-1.9-0.9-1.9-1.9l0,0c0-1.1,0.9-1.9,1.9-1.9S199.5,24.4,199.5,25.5L199.5,25.5z"/>
+	<g id="g2234">
+		<path id="path2689" class="st0" d="M197.1,25.5v91.9v0.5h0.5h23v-1h-22.5V25.5H197.1z"/>
+		<path id="path2240" class="st2" d="M225.5,117.4l-7.2,4.2v-8.4L225.5,117.4z"/>
+	</g>
+	<g id="g2282">
+		<path id="path2701" class="st0" d="M197.2,117.3v90.8v0.5h0.5h22.8v-1h-22.2v-90.3H197.2z"/>
+		<path id="path2288" class="st3" d="M225.2,208.1l-7.2,4.1V204L225.2,208.1z"/>
+	</g>
+	
+		<path id="path2569" sodipodi:cx="209.65625" sodipodi:cy="43.518429" sodipodi:rx="1.9375" sodipodi:ry="1.9375" sodipodi:type="arc" d="
+		M199.6,117.5c0,1.1-0.9,1.9-1.9,1.9s-1.9-0.9-1.9-1.9l0,0c0-1.1,0.9-1.9,1.9-1.9S199.6,116.4,199.6,117.5L199.6,117.5z"/>
+	<g id="g1955" transform="matrix(1.008289,0,0,1,-1.516952,0)">
+		<path id="path1398" class="st0" d="M183,56.6v77v0.5h0.5h37.2v-1H184V56.6H183z"/>
+		<path id="path1961" class="st4" d="M225.2,133.6l-6.7,3.9v-7.8L225.2,133.6z"/>
+	</g>
+	<path id="path2273" class="st0" d="M183,56.3v1h0.5c21.5,0,32.3,0,37.7,0c2.7,0,4,0,4.7,0c0.1,0,0.1,0,0.2,0c0.2,0,0.4,0,0.4,0h0.1
+		v-0.5v-0.5c0,0-0.5,0-0.5,0c0,0,0,0-42.5,0H183z"/>
+	<g id="g1971" transform="matrix(1.007327,0,0,1,-1.340809,0)">
+		<path id="path2275" class="st0" d="M183,147.1v77v0.5h0.5h37.2v-1H184v-76.5H183z"/>
+		<path id="path1977" class="st4" d="M225.2,224.1l-6.7,3.9v-7.8L225.2,224.1z"/>
+	</g>
+	<path id="path2277" class="st0" d="M183,146.8v1h0.5c21.5,0,32.3,0,37.7,0c2.7,0,4,0,4.7,0c0.1,0,0.1,0,0.2,0c0.2,0,0.4,0,0.4,0
+		h0.1v-0.5v-0.5c0,0-0.5,0-0.5,0c0,0,0,0-42.5,0H183z"/>
+	
+		<path id="path2586" sodipodi:cx="209.65625" sodipodi:cy="43.518429" sodipodi:rx="1.9375" sodipodi:ry="1.9375" sodipodi:type="arc" d="
+		M141.4,72.3c0,1.1-0.9,1.9-1.9,1.9c-1.1,0-1.9-0.9-1.9-1.9l0,0c0-1.1,0.9-1.9,1.9-1.9C140.5,70.4,141.4,71.2,141.4,72.3L141.4,72.3
+		z"/>
+	<g id="g1987">
+		<path id="path2588" class="st0" d="M139.5,162v0.5v0.5c0,0,0,0,81.1,0v-1c-40.6,0-60.8,0-71,0c-5.1,0-7.6,0-8.9,0
+			c-0.6,0-0.9,0-1.1,0C139.6,162,139.5,162,139.5,162z"/>
+		<path id="path1993" class="st5" d="M225.1,162.5l-6.8,3.9v-7.9L225.1,162.5z"/>
+	</g>
+	
+		<path id="path2590" sodipodi:cx="209.65625" sodipodi:cy="43.518429" sodipodi:rx="1.9375" sodipodi:ry="1.9375" sodipodi:type="arc" d="
+		M141.3,162.5c0,1.1-0.9,1.9-1.9,1.9c-1.1,0-1.9-0.9-1.9-1.9l0,0c0-1.1,0.9-1.9,1.9-1.9C140.4,160.5,141.3,161.4,141.3,162.5
+		L141.3,162.5z"/>
+	<path id="path2592" class="st0" d="M139,72.4c0,91.1,0,136.6,0,159.3c0,11.4,0,17.1,0,19.9c0,1.4,0,2.1,0,2.5c0,0.2,0,0.3,0,0.3
+		c0,0,0,0,0,0h1c0,0,0,0,0-182.1H139z"/>
+	<g id="g1979">
+		<path id="path2594" class="st0" d="M139.9,253.3v1c40.5,0,60.7,0,70.8,0c5.1,0,7.6,0,8.8,0c0.6,0,0.9,0,1.1,0c0.1,0,0.1,0,0.2,0
+			v-0.5v-0.5C220.8,253.3,220.8,253.3,139.9,253.3z"/>
+		<path id="path1985" class="st6" d="M225.4,253.8l-6.9,4v-8L225.4,253.8z"/>
+	</g>
+	<path id="path3158" class="st0" d="M167.8,238.1v1h58.8v-1H167.8z"/>
+	<path id="path4045" class="st0" d="M167.8,56.8c0,0,0,0,0,181.6h1c0-90.8,0-136.2,0-158.9c0-11.4,0-17,0-19.9c0-1.4,0-2.1,0-2.5
+		c0-0.2,0-0.2,0-0.3c0,0,0-0.1,0-0.1H167.8z"/>
+	<g id="g4057">
+		<path id="path4047" class="st0" d="M136.9,56.8v0.5v0.5c0,0,0,0,31.4,0v-1c-15.7,0-23.5,0-27.5,0c-2,0-2.9,0-3.4,0
+			C137.2,56.8,137,56.8,136.9,56.8C136.9,56.8,136.9,56.8,136.9,56.8z"/>
+		<path id="path4063" class="st6" d="M132.3,57.3l6.9-4v8L132.3,57.3z"/>
+	</g>
+	<g id="g3941">
+		<rect id="rect1307" x="12.9" y="12.8" class="st7" width="118.3" height="72.2"/>
+		<text transform="matrix(1 0 0 1 28.3291 45.7128)" class="st8 st9">SPI</text>
+		<text transform="matrix(1 0 0 1 19.6631 60.7128)" class="st8 st9">Master</text>
+		<text transform="matrix(1 0 0 1 88.6523 30.7245)" class="st8 st9">SCLK</text>
+		<text transform="matrix(1 0 0 1 89.332 45.7245)" class="st8 st9">MOSI</text>
+		<text transform="matrix(1 0 0 1 89.332 60.7245)" class="st8 st9">MISO</text>
+		<text transform="matrix(1 0 0 1 103.9922 75.7245)" class="st8 st9">SS</text>
+		<path id="path2694" class="st10" d="M105.6,64.5h13.2"/>
+	</g>
+	<g id="g3920">
+		<rect id="rect3084" x="226.9" y="12.8" class="st11" width="118.3" height="72.2"/>
+		<text transform="matrix(1 0 0 1 310.3291 45.7128)" class="st8 st9">SPI</text>
+		<text transform="matrix(1 0 0 1 304.9912 60.7128)" class="st8 st9">Slave</text>
+		<text transform="matrix(1 0 0 1 236 30.7245)" class="st8 st9">SCLK</text>
+		<text transform="matrix(1 0 0 1 236 45.7245)" class="st8 st9">MOSI</text>
+		<text transform="matrix(1 0 0 1 236 60.7245)" class="st8 st9">MISO</text>
+		<text transform="matrix(1 0 0 1 236 75.7245)" class="st8 st9">SS</text>
+		<path id="path3863" class="st10" d="M236.9,64.5h13.2"/>
+	</g>
+	<g id="g3899">
+		<rect id="rect1462" x="226.9" y="103.5" class="st12" width="118.3" height="72.2"/>
+		<text transform="matrix(1 0 0 1 310.347 136.4083)" class="st8 st9">SPI</text>
+		<text transform="matrix(1 0 0 1 305.0091 151.4083)" class="st8 st9">Slave</text>
+		<text transform="matrix(1 0 0 1 236.0179 121.42)" class="st8 st9">SCLK</text>
+		<text transform="matrix(1 0 0 1 236.0179 136.42)" class="st8 st9">MOSI</text>
+		<text transform="matrix(1 0 0 1 236.0179 151.42)" class="st8 st9">MISO</text>
+		<text transform="matrix(1 0 0 1 236.0179 166.42)" class="st8 st9">SS</text>
+		<path id="path3865" class="st10" d="M237,154.9h13.2"/>
+	</g>
+	<g id="g3878">
+		<rect id="rect1482" x="226.9" y="194.2" class="st13" width="118.3" height="72.2"/>
+		<text transform="matrix(1 0 0 1 310.347 227.1039)" class="st8 st9">SPI</text>
+		<text transform="matrix(1 0 0 1 305.0091 242.1039)" class="st8 st9">Slave</text>
+		<text transform="matrix(1 0 0 1 236.0179 212.1156)" class="st8 st9">SCLK</text>
+		<text transform="matrix(1 0 0 1 236.0179 227.1156)" class="st8 st9">MOSI</text>
+		<text transform="matrix(1 0 0 1 236.0179 242.1156)" class="st8 st9">MISO</text>
+		<text transform="matrix(1 0 0 1 236.0179 257.1156)" class="st8 st9">SS</text>
+		<path id="path3867" class="st10" d="M236.8,245.8H250"/>
+	</g>
+</g>
+</svg>
