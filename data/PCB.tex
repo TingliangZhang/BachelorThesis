@@ -13,6 +13,12 @@
     \label{fig:CorePCB}
 \end{figure}
 
+\section{PCB外形}
+
+测试用原型板为100x100mm的正方形PCB，保证原件排布的情况下，成本最低。
+
+正式版本的PCB对角线长度为100mm的正六边形，和平台外轮廓一致，三个轮子和电机等分在六边形互相间隔的三条边上。
+
 \section{主控ATmega2560-16AU}
 
 主控芯片采用ARDUINO MEGA 2560 REV3\cite{arduino_mega-2560-r3}上使用的ATmega2560-16U芯片\footnote{\href{http://www.atmel.com/Images/Atmel-2549-8-bit-AVR-Microcontroller-ATmega640-1280-1281-2560-2561_datasheet.pdf}{ATmega2560 Datasheet}}，并参考MEGA 2560的芯片外设和烧写器设计。引脚映射图见附录~\ref{sec:Pin2560}。
@@ -517,4 +523,19 @@ XBEE模块直接通过TX-RX和MCU通信，也可以选择直插式模块XBEE-Pro
 \section{扩展接口}
 
 三明治扩展形式，层层堆叠，注意厚度。
+
+\section{定位模块}
+
+定位模块采用SONiX OID SNM9S500C3000A Decoder SoC Module，结合桌面上的特殊纸张进行定位。
+
+需要结合EEPROM和校准器使用，所以预留了一个1x7Pin的引脚用于校准。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{SONIX_OID_SNM9S500C3000A_Specification_V1.jpg}
+    \caption{定位模块Datasheet}
+    \label{fig:Camera}
+\end{figure}
+
+将摄像头模块的2WIRE-SCK接到Mega2560的PD0 ( SCL/INT0 ) Digital pin 21 (SCL)，2WIRE-SDIO接到Mega2560的PD1 ( SDA/INT1 ) Digital pin 20 (SDA)接口，并注意将原Arduino Mega 2560设计中的SDA SCL的5V上拉删去或改成3.3V。
 
