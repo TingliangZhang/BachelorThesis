@@ -539,3 +539,18 @@ XBEE模块直接通过TX-RX和MCU通信，也可以选择直插式模块XBEE-Pro
 
 将摄像头模块的2WIRE-SCK接到Mega2560的PD0 ( SCL/INT0 ) Digital pin 21 (SCL)，2WIRE-SDIO接到Mega2560的PD1 ( SDA/INT1 ) Digital pin 20 (SDA)接口，并注意将原Arduino Mega 2560设计中的SDA SCL的5V上拉删去或改成3.3V。
 
+\section{工艺参数}
+
+打样采用嘉立创，工艺参数详见\url{https://www.sz-jlc.com/portal/vtechnology.html}
+
+关键参数如下：双面板过孔最小内径0.3mm,最小外径0.6mm；焊盘边缘到线距离 5mil；单双面板线隙5 mil
+
+以下枚举几个参数的设置，以Minimum-Preferred-Maximum的格式给出：
+
+设置Routing Width为5-10-20mil
+
+Via通孔 孔径0.3-0.4-0.711mm 外径0.6-0.8-1.27mm
+
+Track to Track/SMD Pad/TH Pad Clearance 为 6mil
+
+SMD Pads - Fill Clearance -- 0 mil   SMD Pads - Track -- 0 mil     XBEE模块的天线KEEPOUT FILL
