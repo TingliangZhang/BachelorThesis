@@ -553,4 +553,27 @@ Via通孔 孔径0.3-0.4-0.711mm 外径0.6-0.8-1.27mm
 
 Track to Track/SMD Pad/TH Pad Clearance 为 6mil
 
+TH Pad to TH Pad Clearance 为 5mil (Type-C接口要求)
+
 SMD Pads - Fill Clearance -- 0 mil   SMD Pads - Track -- 0 mil     XBEE模块的天线KEEPOUT FILL
+
+SMD Neck-down Rules = 60\%
+
+注意！位号不能有空格，不然JLCSMT会出问题
+
+BOM中不属于JLC基础库的需要每种加20换料费，所有全贴片目前太贵了，所以只贴了核心的芯片和电阻电容，将来批量生产再全面SMT，这一批测试板目前很多元件是手焊的。
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{JLC-BOM.png}
+    \caption{JLC-BOM}
+    \label{fig:JLC-BOM}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{JLC-SMT-SIMU.png}
+    \caption{JLC-SMT-SIMU}
+    \label{fig:JLC-SMT-SIMU}
+\end{figure}
