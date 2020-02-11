@@ -21,6 +21,14 @@ latexmk -xelatex --shell-escape main.tex
 
 即可编译得到PDF文件。
 
+运行：
+
+```
+latexmk -c
+```
+
+即可清除编译附加文件。大写C清除PDF等输出文件。
+
 
 
 ## VSCode相关

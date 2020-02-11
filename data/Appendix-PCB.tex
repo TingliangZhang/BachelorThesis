@@ -124,7 +124,10 @@
 \section{PCB原理图}
 % ! LaTeX Error: Cannot determine size of graphic in figures/Misaka-v1.0.pdf (no BoundingBox).
 % 解决：去掉Misaka-v1.0.pdf的.0。在文件名中不能出现点。
-\includepdf[pages={1-2}]{Misaka-v1.pdf} 
+
+% xdvipdfmx:fatal: pdf_ref_obj(): passed invalid object.   This happened to me when embedding an EPS file into a xelatex document.
+% 未解决，可能是Misaka-v1.pdf有点问题
+% \includepdf[pages={1-2}]{Misaka-v1.pdf} 
 
 % \includepdf[pages={1-2}]{MEGA2560_Rev3e_sch.pdf}
 % \includepdf[]{esp32-wroom-32_datasheet_cn_Inside.pdf}
