@@ -4,13 +4,31 @@
 在本设计方案中，主板板载ATmega2560-16AU芯片作为主要MCU，控制外部设备并与次要MCU兼Wifi+普通蓝牙+BLE通信模块的ESP32通信，计算机可以通过ATmega16U2和USB Type-C接口给其烧写程序。主板还包括9个WS2812B RGB LED作为灯光交互、可以驱动三个直流减速电机的电机驱动芯片、ESP32配套编程器CP2102N、锂电池接口和LD1117电压转换、扩展接口等功能模块。
 
 
-主板PCB设计如图~\ref{fig:CorePCB}：
+测试版本主板PCB设计如图~\ref{fig:Misaka-v1}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Misaka-v1-1.pdf}
+    \caption{测试用主板整体电路设计}
+    \label{fig:Misaka-v1}
+\end{figure}
+
+其中测试用主板PCB核心芯片部分设计如图~\ref{fig:CorePCB}。
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\columnwidth]{ArduinoMega2560-Core-White-Crop.pdf}
-    \caption{Mega 2560主板设计}
+    \caption{测试用主板核心Mega 2560设计}
     \label{fig:CorePCB}
+\end{figure}
+
+其PCB布局如图~\ref{fig:Misaka-v1-2}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Misaka-v1-2.pdf}
+    \caption{测试用主板整体PCB设计}
+    \label{fig:Misaka-v1-2}
 \end{figure}
 
 \section{PCB外形}
