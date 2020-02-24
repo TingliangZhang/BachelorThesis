@@ -227,7 +227,15 @@ ESP-IDF 所需的 Python 软件包位于 IDF-PATH/requirements.txt 中。可以�
 
 \subsection{连接设备}
 
-现在，请将 ESP32 开发板连接到 PC，并查看开发板使用的串口。
+用 USB 线将 ESP32 开发板连接到 PC。如果设备驱动程序没有自动安装，请先确认 ESP32 开发板上的 USB 转串口芯片（或外部转串口适配器）型号，然后在网上搜索对应的驱动程序，并进行手动安装。
+
+CP210x: CP210x USB 至 UART 桥 VCP 驱动程序 \url{https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers}
+
+FTDI: FTDI 虚拟 COM 端口驱动程序 \url{https://www.ftdichip.com/Drivers/VCP.htm}
+
+一般情况下，当上述任一 ESP32 开发板与 PC 连接时，对应驱动程序应该已经被打包在操作系统中，并已经自动安装。
+
+现在，将 ESP32 开发板连接到 PC，并查看开发板使用的串口。检查 Windows 设备管理器中的 COM 端口列表。断开 ESP32 与 PC 的连接，然后重新连接，查看哪个端口从列表中消失，然后再次出现。
 
 通常，串口在不同操作系统下显示的名称有所不同：
 
@@ -247,7 +255,7 @@ Python 2.7 安装程序将尝试配置 Windows，将 .py 文件与 Python 2 关�
 如果默认 Python 版本为 3.0 以上，可能需要运行 python2 idf.py。
 
 
-在/esp/hello world示例工程路径下运行：
+使用ESP-IDF Command Prompt (cmd.exe) 在/esp/hello world示例工程路径下运行：
 
 \begin{tcolorbox}
     idf.py menuconfig
@@ -264,7 +272,7 @@ Python 2.7 安装程序将尝试配置 Windows，将 .py 文件与 Python 2 关�
 
 \subsection{编译工程}
 
-使用以下命令，编译烧录工程：
+在ESP-IDF Command Prompt (cmd.exe)中使用以下命令，编译烧录工程：
 
 \begin{tcolorbox}
     idf.py build
