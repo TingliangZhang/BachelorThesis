@@ -1,0 +1,14 @@
+\chapter{通信协议}
+\label{cha:Communication}
+
+\section{RS-232}
+
+RS-232, Recommended Standard 232 \footnote{RS-232, when compared to later interfaces such as RS-422, RS-485 and Ethernet, has lower transmission speed, short maximum cable length, large voltage swing, large standard connectors, no multipoint capability and limited multidrop capability. In modern personal computers, USB has displaced RS-232 from most of its peripheral interface roles.} 是一种串行通信协议。见\url{https://en.wikipedia.org/wiki/RS-232}
+
+我们的Arduino编程器的通信协议就是RS-232。
+
+\section{UART}
+
+通用异步收发传输器（Universal Asynchronous Receiver/Transmitter，通常称为UART）是一种异步收发传输器，是电脑硬件的一部分，将数据透过串列通讯和平行通讯间作传输转换。UART通常用在与其他通讯接口（如EIA RS-232）的连接上。\footnote{\url{https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter}}
+
+具体实物表现为独立的模组化芯片，或是微处理器中的内部周边装置(peripheral)。一般和RS-232C规格的，类似Maxim的MAX232之类的标准信号幅度变换芯片进行搭配，作为连接外部设备的接口。在UART上追加同步方式的序列信号变换电路的产品，被称为USART(Universal Synchronous Asynchronous Receiver Transmitter)。
