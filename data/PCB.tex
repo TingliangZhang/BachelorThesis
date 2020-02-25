@@ -620,3 +620,9 @@ Test Board 3D仿真如图~\ref{fig:TestBoard3D}
     \caption{Test Board 3D仿真}
     \label{fig:TestBoard3D}
 \end{figure}
+
+\section{总结}
+
+在第一个版本的测试PCB中，由于疫情的影响，PCB代工厂产能受限，在不明确交期的情况下，只能尽量做到应有尽有。
+
+Mega2560主MCU，做简单的数据处理和电机/通信控制；ATMega16U2可以通过USB Type C口烧写程序；步进电机和直流减速电机驱动；9 x WS2812B RGB-LED全彩灯光显示；下视红外摄像头配合点点纸做定位；XBee3做主要的Mesh组网通信；乐鑫的ESP-32做WiFi 5 、蓝牙、BLE备用通信和第二MCU，CP2102可以通过USB Type C口烧写程序；外置电池稳压供电；USB口供电Buck DC-DC和冲激反压过压过流保护；还有一大堆引出的测试用可编程引脚。
