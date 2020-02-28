@@ -3,10 +3,6 @@
 
 \section{双极型步进电机}
 
-Bipolar motors
-
-\url{https://en.wikipedia.org/wiki/Stepper_motor}
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\columnwidth]{Drive.png}
@@ -14,7 +10,7 @@ Bipolar motors
     \label{fig:Phase-current}
 \end{figure}
 
-双极步进电机每相只有一个绕组。为了使磁极反向，需要使绕组中的电流反向，因此驱动电路必须更复杂，通常采用H桥配置（但是有几种现成的驱动器芯片可以使之成为一个简单的事情）。每相有两个引线，没有公用的。
+双极步进电机(Bipolar motors\footnote{\url{https://en.wikipedia.org/wiki/Stepper_motor}})每相只有一个绕组。为了使磁极反向，需要使绕组中的电流反向，因此驱动电路必须更复杂，通常采用H桥配置（但是有几种现成的驱动器芯片可以使之成为一个简单的事情）。每相有两个引线，没有公用的。
 
 两线圈双极步进步进电机的典型驱动模式为：A + B + A- B-。即以正电流驱动线圈A，然后从线圈A中去除电流。然后以正电流驱动线圈B，然后从线圈B中去除电流。然后用负电流驱动线圈A（通过切换导线，例如用H桥翻转极性），然后从线圈A去除电流。然后用负电流驱动线圈B（与线圈A的翻转极性相同）；循环完成并重新开始。
 
