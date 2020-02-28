@@ -26,9 +26,71 @@ Bipolar motors
 
 \section{步进电机驱动DRV8825}
 
+DRV8825用于双极步进电机控制。微步步进电机驱动器提供更高的精度以及步进电机平稳的旋转。
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\columnwidth]{DRV8825-Function-Block.pdf}
     \caption{DRV8825功能框图}
     \label{fig:DRV8825-Function-Block}
+\end{figure}
+
+配置DRV8825的第一步需要所需的转速和微步级别。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DRV8825-Typical-Application.pdf}
+    \caption{DRV8825典型应用}
+    \label{fig:DRV8825-Typical-Application}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DRV8825-Design-Requirements.pdf}
+    \caption{DRV8825设计要求}
+    \label{fig:DRV8825-Design-Requirements}
+\end{figure}
+
+如果需要恒定转速，则将频率为$f_step$的方波施加到STEP引脚。
+
+如果电动机的目标速度过高，电动机可能不会旋转。 确保电动机可以支持目标速度或通过加速以使电动机达到最高速度。
+
+对于所需的电动机速度（v），微步级别（$n_m$）和电动机全步距角（$\theta_{\text {step }}$，一整步对应的角度），
+
+\begin{equation}
+    \begin{aligned}
+    &f_{\text {step }(\mu \text { steps } / \text { second })=} \frac{v\left(\frac{\text { rotations }}{\text { minute }}\right) \times 360\left(\frac{\circ}{\text { rotation }}\right) \times n_{\mathrm{m}}\left(\frac{\mu \text { steps }}{\text { step }}\right)}{60\left(\frac{\text { seconds }}{\text { minute }}\right) \times \theta_{\text {step }}\left(\frac{^{\circ}}{\text { step }}\right)}\\
+    &f_{\text {step }(\mu \text { steps } / \text { second })=} \frac{120\left(\frac{\text { rotations }}{\text { minute }}\right) \times 360\left(\frac{^{\circ}}{\text { rotation }}\right) \times 8\left(\frac{\mu \text { steps }}{\text { step }}\right)}{60\left(\frac{\text { seconds }}{\text { minute }}\right) \times 1.8\left(\frac{\circ}{\text { step }}\right)}
+    \end{aligned}
+\end{equation}
+
+DRV8825微步步进级别由MODE引脚设置。
+
+较高的微步步进级别将意味着电动机运动更平稳且噪声较小，但会增加开关损耗，并且需要较高的$f_step$才能达到相同的电动机速度。
+
+在步进电机中，设定的满量程电流（$I_{FS}$ full-scale current）是通过任一绕组驱动的最大电流。 该数量取决于xVREF模拟电压和检测电阻值（$R_{\text {SENSE}}$）。 
+
+在步进期间，IFS定义为最大电流步进斩波阈值（$I_{\text {TRIP}}$ current chopping threshold）。 DRV8825的增益设置为5V。
+
+\begin{equation}
+    \operatorname{I_{FS}}(A)=\frac{x \operatorname{VREF}(V)}{A_{v} \times R_{S E N S E}(\Omega)}=\frac{x \operatorname{VREF}(V)}{5 \times R_{S E N S E}(\Omega)}
+\end{equation}
+
+参考设计和要求如图~\ref{fig:DRV8825-Typical-Application}和图~\ref{fig:DRV8825-Design-Requirements}
+
+典型模块设计和布局如图~\ref{fig:DRV8825-stepper-motor-driver-carrier-schematic-diagram}和图~\ref{fig:DRV8825-Layout-Example}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{drv8824-drv8825-stepper-motor-driver-carrier-schematic-diagram.pdf}
+    \caption{DRV8825模块设计 DRV8824/DRV8825 Stepper Motor Driver Carrier}
+    \label{fig:DRV8825-stepper-motor-driver-carrier-schematic-diagram}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DRV8825-Layout-Example.pdf}
+    \caption{DRV8825布局参考}
+    \label{fig:DRV8825-Layout-Example}
 \end{figure}
