@@ -37,6 +37,8 @@ latexmk -c
 
 using the ALT+Z keyboard shortcut to *Toggle Word Wrap*
 
+批量编辑 Ctrl + F2 选择当前字符串的所有出现
+
 My VSCode Settings
 
 ```json

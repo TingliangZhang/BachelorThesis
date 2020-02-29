@@ -18,7 +18,7 @@
     \label{fig:Phase-current}
 \end{figure}
 
-双极步进电机(Bipolar motors\footnote{\url{https://en.wikipedia.org/wiki/Stepper_motor}})每相只有一个绕组。为了使磁极反向，需要使绕组中的电流反向，因此驱动电路必须更复杂，通常采用H桥配置（但是有几种现成的驱动器芯片可以使之成为一个简单的事情）。每相有两个引线，没有公用的。
+双极步进电机(Bipolar motors\footnote{\url{https://en.wikipedia.org/wiki/Stepper\_motor}})每相只有一个绕组。为了使磁极反向，需要使绕组中的电流反向，因此驱动电路必须更复杂，通常采用H桥配置（但是有几种现成的驱动器芯片可以使之成为一个简单的事情）。每相有两个引线，没有公用的。
 
 两线圈双极步进步进电机的典型驱动模式为：A + B + A- B-。即以正电流驱动线圈A，然后从线圈A中去除电流。然后以正电流驱动线圈B，然后从线圈B中去除电流。然后用负电流驱动线圈A（通过切换导线，例如用H桥翻转极性），然后从线圈A去除电流。然后用负电流驱动线圈B（与线圈A的翻转极性相同）；循环完成并重新开始。
 
@@ -56,29 +56,47 @@ DRV8825用于双极步进电机控制。微步步进电机驱动器提供更高�
     \label{fig:DRV8825-Design-Requirements}
 \end{figure}
 
-如果需要恒定转速，则将频率为$f_step$的方波施加到STEP引脚。
+如果需要恒定转速，则将频率为$f\_step$的方波施加到STEP引脚。
 
 如果步进电机的目标速度过高，步进电机可能不会旋转。 确保步进电机可以支持目标速度或通过加速以使步进电机达到最高速度。
 
-对于所需的步进电机速度（v），微步级别（$n_m$）和步进电机全步距角（$\theta_{\text {step }}$，一整步对应的角度），
+对于所需的步进电机速度（v），微步级别（$n\_m$）和步进电机全步距角（$\theta\_{\text {step }}$，一整步对应的角度），
 
 \begin{equation}
     \begin{aligned}
-    &f_{\text {step }(\mu \text { steps } / \text { second })=} \frac{v\left(\frac{\text { rotations }}{\text { minute }}\right) \times 360\left(\frac{\circ}{\text { rotation }}\right) \times n_{\mathrm{m}}\left(\frac{\mu \text { steps }}{\text { step }}\right)}{60\left(\frac{\text { seconds }}{\text { minute }}\right) \times \theta_{\text {step }}\left(\frac{^{\circ}}{\text { step }}\right)}\\
-    &f_{\text {step }(\mu \text { steps } / \text { second })=} \frac{120\left(\frac{\text { rotations }}{\text { minute }}\right) \times 360\left(\frac{^{\circ}}{\text { rotation }}\right) \times 8\left(\frac{\mu \text { steps }}{\text { step }}\right)}{60\left(\frac{\text { seconds }}{\text { minute }}\right) \times 1.8\left(\frac{\circ}{\text { step }}\right)}
+    &f\_{\text {step }(\mu \text { steps } / \text { second })=} \frac{v\left(\frac{\text { rotations }}{\text { minute }}\right) \times 360\left(\frac{\circ}{\text { rotation }}\right) \times n\_{\mathrm{m}}\left(\frac{\mu \text { steps }}{\text { step }}\right)}{60\left(\frac{\text { seconds }}{\text { minute }}\right) \times \theta\_{\text {step }}\left(\frac{^{\circ}}{\text { step }}\right)}\\
+    &f\_{\text {step }(\mu \text { steps } / \text { second })=} \frac{120\left(\frac{\text { rotations }}{\text { minute }}\right) \times 360\left(\frac{^{\circ}}{\text { rotation }}\right) \times 8\left(\frac{\mu \text { steps }}{\text { step }}\right)}{60\left(\frac{\text { seconds }}{\text { minute }}\right) \times 1.8\left(\frac{\circ}{\text { step }}\right)}
     \end{aligned}
 \end{equation}
 
-DRV8825微步步进级别由MODE引脚设置。
+DRV8825微步步进级别由MODE引脚设置，如表~\ref{tab:DRV8825-microstep-settings}所示。
 
-较高的微步步进级别将意味着步进电机运动更平稳且噪声较小，但会增加开关损耗，并且需要较高的$f_step$才能达到相同的步进电机速度。
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{llll}
+    \hline
+    M0   & M1   & M2   & Microstep resolution \\ \hline
+    Low  & Low  & Low  & Full step            \\ \hline
+    High & Low  & Low  & 1/2 step             \\ \hline
+    Low  & High & Low  & 1/4 step             \\ \hline
+    High & High & Low  & 1/8 step             \\ \hline
+    Low  & Low  & High & 1/16 step            \\ \hline
+    High & Low  & High & 1/32 step            \\ \hline
+    Low  & High & High & 1/32 step            \\ \hline
+    High & High & High & 1/32 step            \\ \hline
+    \end{tabular}
+    \caption{DRV8825 microstep settings}
+    \label{tab:DRV8825-microstep-settings}
+\end{table}
 
-在步进电机中，设定的满量程电流（$I_{FS}$ full-scale current）是通过任一绕组驱动的最大电流。 该数量取决于xVREF模拟电压和检测电阻值（$R_{\text {SENSE}}$）。 
+较高的微步步进级别将意味着步进电机运动更平稳且噪声较小，但会增加开关损耗，并且需要较高的$f\_step$才能达到相同的步进电机速度。
 
-在步进期间，IFS定义为最大电流步进斩波阈值（$I_{\text {TRIP}}$ current chopping threshold）。 DRV8825的增益设置为5V。
+在步进电机中，设定的满量程电流（$I\_{FS}$ full-scale current）是通过任一绕组驱动的最大电流。 该数量取决于xVREF模拟电压和检测电阻值（$R\_{\text {SENSE}}$）。 
+
+在步进期间，IFS定义为最大电流步进斩波阈值（$I\_{\text {TRIP}}$ current chopping threshold）。 DRV8825的增益设置为5V。
 
 \begin{equation}
-    \operatorname{I_{FS}}(A)=\frac{x \operatorname{VREF}(V)}{A_{v} \times R_{S E N S E}(\Omega)}=\frac{x \operatorname{VREF}(V)}{5 \times R_{S E N S E}(\Omega)}
+    \operatorname{I\_{FS}}(A)=\frac{x \operatorname{VREF}(V)}{A\_{v} \times R\_{S E N S E}(\Omega)}=\frac{x \operatorname{VREF}(V)}{5 \times R_{S E N S E}(\Omega)}
 \end{equation}
 
 参考设计和要求如图~\ref{fig:DRV8825-Typical-Application}和图~\ref{fig:DRV8825-Design-Requirements}
@@ -134,7 +152,7 @@ CHS-GM1024-10BY 2相4线直径15BY全金属齿轮减速步进电机 参数如图
 
 \section{电机连接器}
 
-采用的电机原装为Molex 51021-0400 连接器 1.25mm Pitch, PicoBlade 1.25 DIP TYPE SMT TYPE \url{https://www.chinese.molex.com/molex/products/part-detail/crimp_housings/0510210400}，为了方便未来批量制作，我们使用对应的插座，如图~\ref{fig:51021-APPLICATION-SPECIFICATION}所示。
+采用的电机原装为Molex 51021-0400 连接器 1.25mm Pitch, PicoBlade 1.25 DIP TYPE SMT TYPE \url{https://www.chinese.molex.com/molex/products/part-detail/crimp\_housings/0510210400}，为了方便未来批量制作，我们使用对应的插座，如图~\ref{fig:51021-APPLICATION-SPECIFICATION}所示。
 
 \begin{figure}[htbp]
     \centering
@@ -150,7 +168,74 @@ CHS-GM1024-10BY 2相4线直径15BY全金属齿轮减速步进电机 参数如图
 
 pps (pulses per second)
 
+Arduino 官方库中默认带有 Stepper Library (\url{https://www.arduino.cc/en/Reference/Stepper})，提供了unipolar or bipolar stepper motors的控制函数。
 
-Stepper Library \url{https://www.arduino.cc/en/Reference/Stepper}
+Stepper(steps, pin1, pin2, pin3, pin4) 函数定义了一个步进电机类的实例
 
-AccelStepper library for Arduino \url{http://www.airspayce.com/mikem/arduino/AccelStepper/}
+steps: the number of steps in one revolution of your motor. If your motor gives the number of degrees per step, divide that number into 360 to get the number of steps (e.g. 360 / 3.6 gives 100 steps). (int)
+
+问题是Stepper Library针对的是H桥或直连的2/4线简单的步进电机，并非特定的驱动芯片如DRV8825，所以需要其他库。
+
+AccelStepper library for Arduino \url{http://www.airspayce.com/mikem/arduino/AccelStepper/} 则很好的兼容了驱动芯片并且提供加速减速等功能。
+
+AccelStepper Class Reference 参见 \url{http://www.airspayce.com/mikem/arduino/AccelStepper/classAccelStepper.html} 。
+
+函数 AccelStepper (uint8\_t interface=AccelStepper::FULL4WIRE, uint8\_t pin1=2, uint8\_t pin2=3, uint8\_t pin3=4, uint8\_t pin4=5, bool enable=true) 定义了一个步进电机(create a new instance of the AccelStepper class)。
+
+其中interface设置为1，意为连接的是具有Step and Direction pins的步进电机驱动芯片。pin1连接到步进电机驱动Step引脚，低电平到高电平跳变为步进。pin2连接到步进电机驱动Direction引脚，高电平为正向旋转。其他变量留空默认即可。
+
+以下操作函数需要用到使用AccelStepper实例化的名字，定义小车的三个轮子的步进电机分别为Motor1、Motor2、Motor3。
+
+setMaxSpeed
+setAcceleration
+moveTo
+runToPosition
+runSpeed
+
+
+
+\section{测试}
+
+测试接线图如图~\ref{fig:Arduino-DRV8825}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Arduino-DRV8825-RE-SAVE.pdf}
+    \caption{Arduino-DRV8825接线图}
+    \label{fig:Arduino-DRV8825}
+\end{figure}
+
+
+% ERROR!!!!!!!
+% xdvipdfmx:fatal: pdf_link_obj(): passed invalid object.
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\columnwidth]{Arduino-DRV8825.pdf}
+%     \caption{Arduino-DRV8825接线图}
+%     \label{fig:Arduino-DRV8825}
+% \end{figure}
+
+未接电机时使用如下代码进行测试：
+
+%\inputminted[mathescape, linenos, breaklines]{C}{Code/AccelStepper-Test/AccelStepper-Test.ino}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{AccelStepper-Acceleration-Waveform.png}
+    \caption{AccelStepper库加速转动DRV8825未接电机输出驱动波形}
+    \label{fig:AccelStepper-Acceleration-Waveform}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{AccelStepper-Acceleration-Spectrogram.png}
+    \caption{AccelStepper库加速转动DRV8825未接电机驱动输出频谱图}
+    \label{fig:AccelStepper-Acceleration-Spectrogram}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{AccelStepper-Acceleration-Waveform-with-motor.png}
+    \caption{AccelStepper库加速转动DRV8825接电机输出驱动波形}
+    \label{fig:AccelStepper-Acceleration-Waveform-with-motor}
+\end{figure}
