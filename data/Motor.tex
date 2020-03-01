@@ -197,7 +197,7 @@ AccelStepper Class Reference 参见 \url{http://www.airspayce.com/mikem/arduino/
 \end{itemize}
 
 
-\section{测试}
+\section{单电机测试}
 
 测试接线图如图~\ref{fig:Arduino-DRV8825}
 
@@ -218,9 +218,11 @@ AccelStepper Class Reference 参见 \url{http://www.airspayce.com/mikem/arduino/
 %     \label{fig:Arduino-DRV8825}
 % \end{figure}
 
-未接电机时使用如下代码进行测试：
+未接电机时使用如下代码进行加减速测试：
 
-\inputminted[mathescape, linenos, breaklines]{C}{Code/AccelStepper-Test/AccelStepper-Test.ino}
+\inputminted[mathescape, linenos, breaklines]{C}{Code/Stepper-3/Stepper-3.ino}
+
+得到波形如图~\ref{fig:AccelStepper-Acceleration-Waveform}、图~\ref{fig:AccelStepper-Acceleration-Waveform-with-motor}、图~\ref{fig:AccelStepper-Acceleration-Spectrogram}。
 
 \begin{figure}[htbp]
     \centering
@@ -242,3 +244,27 @@ AccelStepper Class Reference 参见 \url{http://www.airspayce.com/mikem/arduino/
     \caption{AccelStepper库加速转动DRV8825接电机输出驱动波形}
     \label{fig:AccelStepper-Acceleration-Waveform-with-motor}
 \end{figure}
+
+接电机时使用如下代码进行以一定加速度加速到恒定速度测试：
+
+\inputminted[mathescape, linenos, breaklines]{C}{Code/Stepper-3/Stepper-3.ino}
+
+得到波形如图~\ref{fig:AccelStepper-Constant-Speed-Waveform-with-motor}和图~\ref{fig:AccelStepper-Constant-Speed-Waveform-with-motor-Scaled}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{AccelStepper-Constant-Speed-Waveform-with-motor.png}
+    \caption{AccelStepper库恒速转动DRV8825接电机输出驱动波形}
+    \label{fig:AccelStepper-Constant-Speed-Waveform-with-motor}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{AccelStepper-Constant-Speed-Waveform-with-motor-Scaled.png}
+    \caption{AccelStepper库恒速转动DRV8825接电机输出驱动波形（放大）}
+    \label{fig:AccelStepper-Constant-Speed-Waveform-with-motor-Scaled}
+\end{figure}
+
+\section{动力系统测试}
+
+三电机在3D打印出的测试用底盘测试，以确定扭矩是否足够带动平台。
