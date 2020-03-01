@@ -182,16 +182,19 @@ AccelStepper Class Reference 参见 \url{http://www.airspayce.com/mikem/arduino/
 
 函数 AccelStepper (uint8\_t interface=AccelStepper::FULL4WIRE, uint8\_t pin1=2, uint8\_t pin2=3, uint8\_t pin3=4, uint8\_t pin4=5, bool enable=true) 定义了一个步进电机(create a new instance of the AccelStepper class)。
 
-其中interface设置为1，意为连接的是具有Step and Direction pins的步进电机驱动芯片。pin1连接到步进电机驱动Step引脚，低电平到高电平跳变为步进。pin2连接到步进电机驱动Direction引脚，高电平为正向旋转。其他变量留空默认即可。
+其中interface设置为1，即枚举变量 enum AccelStepper::MotorInterfaceType 取AccelStepper::DRIVER (1)，意为连接的是具有Step and Direction pins的步进电机驱动芯片。pin1连接到步进电机驱动Step引脚，低电平到高电平跳变为步进。pin2连接到步进电机驱动Direction引脚，高电平为正向旋转。其他变量留空默认即可。
 
 以下操作函数需要用到使用AccelStepper实例化的名字，定义小车的三个轮子的步进电机分别为Motor1、Motor2、Motor3。
 
-setMaxSpeed
-setAcceleration
-moveTo
-runToPosition
-runSpeed
-
+\begin{itemize}
+    \item setMaxSpeed
+    \item setAcceleration
+    \item moveTo
+    \item runToPosition
+    \item runSpeed
+    \item distanceToGo
+    \item currentPosition
+\end{itemize}
 
 
 \section{测试}
@@ -217,7 +220,7 @@ runSpeed
 
 未接电机时使用如下代码进行测试：
 
-%\inputminted[mathescape, linenos, breaklines]{C}{Code/AccelStepper-Test/AccelStepper-Test.ino}
+\inputminted[mathescape, linenos, breaklines]{C}{Code/AccelStepper-Test/AccelStepper-Test.ino}
 
 \begin{figure}[htbp]
     \centering
