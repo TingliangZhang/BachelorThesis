@@ -71,6 +71,12 @@ Latex源码里面注意不要出现下划线，短横线可以。可以用\\_做
 
 
 
+## PDF插入3D模型
+
+[PDF file containing 3D object is not included correctly with \includegraphics](https://tex.stackexchange.com/questions/52018/pdf-file-containing-3d-object-is-not-included-correctly-with-includegraphics)
+
+
+
 ## Tools
 
 PDF转Excel：
