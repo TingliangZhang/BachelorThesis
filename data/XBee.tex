@@ -83,13 +83,13 @@ AT命令的结构为：
 例如：
 
 \begin{tcolorbox}
-    ATNI MyDevice\\r
+    ATNI MyDevice\textbackslash{}r
 \end{tcolorbox}
 
 如果在命令模式超时内未收到有效的AT命令，则无线模块将自动退出AT命令模式。您还可以通过发出CN命令来退出命令模式：
 
 \begin{tcolorbox}
-    (ATCN\\r)
+    (ATCN\textbackslash{}r)
 \end{tcolorbox}
 
 \subsection{API}
@@ -107,3 +107,37 @@ API指定了如何使用串行接口从模块发送和接收命令，命令响�
 \end{itemize}
 
 取决于AP参数值，无线模块可以以下两种模式之一运行：API（AP = 1）或API Escape（AP = 2）操作模式。
+
+API转义操作模式（AP = 2）与API模式相似，不同之处在于，在API转义模式下工作时，必须转义API框架特定数据的某些字节。由于XCTU与API和API转义操作模式均兼容，因此您无需手动转义字符。
+
+API转义操作模式通过防止与特殊字符（例如帧开始字节（0x7E））发生冲突，提高了RF传输的可靠性。API非转义（API = 1）操作仅依靠起始定界符和长度字节来区分API帧。另一方面，在API转义模式下，那些特殊字节被转义。由于0x7E只能出现在API数据包的开头，因此，如果在处于API转义模式下的任何时间接收到0x7E，则模块始终可以“假定”新数据包已经开始。
+
+在以API转义模式发送或接收API帧时，必须对特定数据值进行转义（标记），以免干扰数据帧序列。
+
+要转义数据字节，请插入0x7D，然后在其后跟要转义的字节与0x20进行XOR。需要转义的数据字节如下：
+
+\begin{itemize}
+    \item 0x7E: Frame delimiter
+    \item 0x7D: Escape
+    \item 0x11: XON
+    \item 0x13: XOFF    
+\end{itemize}
+
+XCTU在与API转义的无线电模块进行交互时会自动转义适当的字符。
+
+API帧是在无线电模块的串行接口上​​以API或API转义操作模式进行配置时发送和接收的结构化数据。API框架用于与模块或网络中的其他模块进行通信。API框架具有图~\ref{fig:api-frame}所示的结构：
+
+开始符 Start delimeter 帧的第一个字节，由一个特殊的比特序列组成，这些比特序列指示数据帧的开始。它的值始终为0x7E。作用是检测新的输入帧。
+
+长度 Length 指定帧数据字段中包含的字节总数。它的两个字节的值不包括起始符，长度和校验和。
+
+帧数据 Frame data 由API标识符和特定于API标识符的数据组成。特定数据的内容取决于API标识符（也称为API帧类型）。
+
+校验和 Checksum 帧的最后一个字节。它有助于测试数据的完整性，并通过获取其之前所有API帧字节（不包括前三个字节（开始符和长度））的哈希总和来计算。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{concpts_api_frame_explained_80.jpg}
+    \caption{API帧}
+    \label{fig:api-frame}
+\end{figure}
