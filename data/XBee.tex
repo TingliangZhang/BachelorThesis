@@ -3,6 +3,10 @@
 
 \section{ZigBee模块概述}
 
+无线电通信协议是在无线电设备之间进行数据交换的一组规则。RF模块根据模块及其无线电固件支持特定的无线电通信协议。
+
+以下是XBee无线电模块支持的协议的完整列表：
+
 \begin{itemize}
     \item IEEE 802.15.4
     \item ZigBee
@@ -14,9 +18,14 @@
     \item XSC (XStream-compatible)
 \end{itemize}
 
-\section{AT设置}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{radio_comm_protocols.png}
+    \caption{不同协议组网方式对比}
+    \label{fig:radio_comm_protocols}
+\end{figure}
 
-
+并非所有XBee设备都可以运行所有列出的通信协议。XBee硬件和无线电固件的组合决定了XBee设备可以执行的协议。
 
 \section{固件升级}
 
@@ -41,5 +50,18 @@
     \item XBee3 (Zigbee, DigiMesh 2.4, and 802.15.4)
 \end{itemize}
 
+\section{AP参数}
 
+XBee无线电模块的操作模式建立了用户或连接到XBee的任何微控制器通过通用异步接收器/发送器（UART）或串行接口与模块进行通信的方式。
+
+取决于固件及其配置，无线电模块可以在三种不同的操作模式下工作：
+
+\begin{itemize}
+    \item Application Transparent (AT) operating mode
+    \item API operating mode
+    \item API escaped operating mode
+\end{itemize}
+
+在某些情况下，无线电模块的运行模式由固件版本（确定运行模式是AT还是API）以及固件的AP设置（确定API模式是否被转义（2））建立， （1）。在其他情况下，操作模式仅由AP设置确定，该设置允许您将模式配置为AT（AP = 0），API（AP = 1）或API转义（AP = 2）。
+\section{AT设置}
 
