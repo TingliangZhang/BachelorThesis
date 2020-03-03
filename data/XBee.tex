@@ -141,3 +141,27 @@ API帧是在无线电模块的串行接口上​​以API或API转义操作模�
     \caption{API帧}
     \label{fig:api-frame}
 \end{figure}
+
+
+\section{XCTU的配置}
+
+coordinator是中心节点，Router是小机器人的，他们的配置要注意，比如AP=2，DH/DL是地址，都设为零，因为按照api里定义的地址发送，配置里的目的地址就填零就行。配置如表~\ref{tab:XCTU}所示。
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{@{}lll@{}}
+    \toprule
+             & Coordinator & Router \\ \midrule
+    ID（相同即可） & 1234        & 1234   \\
+    SC       & 8           & 8      \\
+    ZS       & 2           & 2      \\
+    JV       & 无           & 1      \\
+    DH       & 0           & 0      \\
+    DL       & 0           & 0      \\
+    AP       & 2           & 2      \\ \bottomrule
+    \end{tabular}
+    \caption{XCTU配置}
+    \label{tab:XCTU}
+\end{table}
