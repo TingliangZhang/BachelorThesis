@@ -37,7 +37,13 @@ latexmk -c
 
 using the ALT+Z keyboard shortcut to *Toggle Word Wrap*
 
-批量编辑 Ctrl + F2 选择当前字符串的所有出现
+Ctrl+F2   Select all occurrences of current word
+
+Ctrl+Shift+L Select all occurrences of current selection
+
+Alt+Click Insert cursor
+
+
 
 My VSCode Settings
 
