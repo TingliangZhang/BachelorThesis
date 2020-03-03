@@ -33,6 +33,8 @@ latexmk -c
 
 ## VSCode相关
 
+https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_editing-hacks
+
 表格对齐自动换行
 
 using the ALT+Z keyboard shortcut to *Toggle Word Wrap*
@@ -42,6 +44,12 @@ Ctrl+F2   Select all occurrences of current word
 Ctrl+Shift+L Select all occurrences of current selection
 
 Alt+Click Insert cursor
+
+To set cursors above or below the current position use: Keyboard Shortcut: Ctrl+Alt+Up or Ctrl+Alt+Down
+
+### Column (box) selection
+
+You can select blocks of text by holding Shift+Alt (Shift+Option on macOS) while you drag your mouse. A separate cursor will be added to the end of each selected line.
 
 
 

@@ -1,0 +1,30 @@
+\chapter{XBee}
+\label{cha:XBee}
+
+\section{AT设置}
+
+
+
+\section{固件升级}
+
+本地设备设置AP=2 即 API mode 能使用Network Working Mode，以便升级固件。
+
+用XBee 3 无线连接淘宝买的XBee Pro S2B需要先下载lagacy XBee Firmware。但不能直接无线更新固件，还是需要用USB连接到电脑上烧写新固件。XBee3则可以直接无线更新。
+
+这就决定了小车上尽可能使用XBee3，虽然要比XBee S2B贵3-4倍。当然也可以直接在我们的PCB上画FT232接USB口以便更新固件使用，或者预留编程口直接使用编程线。
+
+只有以下这些模块才能无线更新固件：
+
+\begin{itemize}
+    \item XBee/XBee PRO SX
+    \item XLR Pro Module
+    \item XBee/XBee PRO 802.15.4 (S2C module versions only)
+    \item XBee/XBee-PRO DigiMesh 2.4 (S2C module versions only)
+    \item XTend RF Module Family (SX module versions only)
+    \item XBee/XBee-PRO ZB and Programmable XBee-PRO ZB
+    \item XBee/XBee-PRO ZB SMT and Programmable XBee-PRO ZB SMT
+    \item XBee-PRO 900HP and Programmable XBee-PRO 900HP
+    \item XBee 865LP and Programmable XBee 865LP
+    \item XBee3 (Zigbee, DigiMesh 2.4, and 802.15.4)
+\end{itemize}
+
