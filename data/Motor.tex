@@ -62,20 +62,61 @@
     \mathrm{N}=\frac{\theta_{\mathrm{s}}}{360} \times \mathrm{f} \times 60
 \end{equation}
 
-步进电机的重要特征之一是高力矩、小体积。
+步进电机的重要特征之一是高力矩、小体积。如图~\ref{fig:step-servo-motord}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{step-servo-motord.jpg}
+    \caption{相同尺寸下的伺服电机与步进电机的速度力矩特性比较}
+    \label{fig:step-servo-motord}
+\end{figure}
 
 这些特征使得电机具有优秀的加速和响应，使得这些电机非常适合那些需要频繁启动和停止的应用中。
 
 绕组通电时步进电机具有全部的保持力矩。这就意味着步进电机可以在不使用机械刹车的情况下保持在停止位置。
 
-\section{双极型步进电机}
+步进电机的输出力矩随转速升高而下降，且在较高转速时会急剧下降，所以其最高工作转速一般在300～600RPM。
+
+静力矩是选择步进电机的主要参数之一，在判断需要多大的静力矩时要保证步进电机的输出转矩大于负载所需的转矩，这样才能保证整个系统的正常运转，而负载可分为惯性负载和摩擦负载两种。单一的惯性负载和单一的摩擦负载是不存在的。直接启动时两种负载均要考虑，加速启动时主要考虑惯性负载，恒速运行时只要考虑摩擦负载。在计算整个机械系统的负载转矩时，电机的矩频特性能满足机械负载并有一定的余量保证其可靠运行（步进电机的安全系数一般选择1.3~2）。在实际工作过程中，各种频率下的负载转矩必须在矩频特性曲线的范围内，一般来说，静力矩越大的电机，输出转矩也越大，承受负载能力越强。
+
+速度-力矩曲线（图~\ref{fig:step-motor-force}）是步进电机输出特性的重要表现形式。
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\columnwidth]{Drive.png}
-    \caption{Phase current waveforms}
-    \label{fig:Phase-current}
+    \includegraphics[width=\columnwidth]{step-motor-force.png}
+    \caption{速度-力矩曲线}
+    \label{fig:step-motor-force}
 \end{figure}
+
+A. 工作频率点 电机在某一点的转速值。
+
+速率：
+
+n = q * Hz / (360 * D)
+
+n: 转/秒
+
+Hz: 频率值
+
+D: 驱动电路细分值
+
+q: 步距角
+
+步距角1.8°的步进电机，在 1/2 细分驱动方式下 (即每步 0.9°) 、 工作频率 500Hz 时的转速为1.25r/s.
+
+B. 自启动区域: 步进电机可以直接启动和停止的区域。
+
+C. 连续运行区域: 在该区域内，电机无法直接启动或停止。电机在该区域内运行必须先经过自启动区域，然后经 过加速达到该工作区域运行。同理，电机在该区域内也无法直接制动，否则容易造成电机失步， 必须先经过减速到达自启动区域内再制动。
+
+D. 最高启动频率: 空载情况下，已励磁电机直接启动而不丢步的最高脉冲频率。
+
+E. 最高运行频率: 空载情况下，已励磁电机运行而不丢步的最高脉冲频率。
+
+F. 启动力矩/牵入力矩: 已励磁电机能以某一固定的频率启动和同步运行而不丢步的最大转矩。
+
+G. 运行力矩/牵出力矩: 在规定的驱动条件下，按照给定脉冲频率，可加给已驱动电机转轴上而不是电机丢步的最大转矩。
+
+\section{单极性驱动和双极性驱动的区别}
 
 双极步进电机(Bipolar motors\footnote{\url{https://en.wikipedia.org/wiki/Stepper_motor}})每相只有一个绕组。为了使磁极反向，需要使绕组中的电流反向，因此驱动电路必须更复杂，通常采用H桥配置（但是有几种现成的驱动器芯片可以使之成为一个简单的事情）。每相有两个引线，没有公用的。
 
@@ -83,9 +124,70 @@
 
 由于更好地利用了绕组，因此它们比同等重量的单极步进电机更强大。这是由于绕组占用的物理空间。单极电机在相同的空间中具有两倍的导线数量，但在任何时间点仅使用一半的导线，因此效率为50\%（或大约70\%的可用扭矩输出）。尽管双极步进电机的驱动更加复杂，但丰富的驱动芯片简化了实际使用时的复杂度。
 
+单极性 (unipolar) 和双极性 (bipolar) 是步进电机最常采用的两种驱动电路。单极性驱动电路使用四颗晶体管来驱动步进电机的两组相位，电机定子绕线结构如图~\ref{fig:step-motor-unibipolar}所示包含两组带有中间抽头的线圈（AC线圈的中间抽头为O，BD线圈的中间抽头为M），整个电机共有六条线与外界连接。AC端不能同时通电（BD端同理），否则磁极上的两个线圈产生的磁通相互抵消，只产生线圈的铜耗。因为它其实只有两个相位（AC绕组为一相，BD绕组为一相），准确的说法应是两相六线式步进电机。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{step-motor-unibipolar.jpg}
+    \caption{单极性驱动电路}
+    \label{fig:step-motor-unibipolar}
+\end{figure}
+
+双极性步进电机的驱动电路则如图~\ref{fig:step-motor-unibipolar-2}所示，它使用八颗晶体管来驱动两组相位。定子磁极的线圈为单线圈绕组，通过切换线圈AC和线圈BD的的电流方向来切换磁极的正反方向。步进电机的发展初期由于受到晶体管半导体原件的成本影响，单极性电机由于其控制电路使用的晶体管数量少而得到一定范围的应用，但是随着上世纪五六十年代半导体材料的高速发展，晶体管成本大大降低，双极性电机凭借着性能上的优势使其使用量急剧增加。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{step-motor-unibipolar-2.jpg}
+    \caption{双极性驱动电路}
+    \label{fig:step-motor-unibipolar-2}
+\end{figure}
+
+图~\ref{fig:step-motor-unibipolar-3}所示的是单极性与双极性两种绕线方式，导线线径相同时，单极方式的线圈绕组匝数为N，电阻为R，双极方式的线圈绕组匝数为2N，线圈电阻则为2R。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{step-motor-unibipolar-3.jpg}
+    \caption{单极性与双极性绕组}
+    \label{fig:step-motor-unibipolar-3}
+\end{figure}
+
+表~\ref{tab:step-motor-unibipolar}所示恒压驱动电路在低速时，单极与双极驱动工作效率的对比。电流与线圈匝数的乘积称为安匝数，与转矩成正比,如果两者转速相同，输出功率与安匝数有比例关系。同样，双极性电流为V/2R，匝数也为2N，乘积的结果与单极性同为VN/R。输入恒压驱动的情形，单极性与双极性比较，如表~\ref{tab:step-motor-unibipolar}所示，电流只有单极性的二分之一，低速时的效率为单极性的2倍。
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lll}
+     & 单极性 & 双极性 \\
+    安匝数 & $U_{1}=V \times \frac{N}{R}$ & $U_{2}=V \times \frac{2N}{2R}=V \times \frac{N}{R}$\\
+    输入功率 & $W_{1}=\frac{\mathrm{V}^{2}}{R}$ & $\mathrm{W}_{2}=(\frac{\mathrm{V}}{2 \mathrm{R}} )^{2} \times  2 \mathrm{R}=\frac{\mathrm{V}^{2}}{2 \mathrm{R}} $ \\
+    效率 & $\eta = \frac{U_{1}}{W_{1}} = \frac{N}{V}$ & $\eta = \frac{U_{2}}{W_{2}} = \frac{2N}{V}$
+    \end{tabular}
+    \caption{单极驱动与双极驱动效率对比 注：V为所加电压；R为电机线圈电阻；N为单极匝数}
+    \label{tab:step-motor-unibipolar}
+\end{table}
+
+所以小型化或低速应用时，有大转矩需求，应使用双极性电机及驱动。高速应用的情况下，因为双极性电机匝数多，电感变大，反电势增大，使高速时电流减少，从而降低转矩，所以需要注意与单极性的转矩比较。
+
+图~\ref{fig:step-motor-unibipolar-4}为单极性步进电机与双极性步进电机的特性曲线，均采用同一恒流驱动方式。一般低速大转矩的负载应用使用双极性驱动，而高速驱动应用以单极性驱动较为合适。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{step-motor-unibipolar-4.jpg}
+    \caption{单极驱动与双极驱动的矩频曲线对比}
+    \label{fig:step-motor-unibipolar-4}
+\end{figure}
+
 \section{步进电机驱动}
 
 斩波驱动电路(Chopper drive circuits)称为受控电流驱动器，因为它们在每个绕组中产生受控电流，而不是施加恒定电压。斩波器驱动电路最常用于双绕组双极步进电机，两个绕组被独立驱动以提供特定的步进电机转矩CW或CCW。在每个绕组上，将“电源”电压作为方波电压施加到绕组上。例如8 kHz。绕组电感使电流平滑，该电流达到根据方波占空比的水平。相对于绕组回路，双极性电源（+和-）电压通常提供给控制器。
+
+如图~\ref{fig:Phase-current}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Drive.png}
+    \caption{Phase current waveforms}
+    \label{fig:Phase-current}
+\end{figure}
 
 \section{步进电机驱动DRV8825}
 
