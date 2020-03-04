@@ -150,7 +150,7 @@ API帧是在无线电模块的串行接口上​​以API或API转义操作模�
 \end{figure}
 
 
-\section{XCTU的配置}
+\section{XCTU参数设置}
 
 coordinator是中心节点，Router是小机器人的，他们的配置要注意，比如AP=2，DH/DL是地址，都设为零，因为按照api里定义的地址发送，配置里的目的地址就填零就行。配置如表~\ref{tab:XCTU}所示。
 
@@ -172,3 +172,9 @@ coordinator是中心节点，Router是小机器人的，他们的配置要注意
     \caption{XCTU配置}
     \label{tab:XCTU}
 \end{table}
+
+\section{Arduino XBee 开发环境配置}
+
+在库管理器中安装 xbee-arduino library \footnote{\url{https://github.com/andrewrapp/xbee-arduino}} 。
+
+MsTimer2 and FlexiTimer2 Libraries \footnote{\url{https://www.pjrc.com/teensy/td_libs_MsTimer2.html}}
