@@ -319,6 +319,8 @@ API模式提供了一种执行以上所列操作的简便方法：
 
 \section{使用XCTU API Mode 收发数据}
 
+本节介绍如何使用XCTU控制台将数据传输到另一个XBee模块。 这些步骤包括使用您要发送到其他模块的消息创建一个“发送请求”帧，并将该帧串行发送到本地XBee模块。 然后，您可以在本地和远程模块中分析响应。
+
 \subsection{XCTU参数设置}
 
 coordinator是中心节点，Router是小机器人的，他们的配置要注意，比如AP=2，DH/DL是地址，都设为零，因为按照api里定义的地址发送，配置里的目的地址就填零就行。配置如表~\ref{tab:XCTU}所示。
@@ -339,6 +341,44 @@ coordinator是中心节点，Router是小机器人的，他们的配置要注意
     \caption{XCTU配置}
     \label{tab:XCTU}
 \end{table}
+
+\subsection{打开XCTU console}
+
+\begin{enumerate}
+    \item 切换到控制台工作模式。
+    \item 打开与无线电模块的串行连接。
+    \item 转到另一个XBee模块的控制台。
+    \item 打开与无线电模块的串行连接。
+\end{enumerate}
+
+\subsection{生成Transmit Request frame}
+
+使用XCTU SENDER console生成Transmit Request frame
+
+\begin{enumerate}
+    \item 使用Detach分离Console 以同时查看两个控制台
+    \item 在SENDER console中点击Add new packet to the list
+    \item 打开Frames Generator tool
+    \item Protocol control选Zigbee
+    \item Frame type control 选 0x10 - Transmit Request
+    \item 在64-bit dest. address中输入RECEIVER module的64-bit地址
+    \item 在RF data中选中ASCII选项卡并输入信息"Hello, this is SENDER!"
+    \item 点OK
+    \item 点Add frame
+\end{enumerate}
+
+\subsection{发送Transmit Request frame}
+
+点Send selected packet
+
+Frames log指示已发送一个帧（蓝色），而已接收另一个帧（红色）。如图~\ref{fig:XBee-XTCU-Send-Frame}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{XBee-XTCU-Send-Frame.png}
+    \caption{XTCU发送Transmit Request frame}
+    \label{fig:XBee-XTCU-Send-Frame}
+\end{figure}
 
 \section{Arduino XBee 开发环境配置}
 
