@@ -317,8 +317,9 @@ API模式提供了一种执行以上所列操作的简便方法：
     \item API框架包括消息的来源，因此很容易识别数据的来源。    
 \end{enumerate}
 
+\section{使用XCTU API Mode 收发数据}
 
-\section{XCTU参数设置}
+\subsection{XCTU参数设置}
 
 coordinator是中心节点，Router是小机器人的，他们的配置要注意，比如AP=2，DH/DL是地址，都设为零，因为按照api里定义的地址发送，配置里的目的地址就填零就行。配置如表~\ref{tab:XCTU}所示。
 
@@ -326,16 +327,14 @@ coordinator是中心节点，Router是小机器人的，他们的配置要注意
 % \usepackage{booktabs}
 \begin{table}[htbp]
     \centering
-    \begin{tabular}{@{}lll@{}}
+    \begin{tabular}{@{}lllll@{}}
     \toprule
-             & Coordinator & Router \\ \midrule
-    ID（相同即可） & 1234        & 1234   \\
-    SC       & 8           & 8      \\
-    ZS       & 2           & 2      \\
-    JV       & 无           & 1      \\
-    DH       & 0           & 0      \\
-    DL       & 0           & 0      \\
-    AP       & 2           & 2      \\ \bottomrule
+    Param  & 全称  & Coordinator & Router & 作用 \\ \midrule
+    ID &  Extended PAN ID      &  0                    & 0                   & 定义模块要连接的网络名称，所有模块的网络ID相同即可 \\
+    JV &  Channel Verification &  —                    & Enabled{[}1{]}      & 验证当前频道是否存在Coordinator，若不存在则退出 \\
+    CE &  Device Role          &  Form Network {[}1{]} & —                   & 设置当前设备为Coordinator \\
+    NI &  Node Identifier      &  SENDER               & RECEIVER            & 定义节点标识符，是模块显示的名称，默认是一个空格，注意删除 \\
+    AP &  API Enable           &  API Enabled {[}1{]}  & API Enabled {[}1{]} & 使能API模式 \\ \bottomrule
     \end{tabular}
     \caption{XCTU配置}
     \label{tab:XCTU}
@@ -346,3 +345,7 @@ coordinator是中心节点，Router是小机器人的，他们的配置要注意
 在库管理器中安装 xbee-arduino library \footnote{\url{https://github.com/andrewrapp/xbee-arduino}} 。
 
 MsTimer2 and FlexiTimer2 Libraries \footnote{\url{https://www.pjrc.com/teensy/td_libs_MsTimer2.html}}
+
+\section{ARM开发环境配置}
+
+XBee mbed Library \footnote{\url{https://developer.mbed.org/teams/Digi-International-Inc/code/XBeeLib/}}是现成的mbed扩展，用于在mbed平台上开发XBee项目。
