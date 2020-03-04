@@ -319,7 +319,15 @@ API模式提供了一种执行以上所列操作的简便方法：
 
 \section{使用XCTU API Mode 收发数据}
 
-本节介绍如何使用XCTU控制台将数据传输到另一个XBee模块。 这些步骤包括使用您要发送到其他模块的消息创建一个“发送请求”帧，并将该帧串行发送到本地XBee模块。 然后，您可以在本地和远程模块中分析响应。
+本节介绍如何使用XCTU控制台将数据传输到另一个XBee模块。 这些步骤包括使用要发送到其他模块的消息创建一个“发送请求”帧，并将该帧串行发送到本地XBee模块。可以在本地和远程模块中分析响应。如图~\ref{fig:XBee-XTCU-Send-Frame}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{XBee-XTCU-Send-Frame.png}
+    \caption{XTCU发送Transmit Request frame}
+    \label{fig:XBee-XTCU-Send-Frame}
+\end{figure}
+
 
 \subsection{XCTU参数设置}
 
@@ -353,7 +361,14 @@ coordinator是中心节点，Router是小机器人的，他们的配置要注意
 
 \subsection{生成Transmit Request frame}
 
-使用XCTU SENDER console生成Transmit Request frame
+使用XCTU SENDER console生成Transmit Request frame，如图~\ref{fig:XBee-XTCU-Generate-Frame}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{XBee-XTCU-Generate-Frame.png}
+    \caption{XTCU生成Transmit Request frame}
+    \label{fig:XBee-XTCU-Generate-Frame}
+\end{figure}
 
 \begin{enumerate}
     \item 使用Detach分离Console 以同时查看两个控制台
@@ -371,14 +386,101 @@ coordinator是中心节点，Router是小机器人的，他们的配置要注意
 
 点Send selected packet
 
-Frames log指示已发送一个帧（蓝色），而已接收另一个帧（红色）。如图~\ref{fig:XBee-XTCU-Send-Frame}。
+Frames log指示已发送一个帧（蓝色），而已接收另一个帧（红色）。
+
+\subsection{分析}
+
+\begin{tcolorbox}
+    Transmit Request (API 1)
+    \\ 
+    \\ 7E 00 19 10 01 00 13 A2 00 40 99 1D 4C FF FE 00 00 48 45 4C 4C 4F 20 57 4F 52 4C 44 DE
+    \\ 
+    \\ Start delimiter: 7E
+    \\ Length: 00 19 (25)
+    \\ Frame type: 10 (Transmit Request)
+    \\ Frame ID: 01 (1)
+    \\ 64-bit dest. address: 00 13 A2 00 40 99 1D 4C
+    \\ 16-bit dest. address: FF FE
+    \\ Broadcast radius: 00 (0)
+    \\ Options: 00
+    \\ RF data (HEX): 48 45 4C 4C 4F 20 57 4F 52 4C 44
+    \\ RF data (ASCII): HELLO WORLD
+    \\ Checksum: DE
+\end{tcolorbox}
+
+Transmit Request (API 1)如图~\ref{fig:XBee-XTCU-Sender-Transmit-Request}。
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\columnwidth]{XBee-XTCU-Send-Frame.png}
-    \caption{XTCU发送Transmit Request frame}
-    \label{fig:XBee-XTCU-Send-Frame}
+    \includegraphics[width=0.8\columnwidth]{XBee-XTCU-Sender-Transmit-Request.png}
+    \caption{XTCU Transmit Request}
+    \label{fig:XBee-XTCU-Sender-Transmit-Request}
 \end{figure}
+
+\begin{tcolorbox}
+    Transmit Status (API 1)
+    \\ 
+    \\ 7E 00 07 8B 01 99 09 00 00 00 D1
+    \\ 
+    \\ Start delimiter: 7E
+    \\ Length: 00 07 (7)
+    \\ Frame type: 8B (Transmit Status)
+    \\ Frame ID: 01 (1)
+    \\ 16-bit dest. address: 99 09
+    \\ Tx. retry count: 00 (0)
+    \\ Delivery status: 00 (Success)
+    \\ Discovery status: 00 (No discovery overhead)
+    \\ Checksum: D1
+\end{tcolorbox}
+
+Transmit Status (API 1)如图~\ref{fig:XBee-XTCU-Sender-Transmit-Status}，表明此帧信息被成功发送。
+
+\begin{itemize}
+    \item Frame type: 8B (Transmit Status) 说明这是发送之后本机返回的发送状态信息。
+    \item Frame ID: 01 (1) 因为 Transmit Request 和 Transmit Status 有相同的ID，说明这是前一条 Transmit Request 的发送状态。
+    \item Delivery status: 00 (Success) 说明这条消息发送成功了。
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{XBee-XTCU-Sender-Transmit-Status.png}
+    \caption{XTCU Transmit Status}
+    \label{fig:XBee-XTCU-Sender-Transmit-Status}
+\end{figure}
+
+\begin{tcolorbox}
+    Receive Packet (API 1)
+    \\ 
+    \\ 7E 00 17 90 00 13 A2 00 41 B4 B0 71 00 00 01 48 45 4C 4C 4F 20 57 4F 52 4C 44 87
+    \\ 
+    \\ Start delimiter: 7E
+    \\ Length: 00 17 (23)
+    \\ Frame type: 90 (Receive Packet)
+    \\ 64-bit source address: 00 13 A2 00 41 B4 B0 71
+    \\ 16-bit source address: 00 00
+    \\ Receive options: 01
+    \\ RF data (HEX): 48 45 4C 4C 4F 20 57 4F 52 4C 44
+    \\ RF data (ASCII): HELLO WORLD
+    \\ Checksum: 87
+\end{tcolorbox}
+
+
+Receive Packet (API 1) 如图~\ref{fig:XBee-XTCU-Receive-Packet}。分析RECEIVER的接收数据包的详细信息。 确认是刚刚输入的信息"HELLO WORLD"，并且发件人的地址是SENDER。
+
+\begin{itemize}
+    \item Frame type: 90 (Receive Packet) 说明这是接收到的数据包
+    \item 64-bit source address 是SENDER的64-bit地址
+    \item Receive options: 01 The packet was acknowledge (0xC1 = 1100 0001)
+    \item RF data (ASCII): HELLO WORLD 数据包内的信息是"HELLO WORLD"
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{XBee-XTCU-Receive-Packet.png}
+    \caption{XTCU Receive Packet}
+    \label{fig:XBee-XTCU-Receive-Packet}
+\end{figure}
+
 
 \section{Arduino XBee 开发环境配置}
 
