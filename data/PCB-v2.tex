@@ -39,3 +39,26 @@ PCB的设计依赖电子设计自动化（英语：Electronic design automation�
     \caption{Mega Pro Embed CH340G / ATmega2560}
     \label{fig:MEGA-PRO-CH340GATmega2560}
 \end{figure}
+
+
+\section{USB UART 异步串行数据传输芯片}
+
+USB转UART芯片稳定程度和价格均为FT232>CH340>PL2303。
+
+FT232RL-REEL价格最贵，1片要27.61，1000+批量价格也要16.24每个。FT232RL/BL的优势就FTDI一直在更新驱动发布在官网，驱动经过微软认证，兼容性最好。内部固化了USB底层协议，转出来的是虚拟串口，可以固定COM口号。电路简单，数据传输稳定性好。FT232RL自带晶振，可以转RS232/TTL（常用）及RS422,RS485 高端市场专用。
+
+PL2303最便宜，但波特率在115200时就有可能出现延迟。
+
+经过测试，CH340\footnote{\url{http://www.wch.cn/products/CH340.html}}可以满足需求，且批量购买1000+只要1.47一片。
+
+CH340C
+
+下图是统一供电方式下MCU 单片机通过TTL 串口连接CH340 芯片实现USB通讯的参考电路。该产品选择自供电方式，VCC 支持5V 或者3.3V（VCC 为3.3V 时V3 需短接到VCC），完全不使用USB 总线电源VBUS（如有需要MCU可以通过I/O 串电阻后检测其是否有效）。CH340 与MCU 使用同一电源VCC，所以CH340与MCU 之间不存在双电源通过I/O相互电流倒灌的情形。
+
+CH340没有使用到的信号线都可以悬空。对于CH340C/N/K/E/B 芯片，无需X6 和C17 及C18。
+
+\section{供电}
+
+考虑使用USB PD
+
+USB PD等多快充协议芯片CH236\footnote{\url{http://www.wch.cn/products/CH236.html}}
