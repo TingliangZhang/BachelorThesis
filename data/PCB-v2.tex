@@ -29,6 +29,23 @@ PCB的设计依赖电子设计自动化（英语：Electronic design automation�
     \label{fig:kicad_flowchart}
 \end{figure}
 
+\section{定义板子外形轮廓}
+
+在KiCAD PCBNEW编辑器中可以直接在 'Edge.Cuts' 层使用 'Add graphic line or polygon' 定义板子外形轮廓，空格键定义相对坐标原点。
+
+但是只能画简单的直线和圆，而且很麻烦，所以我们使用Fusion 360 导出 DXF 文件定义外形。
+
+如图~\ref{fig:PCB-Measure-v1}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{PCB-Measure-v1.pdf}
+    \caption{PCB DXF}
+    \label{fig:PCB-Measure-v1}
+\end{figure}
+
+
+
 \section{MCU}
 
 参考了Mega Pro Embed CH340G / ATmega2560 board \footnote{\url{https://robotdyn.com/mega-2560-pro-embed-ch340g-atmega2560-16au.html}}的设计，如图~\ref{fig:MEGA-PRO-CH340GATmega2560}。
@@ -80,3 +97,22 @@ CH340没有使用到的信号线都可以悬空。对于CH340C/N/K/E/B 芯片，
 考虑使用USB PD
 
 USB PD等多快充协议芯片CH236\footnote{\url{http://www.wch.cn/products/CH236.html}}
+
+
+
+
+
+
+
+
+\section{布线}
+
+Press W or select Custom Track Width from the context menu to type in a custom track width/via size.
+
+To activate the router tool press the Interactive Router button Interactive Router Button or the X key. 
+
+Pressing V or selecting Place Through Via from the context menu while routing a track attaches a via at the end of the trace being routed. Pressing V again disables via placement. Clicking in any spot establishes the via and continues routing (unless 'Shift' is held).
+
+Pressing / or selecting Switch Track Posture from the context menu toggles the direction of the initial track segment between straight or diagonal.
+
+The router can drag track segments, corners and vias. To drag an item, click on it with Ctrl key pressed, hover the mouse and press G or select Drag Track/Via from the context menu.
