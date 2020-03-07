@@ -1,7 +1,16 @@
 \chapter{PCB 2.0 设计和测试}
 \label{cha:PCB-v2}
 
-本章设计源文件和历史版本详见\url{https://github.com/TingliangZhang/Misaka-PCB-v2}
+本章设计源文件和历史版本详见\url{https://github.com/TingliangZhang/Misaka-PCB-v2}，其中包括分层原理图、PCB设计、Gerber。
+
+总原理图如图~\ref{fig:Circuit-1}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Circuit-1.pdf}
+    \caption{原理图}
+    \label{fig:Circuit-1}
+\end{figure}
 
 \section{需要解决的问题}
 
@@ -29,24 +38,10 @@ PCB的设计依赖电子设计自动化（英语：Electronic design automation�
     \label{fig:kicad_flowchart}
 \end{figure}
 
-\section{定义板子外形轮廓}
-
-在KiCAD PCBNEW编辑器中可以直接在 'Edge.Cuts' 层使用 'Add graphic line or polygon' 定义板子外形轮廓，空格键定义相对坐标原点。
-
-但是只能画简单的直线和圆，而且很麻烦，所以我们使用Fusion 360 导出 DXF 文件定义外形。
-
-如图~\ref{fig:PCB-Measure-v1}。
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\columnwidth]{PCB-Measure-v1.pdf}
-    \caption{PCB DXF}
-    \label{fig:PCB-Measure-v1}
-\end{figure}
-
-
 
 \section{MCU}
+
+本部分原理图如图~\ref{fig:Circuit-1}所示。其中ICSP接口可以使用ISP编程器对第一次使用的MCU烧写固件。
 
 参考了Mega Pro Embed CH340G / ATmega2560 board \footnote{\url{https://robotdyn.com/mega-2560-pro-embed-ch340g-atmega2560-16au.html}}的设计，如图~\ref{fig:MEGA-PRO-CH340GATmega2560}。
 
@@ -74,7 +69,11 @@ MURATA的 CSTLS16M0X51-A0 \footnote{\url{https://www.murata.com/zh-cn/products/p
     \item 性价比高，可用性可靠。
 \end{enumerate}
 
+\section{XBee}
 
+XBee模块通过TX1/RX1和MCU连接，如图~\ref{fig:Circuit-1}所示。
+
+XBee模块的底座是两排1x10 Pitch = 2mm 的母排。
 
 \section{USB UART 异步串行数据传输芯片}
 
@@ -92,17 +91,115 @@ CH340C内置晶振，最为合适。
 
 CH340没有使用到的信号线都可以悬空。对于CH340C/N/K/E/B 芯片，无需X6 和C17 及C18。
 
+CH340C原理图如图~\ref{fig:Circuit-10}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Circuit-10.pdf}
+    \caption{CH340C原理图}
+    \label{fig:Circuit-10}
+\end{figure}
+
+除了常规的USB转UART电路之外，还在DTR端口引出了MCU的RESET功能，每次烧写完成后自动RESET MCU。
+
+\section{电机驱动}
+
+电机驱动模块原理图如图~\ref{fig:Circuit-2}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Circuit-2.pdf}
+    \caption{电机驱动模块原理图}
+    \label{fig:Circuit-2}
+\end{figure}
+
+其中，MS1-3可以用来选择步进模式，由一个拨码开关控制。
+
+AVREF则可以限定电流上限，这里我们先按照单电机128mA计算。之后如果涉及到替换电机，相应的更换电阻即可。
+
 \section{供电}
 
-考虑使用USB PD
+供电模块原理图如图~\ref{fig:Circuit-5}所示。
 
-USB PD等多快充协议芯片CH236\footnote{\url{http://www.wch.cn/products/CH236.html}}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Circuit-5.pdf}
+    \caption{供电模块原理图}
+    \label{fig:Circuit-5}
+\end{figure}
 
+使用两片AMS1117芯片将电压从12V降至5V再降至3.3V，以供逻辑电路使用。
 
+之后考虑使用USB PD，比如使用USB PD等多快充协议芯片CH236\footnote{\url{http://www.wch.cn/products/CH236.html}}
 
+\section{Jetson NANO接口}
 
+Jetson NANO接口模块原理图如图~\ref{fig:Circuit-6}所示。
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{Circuit-6.pdf}
+    \caption{Jetson NANO接口模块原理图}
+    \label{fig:Circuit-6}
+\end{figure}
 
+预留了一个UART串口用于Jetson NANO和MCU之间的数据交换。
+
+\section{定位相机}
+
+定位相机模块原理图如图~\ref{fig:Circuit-7}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Circuit-7.pdf}
+    \caption{定位相机模块原理图}
+    \label{fig:Circuit-7}
+\end{figure}
+
+为了烧写 24LC02 EEPROM 方便，使用DIP-8 EEPROM底座方便取下和安装EEPROM。
+
+特别注意，相机模块的2x4 1.27mm排母需要安装在PCB背面的正中央，以便对准模型中央的孔。
+
+\section{WS2812B}
+
+WS2812B模块原理图如图~\ref{fig:Circuit-8}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Circuit-8.pdf}
+    \caption{WS2812B模块原理图}
+    \label{fig:Circuit-8}
+\end{figure}
+
+定义了8个串联的WS2812B和稳压电容，通过MCU的一个数字引脚控制。
+
+\section{灯光指示}
+
+灯光指示模块原理图如图~\ref{fig:Circuit-9}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\columnwidth]{Circuit-9.pdf}
+    \caption{灯光指示模块原理图}
+    \label{fig:Circuit-9}
+\end{figure}
+
+定义了三个0603 LED，分别指示烧写TX/RX和D13引脚的电平情况。
+
+\section{定义板子外形轮廓}
+
+在KiCAD PCBNEW编辑器中可以直接在 'Edge.Cuts' 层使用 'Add graphic line or polygon' 定义板子外形轮廓，空格键定义相对坐标原点。
+
+但是只能画简单的直线和圆，而且很麻烦，所以我们使用Fusion 360 导出 DXF 文件定义外形。
+
+如图~\ref{fig:PCB-Measure-v1}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{PCB-Measure-v1.pdf}
+    \caption{PCB DXF}
+    \label{fig:PCB-Measure-v1}
+\end{figure}
 
 
 \section{布线}
@@ -116,3 +213,28 @@ Pressing V or selecting Place Through Via from the context menu while routing a 
 Pressing / or selecting Switch Track Posture from the context menu toggles the direction of the initial track segment between straight or diagonal.
 
 The router can drag track segments, corners and vias. To drag an item, click on it with Ctrl key pressed, hover the mouse and press G or select Drag Track/Via from the context menu.
+
+\section{三维渲染图}
+
+使用光线追踪技术对PCB模型进行渲染得到正反面的渲染图如图~\ref{fig:Circuit-Render}、~\ref{fig:Circuit-Render-2}、~\ref{fig:Circuit-Render-3}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Circuit.png}
+    \caption{正面渲染图}
+    \label{fig:Circuit-Render}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Circuit-2.png}
+    \caption{反面渲染图}
+    \label{fig:Circuit-Render-2}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Circuit-3.png}
+    \caption{侧视渲染图}
+    \label{fig:Circuit-Render-3}
+\end{figure}
