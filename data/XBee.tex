@@ -516,7 +516,7 @@ Channel and PAN ID 需要一致，一个Coordinator CE=1 Form Network，多个Ro
     参数缩写 & 参数名    & Coordinator & Router & 解释                         \\ \midrule
     CE & Device Role & Form Network {[}1{]}          & Join Network {[}0{]}          & 设置节点类型     \\
     AP & API Enable  & API Mode with escapes {[}2{]} & API Mode with escapes {[}2{]} & 设置API Mode \\
-    ID   & PAN ID & 2020        & 2020   & 设为0时Coordinator随机生成ID \\ \bottomrule
+    ID   & PAN ID & 2020        & 2020   & 一致即可\footnote{设为0时Coordinator随机生成ID} \\ \bottomrule
     \end{tabular}
     \caption{XCTU 参数设计}
     \label{tab:XCTU-Configs}
