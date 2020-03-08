@@ -502,3 +502,24 @@ MsTimer2 and FlexiTimer2 Libraries \footnote{\url{https://www.pjrc.com/teensy/td
 \section{ARM开发环境配置}
 
 XBee mbed Library \footnote{\url{https://developer.mbed.org/teams/Digi-International-Inc/code/XBeeLib/}}是现成的mbed扩展，用于在mbed平台上开发XBee项目。
+
+\section{使用Arduino进行通信}
+
+Channel and PAN ID 需要一致，一个Coordinator CE=1 Form Network，多个Routers CE=0 Join Network，AP均设置成2 API enabled with escaping。如表~\ref{tab:XCTU-Configs}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{@{}lllll@{}}
+    \toprule
+    参数缩写 & 参数名    & Coordinator & Router & 解释                         \\ \midrule
+    CE & Device Role & Form Network {[}1{]}          & Join Network {[}0{]}          & 设置节点类型     \\
+    AP & API Enable  & API Mode with escapes {[}2{]} & API Mode with escapes {[}2{]} & 设置API Mode \\
+    ID   & PAN ID & 2020        & 2020   & 设为0时Coordinator随机生成ID \\ \bottomrule
+    \end{tabular}
+    \caption{XCTU 参数设计}
+    \label{tab:XCTU-Configs}
+\end{table}
+
+使用XBee Pro S2B作为Routers之前要更新Firmware为 BBP24BZ7 - Zigbee Router API - 23A7(Newest)。
