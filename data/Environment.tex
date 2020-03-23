@@ -5,7 +5,7 @@
 
 \section{Mega 2560开发环境}
 
-本节参考了\url{https://www.arduino.cc/en/Hacking/HomePage}。
+本节主要叙述了如何烧写Bootloader：需要两块板，Programmer和Target，首先按对应的引脚一一对应连接MISO/MOSI/SCK/Reset/GND/5V，之后给Programmer上传Arduino ISP Skectch，之后选择编程器为Arduino as ISP，烧写引导程序，如果之后要使用ICSP烧Target的程序的话，就点 项目 > 使用编程器上传即可。参考\url{https://www.arduino.cc/en/Hacking/HomePage}。
 
 \subsection{初次使用烧写固件}
 
@@ -38,7 +38,7 @@
     \label{fig:Isp_headers}
 \end{figure}
 
-在Arduino IDE中，确保 Tools > Board 选项是对的，之后开始 Tools > Burn Bootloader 等待约15秒即可。
+在Arduino IDE中，确保 Tools > Board 选项是对的（注意要选成目标板Target的型号，比如在本项目中目标板就是Arduino Mega1280 or Mega2560），之后开始 Tools > Burn Bootloader 等待约15秒即可。
 
 也可以使用编程器对应的软件比如AVRISP MkII的AVRStudio进行烧写操作，参考\url{https://www.arduino.cc/en/Hacking/MiniBootloader}。
 
