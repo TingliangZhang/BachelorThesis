@@ -259,6 +259,10 @@ The router can drag track segments, corners and vias. To drag an item, click on 
     \label{fig:Circuit-Render-3}
 \end{figure}
 
+\section{导出Gerber交付打样}
+
+在File-Plot-Gerber中选中需要的层，压缩上传。
+
 \section{焊接}
 
 使用InteractiveHtmlBom\footnote{\url{https://github.com/openscopeproject/InteractiveHtmlBom}}(Interactive HTML BOM plugin for KiCad)工具导出了HTML BOM方便焊接时对照BOM，如图~\ref{fig:InteractiveHtmlBom}。
@@ -314,7 +318,7 @@ The router can drag track segments, corners and vias. To drag an item, click on 
 
 \section{Debug}
 
-第一次通过USB上电就出现一个严重的问题，C12炸飞，火星四溅。烧毁的PCB如图~\ref{fig:BrokenPCB}。经过排查，是5V net经过C12下方的走线宽度过小，导致大功率经过时发热过大，把整条线路熔断，看到的火花并非电容爆炸时产生的，而是基板中的顶层铜层发热积累，破坏基板和阻焊之后过热的铜片产生的火花。如图~\ref{fig:BrokenPCB}，当仅使用5V供电时，几乎所有元件的功率都叠加在C12下面的走线上，当初画的板子时不合理的。
+第一次通过USB上电就出现一个严重的问题，C12炸飞，火星四溅。烧毁的PCB如图~\ref{fig:BrokenPCB}。经过排查，是5V net经过C12下方的走线宽度过小，导致大功率经过时发热过大，把整条线路熔断，看到的火花并非电容爆炸时产生的，而是基板中的顶层铜层发热积累，破坏基板和阻焊之后过热的铜片产生的火花。如图~\ref{fig:BrokenPCB}，当仅使用5V供电时，几乎所有元件的功率都叠加在C12下面的走线上，当初画的板子时不合理的。测试阶段暂时外接一个5V作为替代，等待新板子交货。
 
 \begin{figure}[htbp]
     \centering
