@@ -1,10 +1,167 @@
 \chapter{实物可视化界面UI设计}
 \label{cha:UI}
 
+本部分代码详见\url{https://github.com/TingliangZhang/Misaka-Jupyter}。
+
 \section{实物可视化界面}
 
 每一个小车代表一个机组/节点，小车在坐标系中位置代表各自出力，随着迭代次数进行变化。（不一定是位置，也可能是颜色，坐标系也可能会是二维的），新加进去的或者撤出来就会重新平衡。
 
+\section{JupyterLab环境配置}
+
+JupyterLab安装参考TUNA的pypi 镜像使用帮助\footnote{\url{https://mirrors.tuna.tsinghua.edu.cn/help/pypi/}}，升级 pip 到最新的版本 (>=10.0.0) 后进行配置：
+
+\begin{tcolorbox}
+    pip install pip -U \\
+    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple \\
+    pip install jupyterlab
+\end{tcolorbox}
+
+在CMD或者Powershell中使用以下命令启动jupyter lab：
+
+\begin{tcolorbox}
+    jupyter lab
+\end{tcolorbox}
+
+ipywidgets\footnote{\url{https://github.com/jupyter-widgets/ipywidgets}}可以使用pip安装，注意安装前关闭Jupyter Lab再安装！
+
+\begin{tcolorbox}
+    pip install ipywidgets \\
+    jupyter nbextension enable --py --sys-prefix widgetsnbextension  (can be skipped for notebook version 5.3 and above)
+\end{tcolorbox}
+
+cookie cutter\footnote{\url{https://github.com/jupyter-widgets/widget-ts-cookiecutter}}是一个很流行的示例项目，可供参考。
+
+流行的widget库包括bqplot\footnote{\url{https://github.com/bloomberg/bqplot}}、pythreejs\footnote{\url{https://github.com/jovyan/pythreejs}}和ipyleaflet\footnote{\url{https://github.com/ellisonbg/ipyleaflet}}等。
+
+Plotly\footnote{\url{https://plot.ly/python/getting-started/}}是一个ipywidgets，用于构建交互式图表。
+
+可以使用pip安装：
+
+\begin{tcolorbox}
+    pip install plotly
+\end{tcolorbox}
+
+Dependence的安装：
+
+\begin{tcolorbox}
+    pip install jupyterlab "ipywidgets"
+\end{tcolorbox}
+
+之后需要Enable Plotly并设置环境变量，执行以下命令：
+
+\begin{minted}[breaklines]{python}
+    # Avoid "JavaScript heap out of memory" errors during extension installation
+    # (OS X/Linux)
+    export NODE_OPTIONS=--max-old-space-size=4096
+    # (Windows)
+    set NODE_OPTIONS=--max-old-space-size=4096
+
+    # Jupyter widgets extension
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
+
+    # jupyterlab renderer support
+    jupyter labextension install jupyterlab-plotly --no-build
+
+    # FigureWidget support
+    jupyter labextension install plotlywidget --no-build
+
+    # Build extensions (must be done to activate extensions since --no-build is used above)
+    jupyter lab build
+
+    # Unset NODE_OPTIONS environment variable
+    # (OS X/Linux)
+    unset NODE_OPTIONS
+    # (Windows)
+    set NODE_OPTIONS=
+\end{minted}
+
+用以下代码来测试Plotly是否正确安装：
+
+\begin{minted}[breaklines]{python}
+    import plotly.graph_objects as go
+    fig = go.Figure(data=go.Bar(y=[2, 3, 1]))
+    fig.show()
+\end{minted}
+
 \section{演示系统UI}
 
 UI基于Jupyter Lab编写网页端的实时可视化界面。
+
+以下代码的作用是产生一个可通过拖动滑块来交互的直方图界面：
+
+\begin{minted}[breaklines,linenos,python3]{python}
+    import plotly.graph_objects as go
+    from __future__ import print_function
+    from ipywidgets import interact, interactive, fixed, interact_manual
+    import ipywidgets as widgets
+    from ipywidgets import Button, Layout
+
+    def f(a,b,c,d):
+        fig = go.Figure(data=go.Bar(y=[a, b, c, d]))
+        fig.show()
+        global Input
+        Input = [0,0,0,0]
+        Input[0]=a
+        Input[1]=b
+        Input[2]=c
+        Input[3]=d
+        for i in range(0,4):
+            print(Input[i])
+        # 在这插入XBee代码
+        XbeeTx(Input)
+        
+    def XbeeTx(Input):
+        for i in range(0,4):
+            print(Input[i])    
+
+    def XbeeTxRun(RUNorNOT):
+        print('Running')           
+            
+            
+    I = [0,0,0,0]
+
+    for i in range(0,4):
+        I[i] = widgets.FloatSlider(min=0, max=1e3, step=1)
+
+    ui = widgets.VBox([I[0], I[1], I[2], I[3] ])
+    # ui = widgets.HBox([I[0], I[1], I[2], I[3] ])
+
+    out = widgets.interactive_output(f, {'a': I[0], 'b': I[1], 'c': I[2], 'd': I[3] } )
+
+    b1 = Button(description='Run')
+    b1.style.button_color = 'lightgreen'
+    b1.on_click (XbeeTxRun)
+
+
+    display(ui, out, b1)
+\end{minted}
+
+运行效果如图~\ref{fig:Plotly-0}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Plotly-0.png}
+    \caption{Plotly界面交互效果-初始}
+    \label{fig:Plotly-0}
+\end{figure}
+
+拖动滑块将改变widgets.FloatSlider函数内形参的量，并在函数f中将I这一FloatSlider型变量传递到全局变量Input上（浮点型），显示在下方，效果如图~\ref{fig:Plotly}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Plotly.png}
+    \caption{Plotly界面交互效果-拖动}
+    \label{fig:Plotly}
+\end{figure}
+
+点击Run后，显示的变为小车的实时位置（Y轴），移动平台开始运动，函数开始迭代，逐渐收敛。运行效果如图~\ref{fig:Plotly-1}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{Plotly-1.png}
+    \caption{Plotly界面交互效果-点击Run后}
+    \label{fig:Plotly-1}
+\end{figure}
+
+为了演示效果，两次迭代之间加入了1s的延迟。
