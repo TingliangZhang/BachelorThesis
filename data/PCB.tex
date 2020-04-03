@@ -626,8 +626,26 @@ Test Board 3D仿真如图~\ref{fig:TestBoard3D}和图~\ref{fig:TestBoard3D-2}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\columnwidth]{TestBoard3D-2.png}
-    \caption{Test Board 3D仿真}
+    \caption{Test Board 纵向3D仿真}
     \label{fig:TestBoard3D-2}
+\end{figure}
+
+\section{实物图}
+
+Test Board 实物图如图~\ref{fig:TestBoard}和图~\ref{fig:TestBoard-SMT}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{TestBoard.jpg}
+    \caption{Test Board 实物图}
+    \label{fig:TestBoard}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{TestBoard-SMT.jpg}
+    \caption{SMT贴片后的Test Board}
+    \label{fig:TestBoard-SMT}
 \end{figure}
 
 \section{总结}
@@ -635,3 +653,5 @@ Test Board 3D仿真如图~\ref{fig:TestBoard3D}和图~\ref{fig:TestBoard3D-2}
 在第一个版本的测试PCB中，由于疫情的影响，PCB代工厂产能受限，在不明确交期的情况下，只能尽量做到应有尽有。
 
 Mega2560主MCU，做简单的数据处理和电机/通信控制；ATMega16U2可以通过USB Type C口烧写程序；步进电机和直流减速电机驱动；9 x WS2812B RGB-LED全彩灯光显示；下视红外摄像头配合点点纸做定位；XBee3做主要的Mesh组网通信；乐鑫的ESP-32做WiFi 5 、蓝牙、BLE备用通信和第二MCU，CP2102可以通过USB Type C口烧写程序；外置电池稳压供电；USB口供电Buck DC-DC和冲激反压过压过流保护；还有一大堆引出的测试用可编程引脚。
+
+在这一版本的TestBoard上，我验证了大部分硬件原理的正确性和可行性，为下一步做正式版本的板子奠定了基础。

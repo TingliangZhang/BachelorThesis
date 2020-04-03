@@ -12,6 +12,8 @@
     \label{fig:Circuit-1}
 \end{figure}
 
+第二版本PCB主要着眼于实际平台机械结构和PCB的配合，考虑到平台外轮廓是120mm直径圆内接正六边形，故将PCB画成100mm直径圆内接正六边形并预留三个固定孔位，对应的电机驱动及接口也对应到电机所在的位置。另外在前一个版本的PCB中存在的问题在这个版本中尽可能予以纠正。变更开发环境为开源软件Kicad。
+
 \section{需要解决的问题}
 
 在测试版本的PCB（PCB v1）中出现了不少经过测试发现的问题，在第二版本中尽可能予以纠正：
@@ -25,11 +27,29 @@
 
 PCB的设计依赖电子设计自动化（英语：Electronic design automation，缩写：EDA）软件。
 
-当初绘制PCB v1时使用的时Altium Designer 20.0.9集成开发环境。
+当初绘制PCB v1时使用的时Altium Designer 20.0.9集成开发环境，如图~\ref{fig:AltiumDesignerInterface}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{AltiumDesignerInterface.png}
+    \caption{Altium Designer 20.0.9集成开发环境}
+    \label{fig:AltiumDesignerInterface}
+\end{figure}
 
 由于AD20是商业付费EDA软件，而且之前的绘制使用了Altium Live 在线供应商封装库，可移植性和便携性不是很好，即使生成了Integrated Library，也很难找到成套的规范化封装。另外AD20的源文件不是普通编辑器可以打开的文本，这使得Git代码管理变得困难。
 
-基于以上考量，改用KiCAD开源EDA软件进行目前及将来的电路设计，如图~\ref{fig:kicad_flowchart}。
+基于以上考量，改用KiCAD开源EDA软件进行目前及将来的电路设计，
+
+KiCAD界面如图~\ref{fig:KiCAD-Interface}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{KiCAD-Interface.png}
+    \caption{KiCAD开源EDA软件}
+    \label{fig:KiCAD-Interface}
+\end{figure}
+
+工作流程如图~\ref{fig:kicad_flowchart}。
 
 \begin{figure}[htbp]
     \centering
@@ -37,7 +57,6 @@ PCB的设计依赖电子设计自动化（英语：Electronic design automation�
     \caption{KiCad Workflow}
     \label{fig:kicad_flowchart}
 \end{figure}
-
 
 \section{MCU}
 
