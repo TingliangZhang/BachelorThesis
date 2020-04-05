@@ -361,6 +361,35 @@ The router can drag track segments, corners and vias. To drag an item, click on 
 
 4月5日焊接完成了新板子的电机驱动系统，但是上午测试了一组，电机一直没有转，没找到原因，由于一共三组电机的驱动，下午把三组驱动都焊完了，发现只有三号电机驱动是能用的，电机在转，其他两个都没转，不知道为什么，好在有能用的说明原理上没有问题，有可能是我焊的时候哪里出错了，得仔细找找。
 
+首先排查输入，D6输出的方波脉冲如图~\ref{fig:DRV8825Debug1}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DRV8825Debug1.png}
+    \caption{D6输出的方波脉冲}
+    \label{fig:DRV8825Debug1}
+\end{figure}
+
 用AD2排查发现借上12V电源后，发现3号DRV8825的12/13脚(AVREF/BVREF)电压为3.3V，但是1号为1.23V，2号为0.01V，可能IFS(Target Full-Scale Current)不足以驱动此步进电机。但实际上输出端根本没有方波信号输出，所以可能另有原因。而且3号电机发热严重，3.3V对应的IFS可能不合适。
 
 按照我的设计1.23V是正常的，非常意外出现了3.3V和0V，现在拆掉R3和R9，让1号和2号的DRV8825的12/13脚(AVREF/BVREF)电压为3.3V。
+
+2号空载时输出了PWM波，但是带不动电机，仔细排查发现13旁边的14号引脚(GND)和13连起来了，使得VREF一直处于低电平。使用蘸松香的350度刀头烙铁轻触连接的小块焊锡后正常。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{DRV8825Debug2.jpg}
+    \caption{左上角的第1个和第2个角连起来了}
+    \label{fig:DRV8825Debug2}
+\end{figure}
+
+1号空载时就没有输出PWM波，经排查，其27脚(nHOME)没有输出类似2/3号输出的方波，如图~\ref{fig:DRV8825Debug-25}，查阅Datasheet得知，Home position : Logic low when at home state of step table，；类型为OD = open-drain output。R7为OD门的上拉电阻。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DRV8825Debug3.png}
+    \caption{2/3号27脚(nHOME)输出的方波}
+    \label{fig:DRV8825Debug-25}
+\end{figure}
+
+排查了所有输入引脚和滤波电容，没有发现问题，应该时芯片损坏了。
