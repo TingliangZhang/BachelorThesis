@@ -374,7 +374,7 @@ The router can drag track segments, corners and vias. To drag an item, click on 
 
 按照我的设计1.23V是正常的，非常意外出现了3.3V和0V，现在拆掉R3和R9，让1号和2号的DRV8825的12/13脚(AVREF/BVREF)电压为3.3V。
 
-2号空载时输出了PWM波，但是带不动电机，仔细排查发现13旁边的14号引脚(GND)和13连起来了，使得VREF一直处于低电平。使用蘸松香的350度刀头烙铁轻触连接的小块焊锡后正常。
+2号空载时输出了PWM波，但是带不动电机，仔细排查发现13旁边的14号引脚(GND)和13连起来了，如图~\ref{fig:DRV8825Debug2}，使得VREF一直处于低电平。使用蘸松香的350度刀头烙铁轻触连接的小块焊锡后正常。
 
 \begin{figure}[htbp]
     \centering
@@ -392,4 +392,14 @@ The router can drag track segments, corners and vias. To drag an item, click on 
     \label{fig:DRV8825Debug-25}
 \end{figure}
 
-排查了所有输入引脚和滤波电容，没有发现问题，应该时芯片损坏了。
+排查了所有输入引脚和滤波电容，没有发现问题，应该时芯片损坏了。使用左右横跳法替换了芯片，由于芯片下有Heatsink，新放上去的芯片很容易翘起来。新的芯片的3.3V引脚没有和PCB连接，翘起来了，小心的堆了一点焊锡连接起来，如图~\ref{fig:DRV8825Debug4}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{DRV8825Debug4.jpg}
+    \caption{左下角的3.3V引脚没有和PCB连接}
+    \label{fig:DRV8825Debug4}
+\end{figure}
+
+现在三个电机驱动空载输出都是正确的了，但是接上三个电机后1/3号总有一个堵转，拔下来一个就好了。怀疑是12V供电线路容量不足以两个电机同时转动。
+
