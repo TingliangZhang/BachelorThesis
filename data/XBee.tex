@@ -615,8 +615,8 @@ digi-xbee 1.3.0可以使用pip安装：
 
 在NetworkModificationsSample.py示例中使用了try-finally异常处理，无论try是否发生异常，finally总会执行。这保证了最终端口关闭且删除callback。
 
-\begin{minted}[breaklines]{python}
-增减节点可以通过xbee_network.add_network_modified_callback(cb_network_modified)实现，def cb_network_modified(event_type, reason, node): 函数中event_type.description='XBee added to the network' event_type.code=0 event_type.name='ADD'代表增加节点，xbee_network.get_devices()中的__len__则表示网络中有多少node。
+增减节点可以通过\mintinline{python}{xbee_network.add_network_modified_callback(cb_network_modified)}实现，\mintinline{python}{def cb_network_modified(event_type, reason, node):} 函数中\mintinline{python}{event_type.description='XBee added to the network' event_type.code=0 event_type.name='ADD'}代表增加节点，\mintinline{python}{xbee_network.get_devices() __len__}则表示网络中有多少node。
 
-注：目前减少节点数可以通过 xbee_network.clear() 和 xbee_network.start_discovery_process() 实现，不知道在实际应用中能不能直接通过network_modified callback实现。当然可能是断电后模块的Timeout不够，演示的时候可以直接通过remove 4号节点实现！
-\end{minted}
+注：目前减少节点数可以通过 \mintinline{python}{xbee_network.clear() and xbee_network.start_discovery_process()} 实现，不知道在实际应用中能不能直接通过network modified callback实现。当然可能是断电后模块的Timeout不够，演示的时候可以直接通过remove 4号节点实现！
+
+\mintinline{python}{}
