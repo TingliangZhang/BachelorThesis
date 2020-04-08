@@ -619,4 +619,12 @@ digi-xbee 1.3.0可以使用pip安装：
 
 注：目前减少节点数可以通过 \mintinline{python}{xbee_network.clear() and xbee_network.start_discovery_process()} 实现，不知道在实际应用中能不能直接通过network modified callback实现。当然可能是断电后模块的Timeout不够，演示的时候可以直接通过remove 4号节点实现！
 
+以下XBee通信测试参考\url{https://xbplib.readthedocs.io/en/stable/user_doc/communicating_with_xbee_devices.html#communicatesenddata}。
+
+\mintinline{python}{send_data(RemoteXBeeDevice, String or Bytearray, Integer)}方法(Method)可以实现同步通信(Synchronous operation)，即等待发送完接收到Success confirm信息之后再运行其他程序，保证了每一条信息都送达，但可能回影响其他程序的持续运行。例程源码如附录所示。
+
+\mintinline{python}{send_data_async(RemoteXBeeDevice, String or Bytearray, Integer)}方法(Method)可以实现异步通信(Asynchronous operation)，不会阻断其他程序的运行，但不能保证每一条都到达目标节点。例程源码如附录所示。
+
+\mintinline{python}{send_data_broadcast(String or Bytearray, Integer)}方法(Method)可以实现广播(Broadcast transmissions)，即向网络中所有其他节点广播信息。例程源码如附录所示。
+
 \mintinline{python}{}
