@@ -627,6 +627,6 @@ digi-xbee 1.3.0可以使用pip安装：
 
 \mintinline{python}{send_data_broadcast(String or Bytearray, Integer)}方法(Method)可以实现广播(Broadcast transmissions)，即向网络中所有其他节点广播信息。例程源码如附录~\ref{sec:SendBroadcastDataSample}所示。
 
-根据需求可以选用以上某种发送方式。
+根据需求可以选用以上发送方式。尝试了三种方式之后，发现异步通信最适合，由于在本应用中信息连续性并不重要，丢小部分包也是可以容忍的，而且需要PC端的Python脚本持续运行，后续要接收发回来的位置数据，所以选择异步通信。
 
 \mintinline{python}{}
