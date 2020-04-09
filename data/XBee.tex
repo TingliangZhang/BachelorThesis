@@ -641,6 +641,6 @@ digi-xbee 1.3.0可以使用pip安装：
 
 尝试了一整天没搞定traitlets.link，因为它需要link的两个参数必须是HasTrait类。
 
-直接使用left_slider.value可以调用，但需要写到循环里面。
+直接使用\mintinline{python}{left_slider.value}可以调用，但需要写到循环里面。
 
 但是controller.axes[1].value写到循环里面并不会更新值，所以用Pygame的pygame.joystick.Joystick.get_axis()来写。
