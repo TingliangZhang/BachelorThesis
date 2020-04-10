@@ -416,7 +416,6 @@ $u_{\mathrm{i}}(t)$为$x_{\mathrm{i}}(t)$的控制变量，服从：
 
 小车外形（包括电池）可以近似视为直径100mm、高80mm的圆柱体，整体画布设置为1m*1m的网格坐标平面；横轴（在C4D中是X轴）相邻间距相等，为20cm；纵轴（在C4D中是Z轴）按照1:30cm缩放比例，即第一个小车初始位置为(1,1)对应到物理坐标系中是(0,30cm)。
 
-
 时序方面，为了保证视频质量，C4D工程设置里我设置了帧速率(FPS)为60，即60帧/s，虽然这样渲染时间会变长。C4D做动画时间轴是按帧来的，所以下面的剧本将以帧为单位来写，目前想做的是运动1s停顿1s，再进行下一次迭代。放入新小车时用1s从上向下放入，放完一秒之后再开始运动。
 
 各状态开始时间和对应的帧如表~\ref{tab:IllustrationDesign}
@@ -447,3 +446,22 @@ $u_{\mathrm{i}}(t)$为$x_{\mathrm{i}}(t)$的控制变量，服从：
     \label{tab:IllustrationDesign}
 \end{table}
 
+注意C4D的操作：调视角要按住视图右上角的按钮再拖，调时间轴也是按住小三角拖。
+
+设定动画运动路径如图~\ref{fig:C4D-1}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{C4D-1.png}
+    \caption{C4D设定动画运动路径}
+    \label{fig:C4D-1}
+\end{figure}
+
+设定网格坐标和渲染方法如图~\ref{fig:C4D-2}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{C4D-2.png}
+    \caption{C4D设定网格坐标和渲染方法}
+    \label{fig:C4D-2}
+\end{figure}
