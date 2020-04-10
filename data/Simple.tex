@@ -313,3 +313,87 @@ $u_{\mathrm{i}}(t)$为$x_{\mathrm{i}}(t)$的控制变量，服从：
     \caption{纠正后的强连通图迭代数据}
     \label{tab:123456-Correct}
 \end{table}
+
+
+\section{加入新节点算例}
+
+整个四节点系统邻接矩阵为：
+
+\begin{equation}
+    A=\left[\begin{array}{cccc}
+    {1} & {1} & {0} & {0} \\
+    {0} & {1} & {1} & {0} \\
+    {1} & {0} & {1} & {1} \\
+    {0} & {1} & {0} & {1}
+    \end{array}\right]
+\end{equation}
+
+初始3节点系统迭代10次曲线如图~\ref{fig:123}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{123.pdf}
+    \caption{初始3节点系统迭代10次}
+    \label{fig:123}
+\end{figure}
+
+数据如表~\ref{tab:123}所示。
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \diagbox{迭代次数}{$Y_{i,j}$}{节点编号} %添加斜线表头
+       & 1    & 2    & 3    \\ \hline
+    0  & 1.00 & 2.00 & 3.00 \\ \hline
+    1  & 1.50 & 2.50 & 2.00 \\ \hline
+    2  & 2.00 & 2.25 & 1.75 \\ \hline
+    3  & 2.13 & 2.00 & 1.88 \\ \hline
+    4  & 2.06 & 1.94 & 2.00 \\ \hline
+    5  & 2.00 & 1.97 & 2.03 \\ \hline
+    6  & 1.98 & 2.00 & 2.02 \\ \hline
+    7  & 1.99 & 2.01 & 2.00 \\ \hline
+    8  & 2.00 & 2.00 & 2.00 \\ \hline
+    9  & 2.00 & 2.00 & 2.00 \\ \hline
+    10 & 2.00 & 2.00 & 2.00 \\ \hline
+    \end{tabular}
+    \caption{初始3节点系统迭代过程}
+    \label{tab:123}
+\end{table}
+
+稳态后加入新节点迭代10次曲线如图~\ref{fig:2224}所示。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{2224.pdf}
+    \caption{纠正后的强连通图迭代曲线}
+    \label{fig:2224}
+\end{figure}
+
+数据如表~\ref{tab:2224}所示。
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    \diagbox{迭代次数}{$Y_{i,j}$}{节点编号} %添加斜线表头
+       & 1    & 2    & 3    & 4    \\ \hline
+    0  & 2.00 & 2.00 & 2.00 & 4.00 \\ \hline
+    1  & 2.00 & 2.00 & 2.67 & 3.00 \\ \hline
+    2  & 2.00 & 2.33 & 2.56 & 2.50 \\ \hline
+    3  & 2.17 & 2.44 & 2.35 & 2.42 \\ \hline
+    4  & 2.31 & 2.40 & 2.31 & 2.43 \\ \hline
+    5  & 2.35 & 2.35 & 2.35 & 2.41 \\ \hline
+    6  & 2.35 & 2.35 & 2.37 & 2.38 \\ \hline
+    7  & 2.35 & 2.36 & 2.37 & 2.37 \\ \hline
+    8  & 2.36 & 2.37 & 2.36 & 2.37 \\ \hline
+    9  & 2.36 & 2.36 & 2.36 & 2.37 \\ \hline
+    10 & 2.36 & 2.36 & 2.36 & 2.37 \\ \hline
+    \end{tabular}
+    \caption{稳态后加入新节点}
+    \label{tab:2224}
+\end{table}
+
+
+\section{动画Illustration设计}
+
