@@ -48,6 +48,15 @@ Reset按钮封装不对。Reset电路中R22/D1,RESET BUTTON/C13不是必须的�
 
 TX0和RX0倒序，纠正了错误。
 
+原理图如图~\ref{fig:MisakaPCBv3-sch}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{MisakaPCBv3-1.pdf}
+    \caption{PCBv3原理图}
+    \label{fig:MisakaPCBv3-sch}
+\end{figure}
+
 \section{PCB绘制}
 
 将MCU倾斜45度，方便布线。
@@ -58,4 +67,38 @@ TX0和RX0倒序，纠正了错误。
 
 考虑到走线问题，同一功能的信号线组并在一起。
 
+布线之后的PCB详见附录~\ref{sec:PCB}。
 
+布线之后的PCB(未显示铺铜)如图~\ref{fig:MisakaPCBv3-1}、~\ref{fig:MisakaPCBv3}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{MisakaPCBv3-2.pdf}
+    \caption{PCBv3布线}
+    \label{fig:MisakaPCBv3}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{MisakaPCBv3-1.png}
+    \caption{PCBv3布线之后的PCB}
+    \label{fig:MisakaPCBv3-1}
+\end{figure}
+
+\section{三维渲染图}
+
+使用光线追踪技术对PCB模型进行渲染得到正面的渲染图如图~\ref{fig:MisakaPCBv3-2}、~\ref{fig:MisakaPCBv3-3}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{MisakaPCBv3-2.png}
+    \caption{正面渲染图}
+    \label{fig:MisakaPCBv3-2}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{MisakaPCBv3-3.png}
+    \caption{光追渲染图}
+    \label{fig:MisakaPCBv3-3}
+\end{figure}
