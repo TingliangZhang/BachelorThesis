@@ -141,7 +141,18 @@ An ATmega2560 running at 16 MHz with auto-reset, 16 Analog In, 54 Digital I/O an
 
 端口在Windows系统中，串口显示为 COM1 或 COM2，USB则显示为COM3及以上，选择对应的端口即可。
 
+\subsection{AVRISP mkII烧写程序}
 
+四月需要批量生产一批小车，原来用的Ardunio as ISP不太适合，原先拿热熔胶粘的2x3Pin杜邦线也坏掉了，所以换成专业的AVRISP mkII编程器。
+
+插上AVRISP mkII，Win10会自动安装驱动程序，之后安装Atmel Studio 7\footnote{\url{https://www.microchip.com/mplab/avr-support/atmel-studio-7}}，在Tools > Device Programming中选中相应Arduino IDE生成的Hex文件烧写到Flash中，如图~\ref{fig:AVRISP}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{AVRISP.png}
+    \caption{AVRISP}
+    \label{fig:AVRISP}
+\end{figure}
 
 \section{ESP 32开发环境配置}
 
