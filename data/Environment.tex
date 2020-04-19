@@ -154,6 +154,48 @@ An ATmega2560 running at 16 MHz with auto-reset, 16 Analog In, 54 Digital I/O an
     \label{fig:AVRISP}
 \end{figure}
 
+\subsection{Arduino IDE环境下使用AVRISP mkII}
+
+Arduino IDE中的avrdude烧写工具和AVRISP mkII的Atmel Studio 7驱动不兼容导致直接用编程器烧录会报错。
+
+需要安装Libusb\footnote{\url{https://sourceforge.net/projects/libusb}}驱动
+
+如果安装过AVR STUDIO后，驱动是在Microchip Tools分类下面，需要右键手动更新。
+
+还有一个解决方案是改arduino IDE的Programmers.txt文件\footnote{\url{https://forum.arduino.cc/index.php?topic=118089.msg2224676}}：
+
+\begin{tcolorbox}
+    avrispmkii.name=AVRISP mkII
+    \\avrispmkii.communication=usb
+    \\avrispmkii.protocol=stk500v2
+    \\avrispmkii.program.protocol=stk500v2
+    \\avrispmkii.program.tool=avrdude
+    \\avrispmkii.program.extra\_params=-Pusb
+\end{tcolorbox}
+
+把avrispmkii.communication=usb改为serial：
+
+\begin{tcolorbox}
+    avrispmkii.name=AVRISP mkII
+    \\avrispmkii.communication=serial
+    \\avrispmkii.protocol=stk500v2
+    \\avrispmkii.program.protocol=stk500v2
+    \\avrispmkii.program.tool=avrdude
+    \\avrispmkii.program.extra\_params=-Pusb
+\end{tcolorbox}
+
+或者直接添加一个新的Programmer：
+
+\begin{tcolorbox}
+    avrispmkii.name=AVR ISP MK2\\
+    avrispmkii.communication=serial\\
+    avrispmkii.protocol=stk500v2\\    
+\end{tcolorbox}
+
+但是两种方法在我的电脑上没起作用，待解决此问题，目前先用Atmel Studio 7来上传Hex文件。
+
+
+
 \section{ESP 32开发环境配置}
 
 本节阐述搭建 ESP32 硬件开发的软件环境，软件编译和烧写流程\footnote{\url{https://docs.espressif.com/projects/esp-idf/zh_CN/v4.0-rc/get-started/}}如图~\ref{fig:ESP-Need}。
