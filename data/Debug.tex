@@ -29,3 +29,21 @@
     \item 购买二氧化碳灭火器放在工位旁以防万一。
     \item 感受到热浪和焦糊味要保持清醒头脑，不要贸然触碰可能的发热点。
 \end{enumerate}
+
+
+\section{时钟问题}
+
+时钟周期比我代码设定的长了32倍，原因未知。
+
+测试代码如下：
+
+\inputminted[mathescape, linenos, breaklines]{c}{Code/PWM-Test/PWM-Test.ino}
+
+测得波形数据如图~\ref{fig:DebugClock}。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DebugClock.png}
+    \caption{实测时钟周期}
+    \label{fig:DebugClock}
+\end{figure}
