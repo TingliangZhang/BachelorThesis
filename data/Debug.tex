@@ -83,3 +83,19 @@
 使用的2S锂电池额定电压为7.4V，充满电能到8V以上，用一段时间就会跌到7V左右，这时候电压会不足以驱动DRV8825，所以随着电池电压的升高降低出现时好时坏的情况。
 
 当即购买了3S的锂电，11.2V的额定电压足以驱动DRV8825。
+
+2020/4/22遇到了一个确定质量问题的DRV8825，正常的两片输出波形如图~\ref{fig:DRV8825DebugCorrectOutput}，但是这片DRV8825输出波形如图~\ref{fig:DRV8825DebugErrorOutput}，全桥有一路坏了导致半个周期短路，其发热也十分剧烈，拿着覆铜都能感受到烫。此时及时断电更换为正确做法。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DRV8825DebugCorrectOutput.png}
+    \caption{正常的DRV8825输出波形}
+    \label{fig:DRV8825DebugCorrectOutput}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DRV8825DebugErrorOutput.png}
+    \caption{有问题的DRV8825输出波形}
+    \label{fig:DRV8825DebugErrorOutput}
+\end{figure}
