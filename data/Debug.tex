@@ -103,13 +103,43 @@
 
 \section{其他问题}
 
-V3.1版本的PCB一共做了5块，一个炸了钽电容（原因不明，我在仔细查，但是不太敢贸然上电，去掉炸的电容后功率表测试空载功率远超正常板，如图~\ref{fig:DebugCapacitor}）。
+V3.1版本的PCB一共做了5块，一个炸了钽电容，如图~\ref{fig:DebugCapacitor0}（原因不明，我在仔细查，但是不太敢贸然上电，去掉炸的电容后功率表测试空载功率远超正常板，如图~\ref{fig:DebugCapacitor}），去掉全部锂电容和电解电容并除去了几处连锡好了。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DebugCapacitor0.jpg}
+    \caption{炸了电容的板子}
+    \label{fig:DebugCapacitor0}
+\end{figure}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\columnwidth]{DebugCapacitor.jpg}
     \caption{去掉炸的电容后的板子}
     \label{fig:DebugCapacitor}
+\end{figure}
+
+2020年4月26日测试新买来的3S锂电池（标称电压11.2V，实际刚充满电电压12.4V）时，炸了第二个钽电容，如图~\ref{fig:DebugCapacitor1}，这时我才想起来查看购买的钽电容的型号和耐压值，如图~\ref{fig:DebugCapacitor2}。发现是6.3V，其实电容上面也标明了，如图~\ref{fig:DebugCapacitor3}，我加上的电压12V已经远超耐压。于是把全部钽电容焊下来，防止未来再炸电容。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DebugCapacitor1.jpg}
+    \caption{炸了电容的第二块板}
+    \label{fig:DebugCapacitor1}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DebugCapacitor2.jpg}
+    \caption{电容上的标识}
+    \label{fig:DebugCapacitor2}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\columnwidth]{DebugCapacitor3.png}
+    \caption{钽电容的型号和耐压值}
+    \label{fig:DebugCapacitor3}
 \end{figure}
 
 还有一块MCU芯片引脚弯了连在了一起，所以能烧程序但没有输出，试着能不能抢救，用指甲刀剪掉了空置的短路弯曲引脚，如图~\ref{fig:DebugShortCircuit}，但是并没有解决问题，要用热风枪换芯片。
