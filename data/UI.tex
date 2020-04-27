@@ -41,6 +41,34 @@
 
 采用的数据参照~\ref{sec:Illustration}小节中的数据设计，考虑到场地有限(宿舍桌面大小)，占用纵轴区间长度3对应45cm的可用桌面，比例0.5cm，考虑到精度问题，只取1,2,3,4,12,13,14,15,22这几组变化较大的数据。
 
+各状态开始时间和对应的帧如表~\ref{tab:UIDemoDesign}
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+    \hline
+    \diagbox{迭代次数}{$Y_{i,j}$}{节点编号} %添加斜线表头
+              & 1     & 2    & 3   & 4     & Arrival Time & Frame \\ \hline
+    0         & 30    & 60   & 90  &       & 0            & 0     \\ \hline
+    1         & 45    & 75   & 60  &       & 1            & 60    \\ \hline
+    2         & 60    & 68   & 53  &       & 3            & 180   \\ \hline
+    3         & 64    & 60   & 56  &       & 5            & 300   \\ \hline
+    4         & 62    & 58   & 60  &       & 7            & 420   \\ \hline
+    5         & 60    & 59   & 61  &       & 9            & 540   \\ \hline
+    6         & 60    & 60   & 60  &       & 11           & 660   \\ \hline
+    7         & 60    & 60   & 60  & 120   & 13           & 780   \\ \hline
+    8         & 60    & 60   & 80  & 90    & 15           & 900   \\ \hline
+    9         & 60    & 70   & 77  & 75    & 17           & 1020  \\ \hline
+    10        & 65    & 73   & 71  & 73    & 19           & 1140  \\ \hline
+    11        & 69    & 72   & 69  & 73    & 21           & 1260  \\ \hline
+    12        & 71    & 71   & 71  & 71    & 23           & 1380  \\ \hline
+    Color     & White & Blue & Red & Green &              &       \\ \hline
+    X-Axis/cm & 0     & 30   & 60  & 90    &              &       \\ \hline
+    \end{tabular}
+    \caption{剧本}
+    \label{tab:UIDemoDesign}
+\end{table}
+
 \section{JupyterLab环境配置}
 
 本节代码详见附录~\ref{sec:JupyterLabUI-Code}。
