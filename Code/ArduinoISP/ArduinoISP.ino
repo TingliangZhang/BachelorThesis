@@ -82,9 +82,15 @@
 
 #ifdef USE_OLD_STYLE_WIRING
 
-#define PIN_MOSI	11
-#define PIN_MISO	12
-#define PIN_SCK		13
+// Mega1280 or Mega2560
+#define PIN_MOSI	51
+#define PIN_MISO	50
+#define PIN_SCK		52
+
+// Uno or Duemilanove
+//#define PIN_MOSI  11
+//#define PIN_MISO  12
+//#define PIN_SCK   13
 
 #endif
 
