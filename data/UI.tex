@@ -28,7 +28,9 @@
     \label{tab:Real-Unreal}
 \end{table}
 
-初始DEMO UI为用PC通过XBee指定节点ID发送Move距离信息，节点收到后即开始运动相应距离，此过程中需要对Step和实际距离进行标定。首次标定得到1000steps约为15cm。如图~\ref{fig:MeasureSteps}
+\section{实物可视化界面DEMO}
+
+初始DEMO UI为用PC通过XBee指定节点ID发送Move距离信息，节点收到后即开始运动相应距离，此过程中需要对Step和实际距离进行标定。首次标定得到两电机相反方向转动1000steps约为前进15cm。如图~\ref{fig:MeasureSteps}
 
 \begin{figure}[htbp]
     \centering
@@ -36,6 +38,8 @@
     \caption{对Step和实际距离进行标定}
     \label{fig:MeasureSteps}
 \end{figure}
+
+采用的数据参照~\ref{sec:Illustration}小节中的数据设计，考虑到场地有限(宿舍桌面大小)，占用纵轴区间长度3对应45cm的可用桌面，比例0.5cm，考虑到精度问题，只取1,2,3,4,12,13,14,15,22这几组变化较大的数据。
 
 \section{JupyterLab环境配置}
 
