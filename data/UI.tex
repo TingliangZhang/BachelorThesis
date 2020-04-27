@@ -45,7 +45,7 @@
     \centering
     \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
     \hline
-    \diagbox{迭代次数}{$Y_{i,j}$}{节点编号与作差} %添加斜线表头
+    \diagbox{迭代次数}{$Y_{i,j}$}{位移} %添加斜线表头
        & 1  & 2  & 3  & 4   & d1 & d2 & d3  & d4  \\ \hline
     0  & 0  & 0  & 0  & 0   &    &    &     &     \\ \hline
     1  & 30 & 60 & 90 & 0   & 30 & 60 & 90  & 0   \\ \hline
@@ -70,7 +70,7 @@
     \centering
     \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
     \hline
-    \diagbox{迭代次数}{$Y_{i,j}$}{节点编号与作差} %添加斜线表头
+    \diagbox{迭代次数}{$Y_{i,j}$}{位移} %添加斜线表头
       & 1  & 2  & 3  & 4   & d1 & d2 & d3  & d4  \\ \hline
     0 & 30 & 30 & 30 & 120 &    &    &     &     \\ \hline
     1 & 30 & 60 & 90 & 120 & 0  & 30 & 60  & 0   \\ \hline
@@ -86,6 +86,10 @@
 \end{table}
 
 对ForwardUnits进行1/6校准到单位位移，对Delay进行1/16校准到1ms。
+
+但是还有一个因素未纳入考虑，小车移动需要时间。要想让他们同时进行运动，还要计算各小车运动的时间。
+
+我们知道，1step对应放缩后的1ms，ForwardUnits(30) 对应的时间为1s，由此设计开始运动时间间隔为3s。减去相应的移动时间即为两次移动中间应当delay的时间。
 
 \section{JupyterLab环境配置}
 
