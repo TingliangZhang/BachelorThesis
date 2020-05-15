@@ -41,7 +41,7 @@
 
 \section{主控ATmega2560-16AU}
 
-主控芯片采用ARDUINO MEGA 2560 REV3\cite{arduino_mega-2560-r3}上使用的ATmega2560-16U芯片\footnote{\href{http://www.atmel.com/Images/Atmel-2549-8-bit-AVR-Microcontroller-ATmega640-1280-1281-2560-2561_datasheet.pdf}{ATmega2560 Datasheet}}，并参考MEGA 2560的芯片外设和烧写器设计。
+主控芯片是ATmega2560-16U芯片\footnote{\href{http://www.atmel.com/Images/Atmel-2549-8-bit-AVR-Microcontroller-ATmega640-1280-1281-2560-2561_datasheet.pdf}{ATmega2560 Datasheet}}，并参考MEGA 2560 REV3\cite{arduino_mega-2560-r3}的芯片外设和烧写器设计。
 
 % 引脚映射图见附录~\ref{sec:Pin2560}。
 
@@ -70,7 +70,7 @@
     \label{fig:Mega2560-Power}
 \end{figure}
 
-如图~\ref{fig:Mega2560-Power}，外部锂电通过PWRIN接口输入7-15v直流，两级滤波，使用小电容100nF滤除高频干扰，大电容47uF消除低频干扰，M7为二极管，防止错误输入负电压。低压差线性稳压(LDO)降压芯片LD1117S50CTR完成电平转换，输出5V直流，在输出端也加入了一个47uF的滤波电容，滤除输出5V中的低频谐波。
+如图~\ref{fig:Mega2560-Power}，外部锂电通过PWRIN接口输入7-15v直流，两级滤波，小电容100nF滤高频，大电容47uF消低频，M7为二极管，防止错误输入负电压。低压差线性稳压(LDO)降压芯片LD1117S50CTR完成电平转换，输出5V直流，在输出端也加入了一个47uF的滤波电容，滤除输出5V中的低频谐波。
 
 高通滤波电容原本建议方案使用47uF 35V贴片型铝电解电容器，但是考虑到后续可能要堆叠电路板模块，需要尽可能的减小电路板上元件的最大高度，而6.3x5.4x5.4mm SMD 封装高度达到5.4mm。
 
@@ -84,7 +84,7 @@
 
 % 钽电容具有较大的ESR（串连等效电阻）值，瞬态大电流放电特性因而不佳，用于电源的主滤波是不行的，但其串连等效电感低于常见卷绕而成的铝电解，故高频滤波特性比铝电解好，适用于对付高频分量的辅助滤波。
 
-AVCC是端口F和A/D转换器的电源电压引脚。即使不使用ADC，它也应从外部连接到VCC。如果使用ADC，则应通过低通滤波器将其连接到VCC。
+% AVCC是端口F和A/D转换器的电源电压引脚。即使不使用ADC，它也应从外部连接到VCC。如果使用ADC，则应通过低通滤波器将其连接到VCC。
 
 LP2985-33DBVR则是另一个低压差线性稳压(LDO)，它将5V降到3.3V。根据Datasheet，在布线时，旁路电容器的放置应尽可能的接近器件的VIN和系统的GND，注意使旁路电容器连接VIN引脚和系统的GND引脚形成的环路面积最小。
 
@@ -114,7 +114,9 @@ LM358DR2G的B路运放在这里作为电压比较器使用，若VIN大于6.6V，
 
 2x3的端子是ICSP (In-Circuit Serial Programming) 端口，可以通过这个6Pin端口给ATmega2560 MCU烧写程序。结合AVR-ISP (in-system programmer)比如Arduino ISP\footnote{https://store.arduino.cc/usa/arduino-isp}使用。
 
-使用Arduino ISP，可以上传脚本并在任何基于AVR的板上烧写引导程序。通过使用外部编程器上传Sketch，可以删除引导程序bootloader。Arduino ISP还可用于刻录Arduino bootloader，因此，如果不小心损坏了bootloader，则可以用它来恢复。当使用新的ATmega MCU时，也有必要刷引导程序，将希望使用的引导程序通过USB-Serial连接上传。
+% 使用Arduino ISP，可以上传脚本并在任何基于AVR的板上烧写引导程序。
+
+通过使用外部编程器上传Sketch，可以删除引导程序bootloader。Arduino ISP还可用于刻录Arduino bootloader，因此，如果不小心损坏了bootloader，则可以用它来恢复。当使用新的ATmega MCU时，也有必要刷引导程序，将希望使用的引导程序通过USB-Serial连接上传。
 
 % SCL和SDA为I2C（Inter-Integrated Circuit）集成电路总线，是一种串行通讯汇流排，使用多主从架构，只使用两条双向漏极开路（Open Drain）（串行资料（SDA）及串行时脉（SCL））并利用电阻将电位上拉。这里两个10kOhm电阻即为I2C上拉电阻。
 
@@ -146,7 +148,9 @@ CSTCE16M0V53为16MHz晶振，内置电容，作为MCU的外部时钟晶振使用
 
 Rp1为一个排阻，上有四个相同阻值(1kOhm)的电阻，上面两个电阻作为两个黄灯的保护电阻，两个黄灯作为RX1和TX1数据传输的指示。另两个电阻则是从ATmega16U2到ATmega2560-16AU的通信线路上的电阻，通过ATmega2560-16AU的PE0和PE1给MCU烧写程序。
 
-RESET-EN为自动复位设计，可以通过主机复位。这样通过Arduino软件烧写程序到Mega2560中软件可以自动复位，不需要再按复位按钮。在PCB上切断"RESET EN"处两个焊盘中间的线可以禁止该功能。
+% RESET-EN 为自动复位设计,可以通过主机复位。这样通过 Arduino 软件烧写程序到 Mega2560中软件可以自动复位,不需要再按复位按钮。在 PCB 上切断"RESET EN"处两个焊盘中间的线可以禁止该功能。
+
+RESET-EN为自动复位设计，通过Arduino软件烧写程序到Mega2560中软件可以自动复位，不需要再按复位按钮。在PCB上断掉"RESET EN"处两个焊盘中间的线可以disable这一功能。
 
 \section{USB接口}
 
@@ -198,11 +202,13 @@ RESET-EN为自动复位设计，可以通过主机复位。这样通过Arduino�
 \end{figure}
 
 
-如表~\ref{fig:USB-M}，USB的连接器分为A、B两种，分别用于主机和设备；其各自的小型化的连接器是Mini-A, Mini-B 和 Micro-A, Micro-B，另外还有Mini-AB（可支持Mini-A及Mini-B）的插口。USB 3.1版本中引入了支持正反面不区分插入的C型。
 
-普通电脑上使用的是Type-A口，所以连接电路板时会使用Type-A转Micro USB或Type-C的USB2.0数据线。USB插槽本身还能提供5V的主动电压，及0.5A的电流。
 
-在标准USB接口Type-A中，有四个连接器触点如表~\ref{tab:USB-4}，USB信号使用分别标记为D+和D-的双绞线传输，它们各自使用半双工的差分信号并协同工作，以抵消长导线的电磁干扰。
+% USB的连接器分为A、B两种，分别用于主机和设备；其各自的小型化的连接器是Mini-A, Mini-B 和 Micro-A, Micro-B，另外还有Mini-AB（可支持Mini-A及Mini-B）的插口。USB 3.1版本中引入了支持正反面不区分插入的C型。
+
+如表~\ref{fig:USB-M}，普通电脑上使用的是Type-A口，所以连接电路板时会使用Type-A转Micro USB或Type-C的USB2.0数据线。USB插槽本身还能提供5V的主动电压，及0.5A的电流。在标准USB接口Type-A中，有四个连接器触点如表~\ref{tab:USB-4}。
+
+% 在标准USB接口Type-A中，有四个连接器触点如表~\ref{tab:USB-4}，USB信号使用分别标记为D+和D-的双绞线传输，它们各自使用半双工的差分信号并协同工作，以抵消长导线的电磁干扰。
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -222,7 +228,9 @@ RESET-EN为自动复位设计，可以通过主机复位。这样通过Arduino�
 
 % 使用Micro-USB机械电子标准的USB插座（母头），此标准常用于移动电话、平板电脑等。Micro-USB将成为移动设备数据和电源的标准接口。
 
-Micro-USB除了第4针外，其他接口功能皆与标准USB相同如表~\ref{tab:MicroUSB}。第4针成为ID，地线在Micro-USB上连接到第5针，在Micro-USB可以悬空亦可连接到第5针。
+% Micro-USB除了第4针外，其他接口功能皆与标准USB相同如表~\ref{tab:MicroUSB}。第4针成为ID，地线在Micro-USB上连接到第5针，在Micro-USB可以悬空亦可连接到第5针。
+
+Micro-USB接口功能如表~\ref{tab:MicroUSB}。
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
@@ -241,7 +249,9 @@ Micro-USB除了第4针外，其他接口功能皆与标准USB相同如表~\ref{t
     \label{tab:MicroUSB}
 \end{table}
 
-也可以使用支持正反插的USB Type-C接口进行供电和烧写程序，USB Type-C接口常用于新式计算机、移动电话、平板电脑等。其通讯协议和标准见图~\ref{fig:USB-Type-C-pins}和图~\ref{fig:USB-TypeC}。
+也可以使用支持正反插的USB Type-C接口进行供电和烧写程序，USB Type-C接口常用于新式计算机、移动电话、平板电脑等。其通讯协议和标准见图~\ref{fig:USB-Type-C-pins}。
+
+% 和图~\ref{fig:USB-TypeC}
 
 \begin{figure}[htbp]
     \centering
@@ -250,12 +260,12 @@ Micro-USB除了第4针外，其他接口功能皆与标准USB相同如表~\ref{t
     \label{fig:USB-Type-C-pins}
 \end{figure}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\columnwidth]{USB-2-To-Type-C.pdf}
-    \caption{USB-TypeC}
-    \label{fig:USB-TypeC}
-\end{figure}
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\columnwidth]{USB-2-To-Type-C.pdf}
+%     \caption{USB-TypeC}
+%     \label{fig:USB-TypeC}
+% \end{figure}
 
 
 
@@ -270,7 +280,9 @@ Micro-USB除了第4针外，其他接口功能皆与标准USB相同如表~\ref{t
 
 BLM21PG300SN1D为（电感式）片式铁氧体磁珠，阻抗30Ω频率100MHz。
 
-0603ESDA-05N为ESD抑制器/TVS二极管，箝位电压	50V，反向关断电压（典型值）	5V
+% 0603ESDA-05N为ESD抑制器/TVS二极管，箝位电压	50V，反向关断电压（典型值）	5V
+
+0603ESDA-05N为ESD抑制器/TVS二极管。
 
 USB口外壳和内部引线之间并联了ESD二极管和铁氧体磁珠，用于防USB浪涌电流，保护电路。
 
@@ -314,7 +326,7 @@ ESP32 WROOM 系列模组具备优化的引脚布局，外设 IO 管脚被分组�
 
 \begin{itemize}
     \item MTDI 应保持低电平。
-    \item ESP32-WROOM-32 管脚39，可以不焊接到底板。若将该管脚焊接到底板，确保使用适量的焊锡膏。
+    % \item ESP32-WROOM-32 管脚39，可以不焊接到底板。若将该管脚焊接到底板，确保使用适量的焊锡膏。
     \item 为确保芯片上电时的供电正常，EN管脚处需要增加RC延迟电路。RC通常建议为R = 10kOhms，C = 0.1uF，但具体数值仍需根据模组电源的上电时序和芯片的上电复位时序进行调整。
 \end{itemize}
 
@@ -325,7 +337,7 @@ ESP32 WROOM 系列模组具备优化的引脚布局，外设 IO 管脚被分组�
     \label{fig:ESP32Reset}
 \end{figure}
 
-如图~\ref{fig:ESP32Reset}，当使用电池给ESP32系列芯片和模组供电时，为避免电池电压过低导致芯片进入异常状态不能正常启动，一般推荐外接Power Supply Supervisor。建议检测到供给ESP32的电压低于2.3V 时将ESP32的CHIP PU脚拉低。
+% 如图~\ref{fig:ESP32Reset}，当使用电池给ESP32系列芯片和模组供电时，为避免电池电压过低导致芯片进入异常状态不能正常启动，一般推荐外接Power Supply Supervisor。建议检测到供给ESP32的电压低于2.3V 时将ESP32的CHIP PU脚拉低。
 
 % \begin{figure}
 %     \begin{minipage}{0.48\textwidth}
@@ -422,7 +434,9 @@ NPN三极管S8050用作 DTR RTS --\textgreater EN IO0 逻辑转换，于用驱�
     \label{fig:ESP32-WROVER}
 \end{figure}
 
-参考ESP WROVER KIT(如图~\ref{fig:ESP32-WROVER})设计。ESP-WROVER-KIT-VB 为乐鑫 ESP-WROVER-KIT 开发板的变体，默认贴片 ESP32-WROVER-B 模组，支持 LCD 和 MircoSD 卡。板上 ESP32-WROVER-B 模组的 I/O 管脚均已引出，允许用户连接丰富的外设，满足多种开发场景。此外，本款开发板还载有支持多种协议的 USB 转接桥 (FTDI FT2232HL)，允许用户直接通过 USB 接口使用 JTAG 调试 ESP32 模组，极大地降低了二次开发的复杂度和成本。
+参考ESP WROVER KIT(如图~\ref{fig:ESP32-WROVER})设计。
+
+% ESP-WROVER-KIT-VB 为乐鑫 ESP-WROVER-KIT 开发板的变体，默认贴片 ESP32-WROVER-B 模组，支持 LCD 和 MircoSD 卡。板上 ESP32-WROVER-B 模组的 I/O 管脚均已引出，允许用户连接丰富的外设，满足多种开发场景。此外，本款开发板还载有支持多种协议的 USB 转接桥 (FTDI FT2232HL)，允许用户直接通过 USB 接口使用 JTAG 调试 ESP32 模组，极大地降低了二次开发的复杂度和成本。
 
 % FT2232 多协议 USB 转串口桥接器。开发人员可通过 USB 接口对 FT2232 芯片进行控制和编程，与 ESP32 建立连接。FT2232 芯片可在通道 A 提供 USB-to-JTAG 接口功能，并在通道 B 提供 USB-to-Serial 接口功能，便利开发人员的应用开发与调试。详见 ESP-WROVER-KIT V4.1 原理图。
 
@@ -441,7 +455,9 @@ TB6612FNG\footnote{之前使用的TB6612芯片近期国内断货，所以改用A
 
 % 该模块相对于传统的L298N效率上提高很多,体积上也大幅度减少。TB6612FNG每通道输出最高1.2 A的连续驱动电流，启动峰值电流达2A/3.2 A(连续脉冲/单脉冲)，4种电机控制模式：正转/反转/制动/停止，PWM支持频率高达100 kHz。
 
-H桥驱动如图~\ref{fig:TB6612FNG-H}所示，可以控制电机正反转，t2和t4为防止短路的死区时间。
+% H桥驱动如图~\ref{fig:TB6612FNG-H}所示，可以控制电机正反转，t2和t4为防止短路的死区时间。
+
+H桥驱动如图~\ref{fig:TB6612FNG-H}所示。
 
 \begin{figure}[htbp]
     \centering
@@ -525,7 +541,9 @@ GW12-N20VA永磁蜗轮蜗杆齿轮减速电机（有蜗杆改变90度传动方�
     \label{fig:XB}
 \end{figure}
 
-XBEE模块是可提供与设备的无线端点连接的嵌入式解决方案。（如图~\ref{fig:XB}）模块使用IEEE 802.15.4网络协议进行快速的点对点网络或对等网络。专为要求低延迟和可预测通信时序的高吞吐量应用而设计\footnote{\url{https://www.sparkfun.com/pages/xbee_guide}}。
+% XBEE模块是可提供与设备的无线端点连接的嵌入式解决方案。
+
+XBEE（如图~\ref{fig:XB}）模块使用IEEE 802.15.4网络协议进行快速的点对点网络或对等网络。专为要求低延迟和可预测通信时序的高吞吐量应用而设计\footnote{\url{https://www.sparkfun.com/pages/xbee_guide}}。
 
 DIGI XBEE 3 MICRO FORM FACTOR (XB3-24Z8CM  Digi XBee 3 PRO ZigBee 3.0, 2.4 GHz, Micro, Chip Ant, MMT) 只有13mm x 19mm，可以直接SMT到PCB上，是本应用场景下体积性能的最优解。
 
