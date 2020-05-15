@@ -615,7 +615,9 @@ digi-xbee 1.3.0可以使用pip安装：
 
 \section{Python XBee TX 代码编写}
 
-在NetworkModificationsSample.py示例中使用了try-finally异常处理，无论try是否发生异常，finally总会执行。这保证了最终端口关闭且删除callback。例程源码如附录~\ref{sec:NetworkModificationsSample}所示。
+在NetworkModificationsSample.py示例中使用了try-finally异常处理，无论try是否发生异常，finally总会执行。这保证了最终端口关闭且删除callback。
+
+% 例程源码如附录~\ref{sec:NetworkModificationsSample}所示。
 
 增减节点可以通过\mintinline{python}{xbee_network.add_network_modified_callback(cb_network_modified)}实现，\mintinline{python}{def cb_network_modified(event_type, reason, node):} 函数中\mintinline{python}{event_type.description='XBee added to the network' event_type.code=0 event_type.name='ADD'}代表增加节点，\mintinline{python}{xbee_network.get_devices() __len__}则表示网络中有多少node。
 
@@ -623,11 +625,17 @@ digi-xbee 1.3.0可以使用pip安装：
 
 以下XBee通信测试参考\url{https://xbplib.readthedocs.io/en/stable/user_doc/communicating_with_xbee_devices.html#communicatesenddata}。
 
-\mintinline{python}{send_data(RemoteXBeeDevice, String or Bytearray, Integer)}方法(Method)可以实现同步通信(Synchronous operation)，即等待发送完接收到Success confirm信息之后再运行其他程序，保证了每一条信息都送达，但可能回影响其他程序的持续运行。例程源码如附录~\ref{sec:SendDataSample}所示。
+\mintinline{python}{send_data(RemoteXBeeDevice, String or Bytearray, Integer)}方法(Method)可以实现同步通信(Synchronous operation)，即等待发送完接收到Success confirm信息之后再运行其他程序，保证了每一条信息都送达，但可能回影响其他程序的持续运行。
 
-\mintinline{python}{send_data_async(RemoteXBeeDevice, String or Bytearray, Integer)}方法(Method)可以实现异步通信(Asynchronous operation)，不会阻断其他程序的运行，但不能保证每一条都到达目标节点。例程源码如附录~\ref{sec:SendDataAsyncSample}所示。
+% 例程源码如附录~\ref{sec:SendDataSample}所示。
 
-\mintinline{python}{send_data_broadcast(String or Bytearray, Integer)}方法(Method)可以实现广播(Broadcast transmissions)，即向网络中所有其他节点广播信息。例程源码如附录~\ref{sec:SendBroadcastDataSample}所示。
+\mintinline{python}{send_data_async(RemoteXBeeDevice, String or Bytearray, Integer)}方法(Method)可以实现异步通信(Asynchronous operation)，不会阻断其他程序的运行，但不能保证每一条都到达目标节点。
+
+% 例程源码如附录~\ref{sec:SendDataAsyncSample}所示。
+
+\mintinline{python}{send_data_broadcast(String or Bytearray, Integer)}方法(Method)可以实现广播(Broadcast transmissions)，即向网络中所有其他节点广播信息。
+
+% 例程源码如附录~\ref{sec:SendBroadcastDataSample}所示。
 
 根据需求可以选用以上发送方式。尝试了三种方式之后，发现异步通信最适合，由于在本应用中信息连续性并不重要，丢小部分包也是可以容忍的，而且需要PC端的Python脚本持续运行，后续要接收发回来的位置数据，所以选择异步通信。
 
