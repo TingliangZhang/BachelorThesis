@@ -63,8 +63,8 @@
   % edate={December, 2005},
   %
   % 关键词用“英文逗号”分割
-  ckeywords={共识算法, 智能电网, 分布式算法, 可视化硬件平台, 电力市场},
-  ekeywords={Consensus Algorithm, Smart Grid, Distributed Algorithm, Visual Hardware Platform, Electricity Market}
+  ckeywords={共识算法, 智能电网, 分布式算法, 可视化硬件平台, 集群, 人机交互},
+  ekeywords={Consensus Algorithm, Smart Grid, Distributed Algorithm, Visual Hardware Platform, Swarm, Human-computer interaction}
 }
 
 % 定义中英文摘要和关键字
@@ -72,18 +72,19 @@
 
   本文介绍了用于一个智能电网算法评估的可视化测试平台，同时也是用于开发桌面实体集群交互界面的可扩展软硬件开源平台。
 
-  该平台包括一组定制设计的3全向轮机器人（每个直径10厘米），通过覆盖在活动表顶部的微点图案进行的高精度定位，以及用于应用程序开发和控制的软件框架，同时仍保持价格合理 （在原型机阶段，每个价格约为30美元）。 我们通过使用该平台开发新的简化的智能电网分布式算法应用来说明桌面集群用户界面的潜力。
+  商用版本平台面向未来人机交互研究者，包括一组定制设计的3全向轮机器人（每个直径10厘米），通过覆盖在活动表顶部的微点图案进行的高精度定位，以及用于应用程序开发和控制的软件框架，同时仍保持价格合理 （在原型机阶段，每个价格约为30美元）。 我们通过使用该平台开发新的简化的智能电网分布式算法应用来说明桌面集群用户界面的潜力。另有开发者版本提供给进一步开发桌面集群硬件平台的开发者。
 
-  基于区块链技术和共识算法，面向泛在电力物联网建设，考虑实际应用环境中的问题（如噪音、干扰、局部通信中断等问题），开发了一套测试平台并模拟实际应用，以应对传统集中式优化通信负担过重、过度依赖部分节点、灵活性不足等问题的挑战。
+  % 基于区块链技术和共识算法，面向泛在电力物联网建设，考虑实际应用环境中的问题（如噪音、干扰、局部通信中断等问题），开发了一套测试平台并模拟实际应用，以应对传统集中式优化通信负担过重、过度依赖部分节点、灵活性不足等问题的挑战。
 
-  通过嵌入式可视化集群硬件平台来直观的表现算法的运行，同时也探索一种新的展示算法的方式。
+  % 通过嵌入式可视化集群硬件平台来直观的表现算法的运行，同时也探索一种新的展示算法的方式。
 
   本文的创新点主要有：
 
   \begin{itemize}
-    \item 将分布式算法用于电力市场调度中，实现了去中心化，增强了电力系统的可靠性。
-    \item 开发了一套集群可视化平台，探索了一种新的展示算法的方式。
-    \item 考虑了硬件存在的通信中断和恶意节点等现实问题。
+    \item 将分布式算法用于电力市场经济调度中，去中心化增强了电力系统的可靠性。
+    \item 使用集群可视化平台探索新的展示算法的方式。
+    \item 开发了一套完备的通信架构用于集群通信开发和测试。
+    \item 较为成熟的集成化移动平台集群系统为人机交互创造了无限的可能性。
   \end{itemize}
 
 
@@ -97,16 +98,20 @@
 
   The platform consists of a collection of custom-designed 3 omni-directional wheels robots each 10 cm in diameter, high accuracy localization through a microdot pattern overlaid on top of the activity sheets, and a software framework for application development and control, while remaining affordable (per unit cost about 30 USD at the prototype stage). We illustrate the potential of tabletop swarm user interfaces through a set of smart grid algorithm application scenarios developed with the platform.
 
-  Based on blockchain technology and consensus algorithms, for the construction of ubiquitous electric power IoT, considering the problems in the actual application environment (such as noise, interference, local communication interruption, etc.), a test platform has been developed and simulated for practical applications Traditional centralized optimization challenges such as excessive communication burden, excessive dependence on some nodes, and insufficient flexibility.
+  % Based on blockchain technology and consensus algorithms, for the construction of ubiquitous electric power IoT, considering the problems in the actual application environment (such as noise, interference, local communication interruption, etc.), a test platform has been developed and simulated for practical applications Traditional centralized optimization challenges such as excessive communication burden, excessive dependence on some nodes, and insufficient flexibility.
 
-  The embedded visualization cluster hardware platform is used to intuitively express the operation of the algorithm, and also explore a new way to display the algorithm.
+  % The embedded visualization cluster hardware platform is used to intuitively express the operation of the algorithm, and also explore a new way to display the algorithm.
   
   The innovations of this article are:
 
   \begin{itemize}
-    \item The distributed algorithm is used in power market dispatching to achieve decentralization and enhance the reliability of power systems.
-    \item developed a cluster visualization platform and explored a new way to display algorithms.
-    \item takes into account the practical problems of communication interruptions and malicious nodes in the hardware.
+    \item uses distributed algorithms for power market dispatch, and decentralization enhances the reliability of the power system.
+    \item use the swarm visualization platform to explore new ways to display algorithms.
+    \item has developed a complete communication architecture for swarm communication development and testing.
+    \item The integrated mobile platform swarm system creates unlimited possibilities for human-computer interaction.
+    % \item The distributed algorithm is used in power market dispatching to achieve decentralization and enhance the reliability of power systems.
+    % \item developed a cluster visualization platform and explored a new way to display algorithms.
+    % \item takes into account the practical problems of communication interruptions and malicious nodes in the hardware.
   \end{itemize}
 
 
