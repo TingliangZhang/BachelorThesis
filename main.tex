@@ -1,5 +1,12 @@
 \documentclass[degree=bachelor,tocarialchapter,table,xcdraw]{thuthesis}
+
 % 在\documentclass中加入了 ,table,xcdraw 解决了用于表格颜色填充的宏包 \usepackage[table,xcdraw]{xcolor} 导致的xcolor不同参数重复声明的问题
+
+% \documentclass[degree=bachelor,tocarialchapter,table,xcdraw,draft]{thuthesis}
+% 如果不想输出图片，可以使用graphics的draft选项，避免了PDF的插入影响查重。
+% If you set it with draft=true or just specify it with
+% \includegraphics[...,draft,...]{...}
+% then the graphic will not appear in the document, possibly saving color printer ink. Instead, LaTeX will put an empty box of the correct size with the filename printed in it.
 
 % 选项
 %   degree=[bachelor|master|doctor|postdoctor], % 必选，学位类型
