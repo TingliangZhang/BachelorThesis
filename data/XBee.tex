@@ -77,15 +77,15 @@ XBee无线模块的操作模式建立了用户或连接到XBee的任何微控制
 
 要配置在AT中运行的XBee模块，必须将其置于命令模式下以发送配置命令。
 
-当无线模块在AT工作模式下工作时，必须使用命令模式 command mode 界面来配置设置。
+% 当无线模块在AT工作模式下工作时，必须使用命令模式 command mode 界面来配置设置。
 
-要进入AT命令模式，在一秒钟内发送三个字符的命令序列（通常为"+++"）。一旦启动了AT命令模式，该模块将发送"OK \\ r"，启动命令模式计时器，并且无线模块能够接收AT命令。
+% 要进入AT命令模式，在一秒钟内发送三个字符的命令序列（通常为"+++"）。一旦启动了AT命令模式，该模块将发送"OK \\ r"，启动命令模式计时器，并且无线模块能够接收AT命令。
 
-AT命令的结构为：
+% AT命令的结构为：
 
-\begin{tcolorbox}
-    AT[ASCII command][Space (optional)][Parameter (optional)][Carriage return]
-\end{tcolorbox}
+% \begin{tcolorbox}
+%     AT[ASCII command][Space (optional)][Parameter (optional)][Carriage return]
+% \end{tcolorbox}
 
 例如：
 
@@ -93,7 +93,9 @@ AT命令的结构为：
     ATNI MyDevice\textbackslash{}r
 \end{tcolorbox}
 
-如果在命令模式超时内未收到有效的AT命令，则无线模块将自动退出AT命令模式。还可以通过发出CN命令来退出命令模式：
+% 如果在命令模式超时内未收到有效的AT命令，则无线模块将自动退出AT命令模式。
+
+还可以通过发出CN命令来退出命令模式：
 
 \begin{tcolorbox}
     (ATCN\textbackslash{}r)
@@ -101,7 +103,9 @@ AT命令的结构为：
 
 \section{XBee API Mode}
 
-API（Application Programming Interface 应用程序编程接口）操作模式是AT模式的替代。API操作模式要求通过结构化接口与模块进行通信。换句话说，数据通过API框架进行通信。如图~\ref{fig:xbee_api_transmission}。
+% API（Application Programming Interface 应用程序编程接口）操作模式是AT模式的替代。
+
+API操作模式要求通过结构化接口与模块进行通信。换句话说，数据通过API框架进行通信。如图~\ref{fig:xbee_api_transmission}。
 
 \subsection{API Mode 概述}
 
@@ -132,9 +136,11 @@ API转义操作模式（AP = 2）与API模式相似，不同之处在于，在AP
 
 API转义操作模式通过防止与特殊字符（例如帧开始字节（0x7E））发生冲突，提高了RF传输的可靠性。API非转义（API = 1）操作仅依靠起始定界符和长度字节来区分API帧。另一方面，在API转义模式下，那些特殊字节被转义。由于0x7E只能出现在API数据包的开头，因此，如果在处于API转义模式下的任何时间接收到0x7E，则模块始终可以“假定”新数据包已经开始。
 
-在以API转义模式发送或接收API帧时，必须对特定数据值进行转义（标记），以免干扰数据帧序列。
+% 在以API转义模式发送或接收API帧时，必须对特定数据值进行转义（标记），以免干扰数据帧序列。
 
-要转义数据字节，请插入0x7D，然后在其后跟要转义的字节与0x20进行XOR。需要转义的数据字节如下：
+% 要转义数据字节，请插入0x7D，然后在其后跟要转义的字节与0x20进行XOR。
+
+需要转义的数据字节如下：
 
 \begin{itemize}
     \item 0x7E: Frame delimiter
@@ -153,15 +159,15 @@ API模式下的结构化数据包称为帧。 它们通过设备的串行接口�
 
 当设备处于API模式时，所有通过串行接口进入和离开模块的数据都包含在框架中，这些框架定义了设备内的操作或事件。
 
-API帧具有图~\ref{fig:api-frame}和表~\ref{tab:API-frame-structure}所示的结构：
+API帧具有图~\ref{fig:api-frame}和表~\ref{tab:API-frame-structure}所示的结构。
 
-开始符 Start delimeter 帧的第一个字节，由一个特殊的比特序列组成，这些比特序列指示数据帧的开始。它的值始终为0x7E。作用是检测新的输入帧。
+% 开始符 Start delimeter 帧的第一个字节，由一个特殊的比特序列组成，这些比特序列指示数据帧的开始。它的值始终为0x7E。作用是检测新的输入帧。
 
-长度 Length 指定帧数据字段中包含的字节总数。它的两个字节的值不包括起始符，长度和校验和。
+% 长度 Length 指定帧数据字段中包含的字节总数。它的两个字节的值不包括起始符，长度和校验和。
 
-帧数据 Frame data 由API标识符和特定于API标识符的数据组成。特定数据的内容取决于API标识符（也称为API帧类型）。
+% 帧数据 Frame data 由API标识符和特定于API标识符的数据组成。特定数据的内容取决于API标识符（也称为API帧类型）。
 
-校验和 Checksum 帧的最后一个字节。它有助于测试数据的完整性，并通过获取其之前所有API帧字节（不包括前三个字节（开始符和长度））的哈希总和来计算。
+% 校验和 Checksum 帧的最后一个字节。它有助于测试数据的完整性，并通过获取其之前所有API帧字节（不包括前三个字节（开始符和长度））的哈希总和来计算。
 
 \begin{figure}[htbp]
     \centering
@@ -191,52 +197,56 @@ MSB 最高有效位（Most Significant Bit），在大端序中，MSB即指最�
 
 \subsection{API支持的Frame}
 
-传输数据帧通过串行输入发送，数据将无线传输到远程XBees，如表~\ref{tab:XBee-Transmit-data-frames}。
+传输数据帧通过串行输入发送，数据将无线传输到远程XBees。
 
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-\begin{table}[htbp]
-    \begin{tabular}{@{}lll@{}}
-    \toprule
-    API ID & Frame name                        & Description                                                                                                       \\ \midrule
-    0x08   & AT Command                        & Queries or sets parameters on the local XBee                                                                      \\
-    0x09   & AT Command Queue Parameter Value  & Queries or sets parameters on the local XBee without applying changes                                             \\
-    0x10   & Transmit Request                  & Transmits wireless data to the specified destination                                                              \\
-    0x11   & Explicit Addressing Command Frame & Allows Zigbee application layer fields (endpoint and cluster ID) to be specified for a wireless data transmission \\
-    0x17   & Remote AT Command Request         & Queries or sets parameters on the specified remote XBee module                                                    \\
-    0x21   & Create Source Route               & Creates a source route in the module                                                                              \\
-    0x24   & Register Joining Device           & Registers a module with the Trust Center                                                                          \\ \bottomrule
-    \end{tabular}
-    \caption{Transmit data frames 类型}
-    \label{tab:XBee-Transmit-data-frames}
-\end{table}
+% 如表~\ref{tab:XBee-Transmit-data-frames}。
 
-接收数据帧通过串行输出接收，数据从远程XBees无线接收，如表~\ref{tab:XBee-Receive-data-frames}。
+% % Please add the following required packages to your document preamble:
+% % \usepackage{booktabs}
+% \begin{table}[htbp]
+%     \begin{tabular}{@{}lll@{}}
+%     \toprule
+%     API ID & Frame name                        & Description                                                                                                       \\ \midrule
+%     0x08   & AT Command                        & Queries or sets parameters on the local XBee                                                                      \\
+%     0x09   & AT Command Queue Parameter Value  & Queries or sets parameters on the local XBee without applying changes                                             \\
+%     0x10   & Transmit Request                  & Transmits wireless data to the specified destination                                                              \\
+%     0x11   & Explicit Addressing Command Frame & Allows Zigbee application layer fields (endpoint and cluster ID) to be specified for a wireless data transmission \\
+%     0x17   & Remote AT Command Request         & Queries or sets parameters on the specified remote XBee module                                                    \\
+%     0x21   & Create Source Route               & Creates a source route in the module                                                                              \\
+%     0x24   & Register Joining Device           & Registers a module with the Trust Center                                                                          \\ \bottomrule
+%     \end{tabular}
+%     \caption{Transmit data frames 类型}
+%     \label{tab:XBee-Transmit-data-frames}
+% \end{table}
 
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-\begin{table}[htbp]
-    \begin{tabular}{@{}lll@{}}
-    \toprule
-    API ID & Frame name                          & Description                                                                                          \\ \midrule
-    0x88   & AT Command Response                 & Displays the response to previous AT command frame                                                   \\
-    0x8A   & Modem Status                        & Displays event notifications such as reset, association, disassociation, and so on.                  \\
-    0x8B   & Transmit Status                     & Indicates wireless data transmission success or failure                                              \\
-    0x90   & Receive Packet                      & Sends wirelessly received data out the serial interface (AO = 0)                                     \\
-    0x91   & Explicit Rx Indicator               & Sends wirelessly received data out the serial interface when explicit mode is enabled (AO 0)         \\
-    0x92   & IO Data Sample Rx Indicator         & Sends wirelessly received IO data out the serial interface                                           \\
-    0x94   & XBee Sensor Read Indicator          & Sends wirelessly received sensor sample (from a Digi 1-wire sensor adapter) out the serial interface \\
-    0x95   & Node Identification Indicator       & Displays received node identification message when explicit mode is disabled (AO = 0)                \\
-    0x97   & Remote AT Command Response          & Displays the response to previous remote AT command requests                                         \\
-    0x98   & Extended Modem Status               & Displays what is happening during the association when Verbose Join is enabled (DC10)                \\
-    0xA0   & Over-the-Air Firmware Update Status & Provides a status indication of a firmware update transmission attempt                               \\
-    0xA1   & Router Record Indicator             & Displays the multiple route hopes after a Zigbee route record command                                \\
-    0xA3   & Many-to-One Route Request Indicator & Indicates a many-to-one route request is received                                                    \\
-    0xA5   & Join Notification Status            & Indicates a module attempts to join, rejoin, or leave the network                                    \\ \bottomrule
-    \end{tabular}
-    \caption{Receive data frames 类型}
-    \label{tab:XBee-Receive-data-frames}
-\end{table}
+接收数据帧通过串行输出接收，数据从远程XBees无线接收。
+
+% 如表~\ref{tab:XBee-Receive-data-frames}。
+
+% % Please add the following required packages to your document preamble:
+% % \usepackage{booktabs}
+% \begin{table}[htbp]
+%     \begin{tabular}{@{}lll@{}}
+%     \toprule
+%     API ID & Frame name                          & Description                                                                                          \\ \midrule
+%     0x88   & AT Command Response                 & Displays the response to previous AT command frame                                                   \\
+%     0x8A   & Modem Status                        & Displays event notifications such as reset, association, disassociation, and so on.                  \\
+%     0x8B   & Transmit Status                     & Indicates wireless data transmission success or failure                                              \\
+%     0x90   & Receive Packet                      & Sends wirelessly received data out the serial interface (AO = 0)                                     \\
+%     0x91   & Explicit Rx Indicator               & Sends wirelessly received data out the serial interface when explicit mode is enabled (AO 0)         \\
+%     0x92   & IO Data Sample Rx Indicator         & Sends wirelessly received IO data out the serial interface                                           \\
+%     0x94   & XBee Sensor Read Indicator          & Sends wirelessly received sensor sample (from a Digi 1-wire sensor adapter) out the serial interface \\
+%     0x95   & Node Identification Indicator       & Displays received node identification message when explicit mode is disabled (AO = 0)                \\
+%     0x97   & Remote AT Command Response          & Displays the response to previous remote AT command requests                                         \\
+%     0x98   & Extended Modem Status               & Displays what is happening during the association when Verbose Join is enabled (DC10)                \\
+%     0xA0   & Over-the-Air Firmware Update Status & Provides a status indication of a firmware update transmission attempt                               \\
+%     0xA1   & Router Record Indicator             & Displays the multiple route hopes after a Zigbee route record command                                \\
+%     0xA3   & Many-to-One Route Request Indicator & Indicates a many-to-one route request is received                                                    \\
+%     0xA5   & Join Notification Status            & Indicates a module attempts to join, rejoin, or leave the network                                    \\ \bottomrule
+%     \end{tabular}
+%     \caption{Receive data frames 类型}
+%     \label{tab:XBee-Receive-data-frames}
+% \end{table}
 
 \subsection{Frame Example}
 
@@ -255,42 +265,42 @@ MSB 最高有效位（Most Significant Bit），在大端序中，MSB即指最�
     \item 要传输的数据是“ Hello”（48 65 6C 6C 6F）。
 \end{itemize}
 
-分析如表~\ref{tab:XBee-Frame-examples}。
+% 分析如表~\ref{tab:XBee-Frame-examples}。
 
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-% \usepackage{multirow}
-\begin{table}[htbp]
-    \begin{tabular}{@{}|l|l|l|l|l|@{}}
-    \toprule
-    \multicolumn{2}{|l|}{Frame fields} & Offset & Example & Description \\ \midrule
-    \multicolumn{2}{|l|}{Start delimeter} & 0 & 0x7E &  \\ \midrule
-    \multicolumn{2}{|l|}{\multirow{2}{*}{Length}} & MSB 1 & 0x00 & \multirow{2}{*}{Number of bytes between the length and the checksum} \\ \cmidrule(lr){3-4}
-    \multicolumn{2}{|l|}{} & LSB 2 & 0x13 &  \\ \midrule
-    \multirow{19}{*}{Frame data} & Frame type & 3 & 0x10 & 0x10 - Indicates this is a Transmit Request frame \\ \cmidrule(l){2-5} 
-     & Frame ID & 4 & 0x01 & \begin{tabular}[c]{@{}l@{}}Identifies the data frame for the host to correlate with a subsequent Transmit Status (0x8B) frame.\\ Setting Frame ID to '0' will disable response frame.\end{tabular} \\ \cmidrule(l){2-5} 
-     & \multirow{8}{*}{64-bit Destination address} & MSB 5 & 0x00 & \multirow{8}{*}{\begin{tabular}[c]{@{}l@{}}Set to the 64-bit address of the destination XBee\\ The following addresses are also supported:\\ 0x0000000000000000 - Coordinator address\\ 0x000000000000FFFF - Broadcast address\\ 0xFFFFFFFFFFFFFFFF - Unknown address if the destination's 64-bit address is unknown\end{tabular}} \\ \cmidrule(lr){3-4}
-     &  & 6 & 0x13 &  \\ \cmidrule(lr){3-4}
-     &  & 7 & 0xA2 &  \\ \cmidrule(lr){3-4}
-     &  & 8 & 0x00 &  \\ \cmidrule(lr){3-4}
-     &  & 9 & 0x40 &  \\ \cmidrule(lr){3-4}
-     &  & 10 & 0xDA &  \\ \cmidrule(lr){3-4}
-     &  & 11 & 0x9D &  \\ \cmidrule(lr){3-4}
-     &  & LSB 12 & 0x23 &  \\ \cmidrule(l){2-5} 
-     & \multirow{2}{*}{16-bit Destination address} & MSB 13 & 0xA6 & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Set to the 16-bit address of the destination XBee, if known.\\ The following addresses are also supported:\\ 0x0000 - Coordinator address\\ 0xFFFE - Unknwon address if the destination's 16-bit address is unknown, or if sending a broadcast\end{tabular}} \\ \cmidrule(lr){3-4}
-     &  & LSB 14 & 0xB9 &  \\ \cmidrule(l){2-5} 
-     & Broadcast Radius & 15 & 0x00 & \begin{tabular}[c]{@{}l@{}}Sets the maximum number of hops a broadcast transmission can occur. \\ If set to '0', the broadcast radius will be set to the maximum hops value.\end{tabular} \\ \cmidrule(l){2-5} 
-     & Options & 16 & 0x00 & \begin{tabular}[c]{@{}l@{}}Bitfield of supported transmission options Supported values include the following:\\ 0x01 - Disable retries\\ 0x20 - Enable APS encryption (if EE = 1)\\ 0x40 - Use the extended transmission timeout for this destination\\ All other bits must be set to 0. \\ Enabling APS encryption decreases the maximum number of RF payload bytes by 4 (below the value reported by NP). \\ Setting the extended timeout bit causes the stack to set the extended transmission timeout for the destination address.\end{tabular} \\ \cmidrule(l){2-5} 
-     & \multirow{5}{*}{RF Data} & MSB 14 & 0x48 & \multirow{5}{*}{Up to 255 bytes of data that is sent to the destination XBee} \\ \cmidrule(lr){3-4}
-     &  & 15 & 0x65 &  \\ \cmidrule(lr){3-4}
-     &  & ... & 0x6C &  \\ \cmidrule(lr){3-4}
-     &  & 17 & 0x6C &  \\ \cmidrule(lr){3-4}
-     &  & LSB 18 & 0x6F &  \\ \midrule
-    \multicolumn{2}{|l|}{Checksum} & 22 & 0x6E & Hash sum of frame data bytes \\ \bottomrule
-    \end{tabular}
-    \caption{Frame examples}
-    \label{tab:XBee-Frame-examples}
-\end{table}
+% % Please add the following required packages to your document preamble:
+% % \usepackage{booktabs}
+% % \usepackage{multirow}
+% \begin{table}[htbp]
+%     \begin{tabular}{@{}|l|l|l|l|l|@{}}
+%     \toprule
+%     \multicolumn{2}{|l|}{Frame fields} & Offset & Example & Description \\ \midrule
+%     \multicolumn{2}{|l|}{Start delimeter} & 0 & 0x7E &  \\ \midrule
+%     \multicolumn{2}{|l|}{\multirow{2}{*}{Length}} & MSB 1 & 0x00 & \multirow{2}{*}{Number of bytes between the length and the checksum} \\ \cmidrule(lr){3-4}
+%     \multicolumn{2}{|l|}{} & LSB 2 & 0x13 &  \\ \midrule
+%     \multirow{19}{*}{Frame data} & Frame type & 3 & 0x10 & 0x10 - Indicates this is a Transmit Request frame \\ \cmidrule(l){2-5} 
+%      & Frame ID & 4 & 0x01 & \begin{tabular}[c]{@{}l@{}}Identifies the data frame for the host to correlate with a subsequent Transmit Status (0x8B) frame.\\ Setting Frame ID to '0' will disable response frame.\end{tabular} \\ \cmidrule(l){2-5} 
+%      & \multirow{8}{*}{64-bit Destination address} & MSB 5 & 0x00 & \multirow{8}{*}{\begin{tabular}[c]{@{}l@{}}Set to the 64-bit address of the destination XBee\\ The following addresses are also supported:\\ 0x0000000000000000 - Coordinator address\\ 0x000000000000FFFF - Broadcast address\\ 0xFFFFFFFFFFFFFFFF - Unknown address if the destination's 64-bit address is unknown\end{tabular}} \\ \cmidrule(lr){3-4}
+%      &  & 6 & 0x13 &  \\ \cmidrule(lr){3-4}
+%      &  & 7 & 0xA2 &  \\ \cmidrule(lr){3-4}
+%      &  & 8 & 0x00 &  \\ \cmidrule(lr){3-4}
+%      &  & 9 & 0x40 &  \\ \cmidrule(lr){3-4}
+%      &  & 10 & 0xDA &  \\ \cmidrule(lr){3-4}
+%      &  & 11 & 0x9D &  \\ \cmidrule(lr){3-4}
+%      &  & LSB 12 & 0x23 &  \\ \cmidrule(l){2-5} 
+%      & \multirow{2}{*}{16-bit Destination address} & MSB 13 & 0xA6 & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Set to the 16-bit address of the destination XBee, if known.\\ The following addresses are also supported:\\ 0x0000 - Coordinator address\\ 0xFFFE - Unknwon address if the destination's 16-bit address is unknown, or if sending a broadcast\end{tabular}} \\ \cmidrule(lr){3-4}
+%      &  & LSB 14 & 0xB9 &  \\ \cmidrule(l){2-5} 
+%      & Broadcast Radius & 15 & 0x00 & \begin{tabular}[c]{@{}l@{}}Sets the maximum number of hops a broadcast transmission can occur. \\ If set to '0', the broadcast radius will be set to the maximum hops value.\end{tabular} \\ \cmidrule(l){2-5} 
+%      & Options & 16 & 0x00 & \begin{tabular}[c]{@{}l@{}}Bitfield of supported transmission options Supported values include the following:\\ 0x01 - Disable retries\\ 0x20 - Enable APS encryption (if EE = 1)\\ 0x40 - Use the extended transmission timeout for this destination\\ All other bits must be set to 0. \\ Enabling APS encryption decreases the maximum number of RF payload bytes by 4 (below the value reported by NP). \\ Setting the extended timeout bit causes the stack to set the extended transmission timeout for the destination address.\end{tabular} \\ \cmidrule(l){2-5} 
+%      & \multirow{5}{*}{RF Data} & MSB 14 & 0x48 & \multirow{5}{*}{Up to 255 bytes of data that is sent to the destination XBee} \\ \cmidrule(lr){3-4}
+%      &  & 15 & 0x65 &  \\ \cmidrule(lr){3-4}
+%      &  & ... & 0x6C &  \\ \cmidrule(lr){3-4}
+%      &  & 17 & 0x6C &  \\ \cmidrule(lr){3-4}
+%      &  & LSB 18 & 0x6F &  \\ \midrule
+%     \multicolumn{2}{|l|}{Checksum} & 22 & 0x6E & Hash sum of frame data bytes \\ \bottomrule
+%     \end{tabular}
+%     \caption{Frame examples}
+%     \label{tab:XBee-Frame-examples}
+% \end{table}
 
 \subsection{AT和API模式对比}
 

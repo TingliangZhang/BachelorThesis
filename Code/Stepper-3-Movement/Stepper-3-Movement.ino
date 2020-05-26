@@ -16,7 +16,7 @@ float Distance = 10000;
 // If one step is 1.8 degree, one round is 360/1.8 = 200 step. 
 
 void setup() {
-  // put your setup code here, to run once:
+
     stepper1.setMaxSpeed(MaxSpeed);
     stepper1.setAcceleration(Acceleration);
 //    stepper1.moveTo(Distance);
@@ -33,7 +33,7 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+
     stepper1.run();
     stepper2.run();
     stepper3.run();

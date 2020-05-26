@@ -27,7 +27,7 @@
 
 \section{设计环境的更改}
 
-PCB的设计依赖电子设计自动化（英语：Electronic design automation，缩写：EDA）软件。
+% PCB的设计依赖电子设计自动化（英语：Electronic design automation，缩写：EDA）软件。
 
 当初绘制PCB v1时使用的时Altium Designer 20.0.9集成开发环境，如图~\ref{fig:AltiumDesignerInterface}所示。
 
@@ -99,7 +99,9 @@ XBee模块通过TX1/RX1和MCU连接，如图~\ref{fig:Circuit-1}所示。
 
 XBee模块的底座是两排1x10 Pitch = 2mm 的母排。
 
-\section{USB UART 异步串行数据传输芯片}
+% \section{USB UART 异步串行数据传输芯片}
+
+\section{USB芯片}
 
 % USB转UART芯片稳定程度和价格均为FT232>CH340>PL2303。
 
@@ -111,7 +113,9 @@ XBee模块的底座是两排1x10 Pitch = 2mm 的母排。
 
 CH340C内置晶振，最为合适。
 
-下图是统一供电方式下MCU 单片机通过TTL 串口连接CH340 芯片实现USB通讯的参考电路。该产品选择自供电方式，VCC 支持5V 或者3.3V（VCC 为3.3V 时V3 需短接到VCC），完全不使用USB 总线电源VBUS（如有需要MCU可以通过I/O 串电阻后检测其是否有效）。CH340 与MCU 使用同一电源VCC，所以CH340与MCU 之间不存在双电源通过I/O相互电流倒灌的情形。
+% 下图是统一供电方式下MCU 单片机通过TTL 串口连接CH340 芯片实现USB通讯的参考电路。
+
+该产品选择自供电方式，VCC 支持5V 或者3.3V（VCC 为3.3V 时V3 需短接到VCC），完全不使用USB 总线电源VBUS（如有需要MCU可以通过I/O 串电阻后检测其是否有效）。CH340 与MCU 使用同一电源VCC，所以CH340与MCU 之间不存在双电源通过I/O相互电流倒灌的情形。
 
 CH340没有使用到的信号线都可以悬空。对于CH340C/N/K/E/B 芯片，无需X6 和C17 及C18。
 

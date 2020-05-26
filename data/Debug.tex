@@ -7,7 +7,9 @@
 
 \inputminted[mathescape, linenos, breaklines]{c}{Code/Stepper-3-Movement/Stepper-3-Movement.ino}
 
-连上电池、烧写程序、等待五秒后两电机经过加减速过程反向转动10000 Step后停止，推动小车向前运动一段距离。
+连上电池、烧写程序、等待五秒后两电机经过加减速过程反向转动10000 Step后停止。
+
+% ，推动小车向前运动一段距离。
 
 但是在电机停止后我没有像往常一样拔下锂电池，大约十分钟，我闻到了金属加热后表面涂层的焦糊气味（有点像电弧焊的气味），寻找来源的过程中感受到了小车的热辐射，第一反应就是把锂电池拔下来，感受到锂电并没有发热松了一口气，大致判定是电机发热，我做了一个错误决定，用手指伸到了电机外壳上验证是不是电机在发热，感受到电机温度应该在200-300摄氏度之间，手指被烫伤。
 
@@ -37,9 +39,9 @@
 
 时钟周期比我代码设定的长了16倍，原因未知。
 
-测试代码如下：
+% 测试代码如下：
 
-\inputminted[mathescape, linenos, breaklines]{c}{Code/PWM-Test/PWM-Test.ino}
+% \inputminted[mathescape, linenos, breaklines]{c}{Code/PWM-Test/PWM-Test.ino}
 
 测得波形数据如图~\ref{fig:DebugClock}。
 

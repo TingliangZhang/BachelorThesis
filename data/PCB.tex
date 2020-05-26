@@ -479,8 +479,9 @@ TB6612FNG的布线按照Datasheet的推荐布线（如图~\ref{fig:TB6612FNG-Con
 
 步进电机驱动可以采用L6226QTR。
 
-如果未来搭建更大的平台，使用10A级别的电机可以使用ST powerSTEP01 (System-in-package integrating microstepping controller and
-10 A power MOSFETs) 作为2相步进电机驱动，在Altium Designer 20环境下也有相应的封装可用，目前平台较小，没有必要使用powerSTEP01。
+% ST powerSTEP01 (System-in-package integrating microstepping controller and 10 A power MOSFETs)
+
+如果未来搭建更大的平台，使用10A级别的电机可以使用ST powerSTEP01作为2相步进电机驱动，在Altium Designer 20环境下也有相应的封装可用，目前平台较小，没有必要使用powerSTEP01。
 
 ST powerSTEP01可以放在额外的驱动板上，作为扩展板使用。ST powerSTEP01支持SPI串行通信，可以只通过一个SPI Bus总线控制多个电机，以菊花链(Daisy chain，如图\ref{fig:SPI_three_slaves_daisy_chained})的形式。注意，ST powerSTEP01供电电压是7.5 V - 85 V，所以2S锂电的7.4V不足以供电，须使用3S及以上锂电池驱动系统，或另加升压模块（不建议）。
 
@@ -517,7 +518,9 @@ ST powerSTEP01可以放在额外的驱动板上，作为扩展板使用。ST pow
 
 每个代号都是一个系列的产品，他们最大的区别就是Pitch（间距）不一样。
 
-驰海电机GM12-10BY 微型步进减速电机 2相4线 电机与轴同向倒装结构 DC5V ，需要定制改变引线方向，现在默认的引线会蹭到轮子。其JST端子为ZH-1.25mm端子。
+% 驰海电机GM12-10BY 微型步进减速电机 2相4线 电机与轴同向倒装结构 DC5V ，
+
+GM12-10BY 需要定制改变引线方向，现在默认的引线会蹭到轮子。其JST端子为ZH-1.25mm端子。
 
 GW12-N20VA永磁蜗轮蜗杆齿轮减速电机（有蜗杆改变90度传动方向），定制加装磁性霍尔编码盘，驱动电压5V，空载转速控制在60rpm。其JST端子为ZH-1.5mm端子。
 
