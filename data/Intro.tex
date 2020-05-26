@@ -3,58 +3,60 @@
 
 \section{背景}
 
-分布式可再生能源（如风电、太阳能等）作为可持续获取的清洁能源，近年来受到各国重视，发电量和节点数也与日俱增，如表~\ref{tab:PowerGenerated}，5G技术和泛在电力物联网建设也到了实用阶段。
+分布式可再生能源（如风电、太阳能等）作为可持续获取的清洁能源，近年来受到各国重视，发电量和节点数也与日俱增，5G技术和泛在电力物联网建设也到了实用阶段。
 
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-\begin{table}[htbp]
-    \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|c|}
-    \hline
-    \multirow{3}{*}{地  区} & \multirow{3}{*}{Region} & \multicolumn{3}{c|}{风力发电量} & \multicolumn{3}{c|}{太阳能发电量} \\ \cline{3-8} 
-     &  & \multicolumn{3}{c|}{(Wind Power Generation)} & \multicolumn{3}{c|}{(Solar Power Generation)} \\ \cline{3-8} 
-     &  & 2015 & 2016 & 2017 & 2015 & 2016 & 2017 \\ \hline
-     &  &  &  &  &  &  &  \\ \hline
-    北  京 & Beijing & 2.57 & 3.27 & 3.46 & 0.51 & 1.07 & 1.36 \\ \hline
-    天  津 & Tianjin & 6.28 & 5.84 & 5.91 & 0.03 & 0.16 & 1.61 \\ \hline
-    河  北 & Hebei & 186.18 & 209.32 & 257.54 & 9.47 & 26.54 & 56.22 \\ \hline
-    山  西 & Shanxi & 85.80 & 120.28 & 146.06 & 3.24 & 14.45 & 46.54 \\ \hline
-    内蒙古 & Inner Mongolia & 407.88 & 464.18 & 551.43 & 56.99 & 83.26 & 114.19 \\ \hline
-     &  &  &  &  &  &  &  \\ \hline
-    辽  宁 & Liaoning & 111.84 & 128.93 & 143.50 & 1.23 & 3.41 & 6.17 \\ \hline
-    吉  林 & Jilin & 72.66 & 84.66 & 87.64 & 0.80 & 0.91 & 1.86 \\ \hline
-    黑龙江 & Heilongjiang & 64.67 & 79.62 & 90.70 & 0.16 & 0.44 & 1.22 \\ \hline
-     &  &  &  &  &  &  &  \\ \hline
-    上  海 & Shanghai & 4.79 & 6.70 & 16.64 & 0.35 & 0.45 & 0.62 \\ \hline
-    江  苏 & Jiangsu & 59.25 & 94.12 & 116.65 & 19.34 & 41.15 & 61.94 \\ \hline
-    浙  江 & Zhejiang & 16.42 & 23.42 & 23.59 & 7.65 & 22.17 & 23.52 \\ \hline
-    安  徽 & Anhui & 20.57 & 34.17 & 39.74 & 3.74 & 20.67 & 45.25 \\ \hline
-    福  建 & Fujian & 44.97 & 50.26 & 62.40 & 4.71 & 3.46 & 2.38 \\ \hline
-    江  西 & Jiangxi & 11.33 & 18.77 & 29.84 & 2.34 & 11.13 & 15.39 \\ \hline
-    山  东 & Shandong & 102.91 & 142.51 & 166.08 & 21.05 & 29.96 & 73.60 \\ \hline
-     &  &  &  &  &  &  &  \\ \hline
-    河  南 & Henan & 13.69 & 18.01 & 33.29 & 0.90 & 13.06 & 26.91 \\ \hline
-    湖  北 & Hubei & 17.19 & 40.40 & 52.18 & 1.36 & 11.40 & 11.54 \\ \hline
-    湖  南 & Hunan & 28.35 & 39.63 & 45.24 & 0.37 & 0.63 & 4.73 \\ \hline
-    广  东 & Guangdong & 55.41 & 47.44 & 55.07 & 1.81 & 4.47 & 10.55 \\ \hline
-    广  西 & Guangxi & 5.91 & 13.81 & 24.29 & 0.38 & 0.84 & 2.69 \\ \hline
-    海  南 & Hainan & 5.95 & 6.41 & 5.47 & 1.94 & 2.14 & 3.01 \\ \hline
-     &  &  &  &  &  &  &  \\ \hline
-    重  庆 & Chongqing & 2.09 & 4.65 & 6.00 &  &  & 0.55 \\ \hline
-    四  川 & Sichuan & 10.19 & 17.90 & 37.80 & 1.12 & 6.06 & 16.92 \\ \hline
-    贵  州 & Guizhou & 39.00 & 55.17 & 60.15 &  & 0.88 & 4.61 \\ \hline
-    云  南 & Yunnan & 92.28 & 155.32 & 194.40 & 5.68 & 21.03 & 27.58 \\ \hline
-    西  藏 & Tibet &  &  &  & 2.61 & 2.88 & 4.49 \\ \hline
-     &  &  &  &  &  &  &  \\ \hline
-    陕  西 & Shaanxi & 27.87 & 37.46 & 50.86 & 8.07 & 13.34 & 34.25 \\ \hline
-    甘  肃 & Gansu & 126.70 & 136.44 & 187.60 & 59.12 & 60.19 & 73.48 \\ \hline
-    青  海 & Qinghai & 6.59 & 10.01 & 18.61 & 72.67 & 89.91 & 112.57 \\ \hline
-    宁  夏 & Ningxia & 80.51 & 125.47 & 149.32 & 40.78 & 51.34 & 71.79 \\ \hline
-    新  疆 & Xinjiang & 147.83 & 196.55 & 288.76 & 59.38 & 78.47 & 109.64 \\ \hline
-    \end{tabular}
-    \caption{分地区核能、风力、太阳能发电量}
-    \label{tab:PowerGenerated}
-\end{table}
+% 如表~\ref{tab:PowerGenerated}，
+
+% % Please add the following required packages to your document preamble:
+% % \usepackage{multirow}
+% \begin{table}[htbp]
+%     \centering
+%     \begin{tabular}{|c|c|c|c|c|c|c|c|}
+%     \hline
+%     \multirow{3}{*}{地  区} & \multirow{3}{*}{Region} & \multicolumn{3}{c|}{风力发电量} & \multicolumn{3}{c|}{太阳能发电量} \\ \cline{3-8} 
+%      &  & \multicolumn{3}{c|}{(Wind Power Generation)} & \multicolumn{3}{c|}{(Solar Power Generation)} \\ \cline{3-8} 
+%      &  & 2015 & 2016 & 2017 & 2015 & 2016 & 2017 \\ \hline
+%      &  &  &  &  &  &  &  \\ \hline
+%     北  京 & Beijing & 2.57 & 3.27 & 3.46 & 0.51 & 1.07 & 1.36 \\ \hline
+%     天  津 & Tianjin & 6.28 & 5.84 & 5.91 & 0.03 & 0.16 & 1.61 \\ \hline
+%     河  北 & Hebei & 186.18 & 209.32 & 257.54 & 9.47 & 26.54 & 56.22 \\ \hline
+%     山  西 & Shanxi & 85.80 & 120.28 & 146.06 & 3.24 & 14.45 & 46.54 \\ \hline
+%     内蒙古 & Inner Mongolia & 407.88 & 464.18 & 551.43 & 56.99 & 83.26 & 114.19 \\ \hline
+%      &  &  &  &  &  &  &  \\ \hline
+%     辽  宁 & Liaoning & 111.84 & 128.93 & 143.50 & 1.23 & 3.41 & 6.17 \\ \hline
+%     吉  林 & Jilin & 72.66 & 84.66 & 87.64 & 0.80 & 0.91 & 1.86 \\ \hline
+%     黑龙江 & Heilongjiang & 64.67 & 79.62 & 90.70 & 0.16 & 0.44 & 1.22 \\ \hline
+%      &  &  &  &  &  &  &  \\ \hline
+%     上  海 & Shanghai & 4.79 & 6.70 & 16.64 & 0.35 & 0.45 & 0.62 \\ \hline
+%     江  苏 & Jiangsu & 59.25 & 94.12 & 116.65 & 19.34 & 41.15 & 61.94 \\ \hline
+%     浙  江 & Zhejiang & 16.42 & 23.42 & 23.59 & 7.65 & 22.17 & 23.52 \\ \hline
+%     安  徽 & Anhui & 20.57 & 34.17 & 39.74 & 3.74 & 20.67 & 45.25 \\ \hline
+%     福  建 & Fujian & 44.97 & 50.26 & 62.40 & 4.71 & 3.46 & 2.38 \\ \hline
+%     江  西 & Jiangxi & 11.33 & 18.77 & 29.84 & 2.34 & 11.13 & 15.39 \\ \hline
+%     山  东 & Shandong & 102.91 & 142.51 & 166.08 & 21.05 & 29.96 & 73.60 \\ \hline
+%      &  &  &  &  &  &  &  \\ \hline
+%     河  南 & Henan & 13.69 & 18.01 & 33.29 & 0.90 & 13.06 & 26.91 \\ \hline
+%     湖  北 & Hubei & 17.19 & 40.40 & 52.18 & 1.36 & 11.40 & 11.54 \\ \hline
+%     湖  南 & Hunan & 28.35 & 39.63 & 45.24 & 0.37 & 0.63 & 4.73 \\ \hline
+%     广  东 & Guangdong & 55.41 & 47.44 & 55.07 & 1.81 & 4.47 & 10.55 \\ \hline
+%     广  西 & Guangxi & 5.91 & 13.81 & 24.29 & 0.38 & 0.84 & 2.69 \\ \hline
+%     海  南 & Hainan & 5.95 & 6.41 & 5.47 & 1.94 & 2.14 & 3.01 \\ \hline
+%      &  &  &  &  &  &  &  \\ \hline
+%     重  庆 & Chongqing & 2.09 & 4.65 & 6.00 &  &  & 0.55 \\ \hline
+%     四  川 & Sichuan & 10.19 & 17.90 & 37.80 & 1.12 & 6.06 & 16.92 \\ \hline
+%     贵  州 & Guizhou & 39.00 & 55.17 & 60.15 &  & 0.88 & 4.61 \\ \hline
+%     云  南 & Yunnan & 92.28 & 155.32 & 194.40 & 5.68 & 21.03 & 27.58 \\ \hline
+%     西  藏 & Tibet &  &  &  & 2.61 & 2.88 & 4.49 \\ \hline
+%      &  &  &  &  &  &  &  \\ \hline
+%     陕  西 & Shaanxi & 27.87 & 37.46 & 50.86 & 8.07 & 13.34 & 34.25 \\ \hline
+%     甘  肃 & Gansu & 126.70 & 136.44 & 187.60 & 59.12 & 60.19 & 73.48 \\ \hline
+%     青  海 & Qinghai & 6.59 & 10.01 & 18.61 & 72.67 & 89.91 & 112.57 \\ \hline
+%     宁  夏 & Ningxia & 80.51 & 125.47 & 149.32 & 40.78 & 51.34 & 71.79 \\ \hline
+%     新  疆 & Xinjiang & 147.83 & 196.55 & 288.76 & 59.38 & 78.47 & 109.64 \\ \hline
+%     \end{tabular}
+%     \caption{分地区核能、风力、太阳能发电量}
+%     \label{tab:PowerGenerated}
+% \end{table}
 
 在众多节点需要优化的情境下，传统的集中式优化存在通信堵塞、节点故障、算力不足等问题。
 
@@ -109,31 +111,33 @@
 
 \section{移动平台概述}
 
-用于教育等交互领域的移动机器人机器人平台在近几年的研发进展迅速（见表~\ref{tab:collective}），一方面得益于科技及制造业的发展，运算能力越来越强大的芯片和嵌入式CV得以普及，体积很小的平台上可以搭载强大的数据或图像处理芯片，甚至有的小车上搭载了操作系统。另一方面，人们为了探索未来人机交互方式，对于各式各样的移动协作平台的需求越来越大。
+用于教育等交互领域的移动机器人机器人平台在近几年的研发进展迅速，一方面得益于科技及制造业的发展，运算能力越来越强大的芯片和嵌入式CV得以普及，体积很小的平台上可以搭载强大的数据或图像处理芯片，甚至有的小车上搭载了操作系统。另一方面，人们为了探索未来人机交互方式，对于各式各样的移动协作平台的需求越来越大。
 
-% Please add the following required packages to your document preamble:
-% \usepackage{lscape}
-\begin{landscape}
-    \begin{table}[htbp]
-    \centering
-    \begin{tabular}{l|lllllll}
-    \hline
-    robot/author     & size          & battery                                                             & mobility    & perception                                                                  & interaction                                                         & comm.           & processing  \\ \hline
-    Jasmine          & 2.6x2.6x2.6cm & \begin{tabular}[c]{@{}l@{}}LiPo, \\ 2 h autonomy\end{tabular}       & wheels      & none                                                                        & none                                                                & radio           & none        \\
-    AmigoBot         & 33x28x15cm    & \begin{tabular}[c]{@{}l@{}}Pb, 26Wh,\\ 2 h autonomy\end{tabular}    & wheels      & \begin{tabular}[c]{@{}l@{}}ultrasound, \\ opt. vision\end{tabular}          & none                                                                & opt. radio      & ad hoc      \\
-    Kobot            & 12x7cm        & \begin{tabular}[c]{@{}l@{}}LiPo, 7Wh,\\ 10 h autonomy\end{tabular}  & wheels      & opt. omnicam                                                                & none                                                                & Xbee            & opt. PXA255 \\
-    Zeero            & $\sim$25 cm   & 4xAA, 9Wh                                                           & wheels      & \begin{tabular}[c]{@{}l@{}}pan-tilt CMUcam2, \\ ultrasound, IR\end{tabular} & none                                                                & Bluetooth       & PXA255      \\
-    FlockBots        & 18cm          & \begin{tabular}[c]{@{}l@{}}NiMH, 16Wh, \\ 2 h autonomy\end{tabular} & wheels      & \begin{tabular}[c]{@{}l@{}}pan-tilt CMUCam2, \\ IR\end{tabular}             & simple grip-per                                                     & Wi-Fi           & PXA255      \\
-    Molecubes        & 66x66x66cm    & \begin{tabular}[c]{@{}l@{}}16 Wh \\ 1 h autonomy\end{tabular}       & opt. wheels & opt. vision                                                                 & \begin{tabular}[c]{@{}l@{}}assembling, \\ gripper\end{tabular}      & opt. Blue-tooth & opt. ARM 11 \\
-    Mindart          & 29x24x37cm    & NiCad, 20 Wh                                                        & tracks      & beacon \& vision                                                            & gripper                                                             & none            & Scenix SX   \\
-    Yoo, K.H. et al. & n.a.          & n.a.                                                                & tracks      & vision                                                                      & self-assembling                                                     & RF              & off-board   \\
-    JL-1             & 35x25x15cm    & 4 h autonomy                                                        & tracks      & vision                                                                      & self-assembling                                                     & Wi-Fi           & PXA255      \\
-    S-bot            & 12x15cm       & \begin{tabular}[c]{@{}l@{}}Lion, 10Wh, \\ 2 h autonomy\end{tabular} & treels      & omnicam                                                                     & \begin{tabular}[c]{@{}l@{}}gripper, \\ self-assembling\end{tabular} & Wi-Fi           & PXA255     
-    \end{tabular}
-    \caption{A selection of robots that have been used recently for collective experiments. The perception column lists the long range (\textgreater 20 cm) sensing capabilities of the robot, which excludes proximity sensors and bumpers. The processing column lists the vision-capable processing unit of the robot (\textgreater 100 MIPS), which excludes microcontrollers.\cite{bonani2010marxbot}}
-    \label{tab:collective}
-    \end{table}
-\end{landscape}
+% 用于教育等交互领域的移动机器人机器人平台在近几年的研发进展迅速（见表~\ref{tab:collective}）
+
+% % Please add the following required packages to your document preamble:
+% % \usepackage{lscape}
+% \begin{landscape}
+%     \begin{table}[htbp]
+%     \centering
+%     \begin{tabular}{l|lllllll}
+%     \hline
+%     robot/author     & size          & battery                                                             & mobility    & perception                                                                  & interaction                                                         & comm.           & processing  \\ \hline
+%     Jasmine          & 2.6x2.6x2.6cm & \begin{tabular}[c]{@{}l@{}}LiPo, \\ 2 h autonomy\end{tabular}       & wheels      & none                                                                        & none                                                                & radio           & none        \\
+%     AmigoBot         & 33x28x15cm    & \begin{tabular}[c]{@{}l@{}}Pb, 26Wh,\\ 2 h autonomy\end{tabular}    & wheels      & \begin{tabular}[c]{@{}l@{}}ultrasound, \\ opt. vision\end{tabular}          & none                                                                & opt. radio      & ad hoc      \\
+%     Kobot            & 12x7cm        & \begin{tabular}[c]{@{}l@{}}LiPo, 7Wh,\\ 10 h autonomy\end{tabular}  & wheels      & opt. omnicam                                                                & none                                                                & Xbee            & opt. PXA255 \\
+%     Zeero            & $\sim$25 cm   & 4xAA, 9Wh                                                           & wheels      & \begin{tabular}[c]{@{}l@{}}pan-tilt CMUcam2, \\ ultrasound, IR\end{tabular} & none                                                                & Bluetooth       & PXA255      \\
+%     FlockBots        & 18cm          & \begin{tabular}[c]{@{}l@{}}NiMH, 16Wh, \\ 2 h autonomy\end{tabular} & wheels      & \begin{tabular}[c]{@{}l@{}}pan-tilt CMUCam2, \\ IR\end{tabular}             & simple grip-per                                                     & Wi-Fi           & PXA255      \\
+%     Molecubes        & 66x66x66cm    & \begin{tabular}[c]{@{}l@{}}16 Wh \\ 1 h autonomy\end{tabular}       & opt. wheels & opt. vision                                                                 & \begin{tabular}[c]{@{}l@{}}assembling, \\ gripper\end{tabular}      & opt. Blue-tooth & opt. ARM 11 \\
+%     Mindart          & 29x24x37cm    & NiCad, 20 Wh                                                        & tracks      & beacon \& vision                                                            & gripper                                                             & none            & Scenix SX   \\
+%     Yoo, K.H. et al. & n.a.          & n.a.                                                                & tracks      & vision                                                                      & self-assembling                                                     & RF              & off-board   \\
+%     JL-1             & 35x25x15cm    & 4 h autonomy                                                        & tracks      & vision                                                                      & self-assembling                                                     & Wi-Fi           & PXA255      \\
+%     S-bot            & 12x15cm       & \begin{tabular}[c]{@{}l@{}}Lion, 10Wh, \\ 2 h autonomy\end{tabular} & treels      & omnicam                                                                     & \begin{tabular}[c]{@{}l@{}}gripper, \\ self-assembling\end{tabular} & Wi-Fi           & PXA255     
+%     \end{tabular}
+%     \caption{A selection of robots that have been used recently for collective experiments. The perception column lists the long range (\textgreater 20 cm) sensing capabilities of the robot, which excludes proximity sensors and bumpers. The processing column lists the vision-capable processing unit of the robot (\textgreater 100 MIPS), which excludes microcontrollers.\cite{bonani2010marxbot}}
+%     \label{tab:collective}
+%     \end{table}
+% \end{landscape}
 
 
 \section{本研究意义}

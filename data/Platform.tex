@@ -1,42 +1,42 @@
 \chapter{移动平台设计和制造}
 \label{cha:Platform}
 
-\section{现有平台对比}
+% \section{现有平台对比}
 
-从各类文献和实验平台中总结出各种移动平台的技术参数见表~\ref{tab:Comparison}，
+% 从各类文献和实验平台中总结出各种移动平台的技术参数见表~\ref{tab:Comparison}，
 
 
-% \begin{figure}[htbp]
+% % \begin{figure}[htbp]
+% %     \centering
+% %     \includegraphics[height=8cm]{Pheeno.jpg}
+% %     \caption{COMPARISON OF CURRENTLY AVAILABLE MULTI-ROBOT PLATFORMS\cite{wilson2016pheeno}}
+% %     \label{fig:Pheeno}
+% % \end{figure}
+
+% % Please add the following required packages to your document preamble:
+% % \usepackage[table,xcdraw]{xcolor}
+% % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% % \usepackage{lscape}
+% \begin{landscape}
+%     \begin{table}[htbp]
 %     \centering
-%     \includegraphics[height=8cm]{Pheeno.jpg}
-%     \caption{COMPARISON OF CURRENTLY AVAILABLE MULTI-ROBOT PLATFORMS\cite{wilson2016pheeno}}
-%     \label{fig:Pheeno}
-% \end{figure}
-
-% Please add the following required packages to your document preamble:
-% \usepackage[table,xcdraw]{xcolor}
-% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-% \usepackage{lscape}
-\begin{landscape}
-    \begin{table}[htbp]
-    \centering
-    \begin{tabular}{lllllll}
-    \hline
-    Name        & Processor                                                                  & Sensing                                                                                                                & Comm.                                                                     & Imaging                                                                              & Cost                 \\ \hline
-    \rowcolor[HTML]{EFEFEF} 
-    R-One       & \begin{tabular}[c]{@{}l@{}}ARM Cortex-M3, \\ 50 MHz, 64KB RAM\end{tabular} & \begin{tabular}[c]{@{}l@{}}Accelerometer,\\ Gyroscope, Bump, \\ IR, Ambient Light\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}Radio (2 Mbps), \\ IR (1.25 Kbps)\end{tabular} & None                                                                                 & \$220 (Parts)        \\
-    E-puck      & \begin{tabular}[c]{@{}l@{}}dsPIC 30F6014A, \\ 64MHz, 8KB RAM\end{tabular}  & \begin{tabular}[c]{@{}l@{}}IR, Accelerometer, \\ Microphone, Camera\end{tabular}                                       & Serial, Bluetooth, IR                                                     & \begin{tabular}[c]{@{}l@{}}40x40 pixels @ 4 FPS. \\ External processing\end{tabular} & \$340 (Parts)        \\
-    \rowcolor[HTML]{EFEFEF} 
-    MarXBot     & \begin{tabular}[c]{@{}l@{}}ARM11, 533 MHz, \\ 128MB RAM\end{tabular}       & \begin{tabular}[c]{@{}l@{}}Camera,\\ Accelerometer, \\ Gyroscope, RFID, \\ 2D Force, \\ Microphone\end{tabular}        & WiFi, Bluetooth                                                           & \begin{tabular}[c]{@{}l@{}}Up to 2048x1536\\ pixel s @ 12 FPS\end{tabular}           & N/A                  \\
-    Khepera III & \begin{tabular}[c]{@{}l@{}}XScale, 600MHz, \\ 128MB RAM\end{tabular}       & \begin{tabular}[c]{@{}l@{}}IR, Ambient Light,\\ Ultrasonic, Camera\end{tabular}                                        & WiFi, Bluetooth                                                           & 640x480 pixels @ 15 FPS                                                              & \textgreater{}\$2000 \\
-    \rowcolor[HTML]{EFEFEF} 
-    CITRIC      & \begin{tabular}[c]{@{}l@{}}XScale, 624 MHz, \\ 64MB RAM\end{tabular}       & \begin{tabular}[c]{@{}l@{}}Camera, \\ Microphone\end{tabular}                                                          & Zigbee                                                                    & 1280x1024 pixels @ 15FPS                                                             & \$600                \\
-    WolfBot     & \begin{tabular}[c]{@{}l@{}}ARM Cortex-A8, 1GHz, \\ 512MB RAM\end{tabular}  & \begin{tabular}[c]{@{}l@{}}IR, Camera, \\ Microphone, \\ Ambient Light, \\ Accelerometer, \\ Magnetometer\end{tabular} & WiFi, Zigbee                                                              & Up to 1280x720 pixels @ 50 FPS                                                       & \$550 (Parts)       
-    \end{tabular}
-    \caption{Mobile Sensing Platform Comparison\cite{betthauser2014wolfbot}}
-    \label{tab:Comparison}
-    \end{table}
-\end{landscape}
+%     \begin{tabular}{lllllll}
+%     \hline
+%     Name        & Processor                                                                  & Sensing                                                                                                                & Comm.                                                                     & Imaging                                                                              & Cost                 \\ \hline
+%     \rowcolor[HTML]{EFEFEF} 
+%     R-One       & \begin{tabular}[c]{@{}l@{}}ARM Cortex-M3, \\ 50 MHz, 64KB RAM\end{tabular} & \begin{tabular}[c]{@{}l@{}}Accelerometer,\\ Gyroscope, Bump, \\ IR, Ambient Light\end{tabular}                         & \begin{tabular}[c]{@{}l@{}}Radio (2 Mbps), \\ IR (1.25 Kbps)\end{tabular} & None                                                                                 & \$220 (Parts)        \\
+%     E-puck      & \begin{tabular}[c]{@{}l@{}}dsPIC 30F6014A, \\ 64MHz, 8KB RAM\end{tabular}  & \begin{tabular}[c]{@{}l@{}}IR, Accelerometer, \\ Microphone, Camera\end{tabular}                                       & Serial, Bluetooth, IR                                                     & \begin{tabular}[c]{@{}l@{}}40x40 pixels @ 4 FPS. \\ External processing\end{tabular} & \$340 (Parts)        \\
+%     \rowcolor[HTML]{EFEFEF} 
+%     MarXBot     & \begin{tabular}[c]{@{}l@{}}ARM11, 533 MHz, \\ 128MB RAM\end{tabular}       & \begin{tabular}[c]{@{}l@{}}Camera,\\ Accelerometer, \\ Gyroscope, RFID, \\ 2D Force, \\ Microphone\end{tabular}        & WiFi, Bluetooth                                                           & \begin{tabular}[c]{@{}l@{}}Up to 2048x1536\\ pixel s @ 12 FPS\end{tabular}           & N/A                  \\
+%     Khepera III & \begin{tabular}[c]{@{}l@{}}XScale, 600MHz, \\ 128MB RAM\end{tabular}       & \begin{tabular}[c]{@{}l@{}}IR, Ambient Light,\\ Ultrasonic, Camera\end{tabular}                                        & WiFi, Bluetooth                                                           & 640x480 pixels @ 15 FPS                                                              & \textgreater{}\$2000 \\
+%     \rowcolor[HTML]{EFEFEF} 
+%     CITRIC      & \begin{tabular}[c]{@{}l@{}}XScale, 624 MHz, \\ 64MB RAM\end{tabular}       & \begin{tabular}[c]{@{}l@{}}Camera, \\ Microphone\end{tabular}                                                          & Zigbee                                                                    & 1280x1024 pixels @ 15FPS                                                             & \$600                \\
+%     WolfBot     & \begin{tabular}[c]{@{}l@{}}ARM Cortex-A8, 1GHz, \\ 512MB RAM\end{tabular}  & \begin{tabular}[c]{@{}l@{}}IR, Camera, \\ Microphone, \\ Ambient Light, \\ Accelerometer, \\ Magnetometer\end{tabular} & WiFi, Zigbee                                                              & Up to 1280x720 pixels @ 50 FPS                                                       & \$550 (Parts)       
+%     \end{tabular}
+%     \caption{Mobile Sensing Platform Comparison\cite{betthauser2014wolfbot}}
+%     \label{tab:Comparison}
+%     \end{table}
+% \end{landscape}
 
 \section{平台设计思路}
 形式：
@@ -53,40 +53,40 @@ Swarm仿真参考ShapeBots\cite{suzuki2019shapebots}的仿真方法\footnote{\hr
 
 \section{定位方法}
 
-% 如果直接插入一页PDF用
-% \includepdf{Prominent-absolute-indoor-localization-methods-comparison.pdf} 
+% % 如果直接插入一页PDF用
+% % \includepdf{Prominent-absolute-indoor-localization-methods-comparison.pdf} 
 
-% Please add the following required packages to your document preamble:
-% \usepackage[table,xcdraw]{xcolor}
-% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-% \usepackage{lscape}
-\begin{landscape}
-    \begin{table}[htbp]
-    \centering
-    \begin{tabular}{lllllll}
-    \hline
-    Method                                                                                         & Cost per device & Accuracy      & \begin{tabular}[c]{@{}l@{}}Deployment\\ requirements\end{tabular}             & \begin{tabular}[c]{@{}l@{}}Occlusion\\ robustness\end{tabular} & Scalabiity & \begin{tabular}[c]{@{}l@{}}Processing load\\ on device\end{tabular} \\ \hline
-    \rowcolor[HTML]{EFEFEF} 
-    Infrared light beacons                                                                         & Low             & Sub-mm        & Beacons                                                                       & None                                                           & Low        & Very low                                                            \\
-    Structured light (e.g. Kinect)                                                                 & Mid             & Few cm        & None                                                                          & Moderate                                                       & Very low   & High                                                                \\
-    \rowcolor[HTML]{EFEFEF} 
-    Laser scanner (LIDAR)                                                                          & High            & Few µm        & None                                                                          & Moderate                                                       & Low        & High                                                                \\
-    \begin{tabular}[c]{@{}l@{}}RF (Wi-Fi, \\ Bluetooth, RFID etc.)\end{tabular}                    & Low             & Sub-m         & Beacons                                                                       & Moderate                                                       & Moderate   & Very low                                                            \\
-    \rowcolor[HTML]{EFEFEF} 
-    \begin{tabular}[c]{@{}l@{}}Ultra Wideband \\ (UWB)\end{tabular}                                & Potentially low & Few cm        & Beacons/scanners                                                              & High                                                           & Moderate   & Very low                                                            \\
-    \begin{tabular}[c]{@{}l@{}}Fiducial tag on device\\ Motion capture\end{tabular}                & Very low        & Sub-mm        & Camera(s)                                                                     & Moderate/Full                                                  & High       & None                                                                \\
-    \rowcolor[HTML]{EFEFEF} 
-    \begin{tabular}[c]{@{}l@{}}Deployed fiducial tags,\\ camera on device\end{tabular}             & Low             & Sub-mm        & \begin{tabular}[c]{@{}l@{}}Optical tags, \\ possibly on paper\end{tabular}    & Moderate                                                       & High       & High                                                                \\
-    \begin{tabular}[c]{@{}l@{}}Deployed capacitive patterns,\\ sensor array on device\end{tabular} & Low             & Few mm        & Capacitive board                                                              & Full                                                           & High       & None                                                                \\
-    \rowcolor[HTML]{EFEFEF} 
-    \begin{tabular}[c]{@{}l@{}}Deployed optical patterns,\\ camera on device\end{tabular}          & Low             & Few cm/Sub-mm & \begin{tabular}[c]{@{}l@{}}Optical patterns,\\ possibly on paper\end{tabular} & High/Full                                                      & High       & High/Low                                                            \\ \hline
-    \end{tabular}
-    \caption{Prominent absolute indoor localization methods in the literature. Where used, device describes the tangible whose pose is recovered. }
-    \label{tab:localization}
-    \end{table}
-\end{landscape}
+% % Please add the following required packages to your document preamble:
+% % \usepackage[table,xcdraw]{xcolor}
+% % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% % \usepackage{lscape}
+% \begin{landscape}
+%     \begin{table}[htbp]
+%     \centering
+%     \begin{tabular}{lllllll}
+%     \hline
+%     Method                                                                                         & Cost per device & Accuracy      & \begin{tabular}[c]{@{}l@{}}Deployment\\ requirements\end{tabular}             & \begin{tabular}[c]{@{}l@{}}Occlusion\\ robustness\end{tabular} & Scalabiity & \begin{tabular}[c]{@{}l@{}}Processing load\\ on device\end{tabular} \\ \hline
+%     \rowcolor[HTML]{EFEFEF} 
+%     Infrared light beacons                                                                         & Low             & Sub-mm        & Beacons                                                                       & None                                                           & Low        & Very low                                                            \\
+%     Structured light (e.g. Kinect)                                                                 & Mid             & Few cm        & None                                                                          & Moderate                                                       & Very low   & High                                                                \\
+%     \rowcolor[HTML]{EFEFEF} 
+%     Laser scanner (LIDAR)                                                                          & High            & Few µm        & None                                                                          & Moderate                                                       & Low        & High                                                                \\
+%     \begin{tabular}[c]{@{}l@{}}RF (Wi-Fi, \\ Bluetooth, RFID etc.)\end{tabular}                    & Low             & Sub-m         & Beacons                                                                       & Moderate                                                       & Moderate   & Very low                                                            \\
+%     \rowcolor[HTML]{EFEFEF} 
+%     \begin{tabular}[c]{@{}l@{}}Ultra Wideband \\ (UWB)\end{tabular}                                & Potentially low & Few cm        & Beacons/scanners                                                              & High                                                           & Moderate   & Very low                                                            \\
+%     \begin{tabular}[c]{@{}l@{}}Fiducial tag on device\\ Motion capture\end{tabular}                & Very low        & Sub-mm        & Camera(s)                                                                     & Moderate/Full                                                  & High       & None                                                                \\
+%     \rowcolor[HTML]{EFEFEF} 
+%     \begin{tabular}[c]{@{}l@{}}Deployed fiducial tags,\\ camera on device\end{tabular}             & Low             & Sub-mm        & \begin{tabular}[c]{@{}l@{}}Optical tags, \\ possibly on paper\end{tabular}    & Moderate                                                       & High       & High                                                                \\
+%     \begin{tabular}[c]{@{}l@{}}Deployed capacitive patterns,\\ sensor array on device\end{tabular} & Low             & Few mm        & Capacitive board                                                              & Full                                                           & High       & None                                                                \\
+%     \rowcolor[HTML]{EFEFEF} 
+%     \begin{tabular}[c]{@{}l@{}}Deployed optical patterns,\\ camera on device\end{tabular}          & Low             & Few cm/Sub-mm & \begin{tabular}[c]{@{}l@{}}Optical patterns,\\ possibly on paper\end{tabular} & High/Full                                                      & High       & High/Low                                                            \\ \hline
+%     \end{tabular}
+%     \caption{Prominent absolute indoor localization methods in the literature. Where used, device describes the tangible whose pose is recovered. }
+%     \label{tab:localization}
+%     \end{table}
+% \end{landscape}
 
-各类定位方法优缺点\cite{ozgur2018cellulo}如表~\ref{tab:localization}所示。
+% 各类定位方法优缺点\cite{ozgur2018cellulo}如表~\ref{tab:localization}所示。
 
 一类可能有效的定位方式来源于Lee\cite{lee2005moveable}的投影仪辅助定位。
 
