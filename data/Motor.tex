@@ -92,40 +92,40 @@
 \end{figure}
 
 
-\section{步进电机转矩和速度特性}
+% \section{步进电机转矩和速度特性}
 
-步进电机的转动距离正比于施加到驱动器上的脉冲信号数（脉冲数）。
+% 步进电机的转动距离正比于施加到驱动器上的脉冲信号数（脉冲数）。
 
-步进电机转动（电机出力轴转动角度$\theta$）和脉冲数A的关系如下所示：
+% 步进电机转动（电机出力轴转动角度$\theta$）和脉冲数A的关系如下所示：
 
-\begin{equation}
-    \theta=\theta_{s} \times A
-\end{equation}
+% \begin{equation}
+%     \theta=\theta_{s} \times A
+% \end{equation}
 
-其中$\theta_{s}$为基本步距角，单位是度。
+% 其中$\theta_{s}$为基本步距角，单位是度。
 
-步进电机以一个固定的步距角转动，就像时钟内的秒针。这个角度称为基本步距角。一种标准电机是基本步距角为1.8度的两相步进电机。
+% 步进电机以一个固定的步距角转动，就像时钟内的秒针。这个角度称为基本步距角。一种标准电机是基本步距角为1.8度的两相步进电机。
 
-步进电机的转速与施加到驱动器上的脉冲信号频率成比例关系。
+% 步进电机的转速与施加到驱动器上的脉冲信号频率成比例关系。
 
-电机的转速$\mathrm{N}$[r/min] 与脉冲频率$\mathrm{f}$[Hz] 的关系如下（整步模式）：
+% 电机的转速$\mathrm{N}$[r/min] 与脉冲频率$\mathrm{f}$[Hz] 的关系如下（整步模式）：
 
-\begin{equation}
-    \mathrm{N}=\frac{\theta_{\mathrm{s}}}{360} \times \mathrm{f} \times 60
-\end{equation}
+% \begin{equation}
+%     \mathrm{N}=\frac{\theta_{\mathrm{s}}}{360} \times \mathrm{f} \times 60
+% \end{equation}
 
-步进电机的重要特征之一是高力矩、小体积。如图~\ref{fig:step-servo-motord}。
+% 步进电机的重要特征之一是高力矩、小体积。如图~\ref{fig:step-servo-motord}。
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\columnwidth]{step-servo-motord.jpg}
-    \caption{相同尺寸下的伺服电机与步进电机的速度力矩特性比较}
-    \label{fig:step-servo-motord}
-\end{figure}
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\columnwidth]{step-servo-motord.jpg}
+%     \caption{相同尺寸下的伺服电机与步进电机的速度力矩特性比较}
+%     \label{fig:step-servo-motord}
+% \end{figure}
 
-这些特征使得电机具有优秀的加速和响应，使得这些电机非常适合那些需要频繁启动和停止的应用中。
+% 这些特征使得电机具有优秀的加速和响应，使得这些电机非常适合那些需要频繁启动和停止的应用中。
 
-绕组通电时步进电机具有全部的保持力矩。这就意味着步进电机可以在不使用机械刹车的情况下保持在停止位置。
+% 绕组通电时步进电机具有全部的保持力矩。这就意味着步进电机可以在不使用机械刹车的情况下保持在停止位置。
 
 % 步进电机的输出力矩随转速升高而下降，且在较高转速时会急剧下降，所以其最高工作转速一般在300～600RPM。
 
@@ -133,14 +133,14 @@
 
 % 速度-力矩曲线（图~\ref{fig:step-motor-force}）是步进电机输出特性的重要表现形式。
 
-输出力矩随转速升高而下降，如速度-力矩曲线（图~\ref{fig:step-motor-force}）。
+% 输出力矩随转速升高而下降，如速度-力矩曲线（图~\ref{fig:step-motor-force}）。
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\columnwidth]{step-motor-force.png}
-    \caption{速度-力矩曲线}
-    \label{fig:step-motor-force}
-\end{figure}
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=\columnwidth]{step-motor-force.png}
+%     \caption{速度-力矩曲线}
+%     \label{fig:step-motor-force}
+% \end{figure}
 
 % A. 工作频率点 电机在某一点的转速值。
 
@@ -164,11 +164,11 @@
 
 \section{单极性驱动和双极性驱动的区别}
 
-双极步进电机(Bipolar motors\footnote{\url{https://en.wikipedia.org/wiki/Stepper_motor}})每相只有一个绕组。为了使磁极反向，需要使绕组中的电流反向，因此驱动电路必须更复杂，通常采用H桥配置（但是有几种现成的驱动器芯片可以使之成为一个简单的事情）。每相有两个引线，没有公用的。
+% 双极步进电机(Bipolar motors\footnote{\url{https://en.wikipedia.org/wiki/Stepper_motor}})每相只有一个绕组。为了使磁极反向，需要使绕组中的电流反向，因此驱动电路必须更复杂，通常采用H桥配置（但是有几种现成的驱动器芯片可以使之成为一个简单的事情）。每相有两个引线，没有公用的。
 
-两线圈双极步进步进电机的典型驱动模式为：A + B + A- B-。即以正电流驱动线圈A，然后从线圈A中去除电流。然后以正电流驱动线圈B，然后从线圈B中去除电流。然后用负电流驱动线圈A（通过切换导线，例如用H桥翻转极性），然后从线圈A去除电流。然后用负电流驱动线圈B（与线圈A的翻转极性相同）；循环完成并重新开始。
+% 两线圈双极步进步进电机的典型驱动模式为：A + B + A- B-。即以正电流驱动线圈A，然后从线圈A中去除电流。然后以正电流驱动线圈B，然后从线圈B中去除电流。然后用负电流驱动线圈A（通过切换导线，例如用H桥翻转极性），然后从线圈A去除电流。然后用负电流驱动线圈B（与线圈A的翻转极性相同）；循环完成并重新开始。
 
-由于更好地利用了绕组，因此它们比同等重量的单极步进电机更强大。这是由于绕组占用的物理空间。单极电机在相同的空间中具有两倍的导线数量，但在任何时间点仅使用一半的导线，因此效率为50\%（或大约70\%的可用扭矩输出）。尽管双极步进电机的驱动更加复杂，但丰富的驱动芯片简化了实际使用时的复杂度。
+% 由于更好地利用了绕组，因此它们比同等重量的单极步进电机更强大。这是由于绕组占用的物理空间。单极电机在相同的空间中具有两倍的导线数量，但在任何时间点仅使用一半的导线，因此效率为50\%（或大约70\%的可用扭矩输出）。尽管双极步进电机的驱动更加复杂，但丰富的驱动芯片简化了实际使用时的复杂度。
 
 % 单极性 (unipolar) 和双极性 (bipolar) 是步进电机最常采用的两种驱动电路。单极性驱动电路使用四颗晶体管来驱动步进电机的两组相位，电机定子绕线结构如图~\ref{fig:step-motor-unibipolar}所示包含两组带有中间抽头的线圈（AC线圈的中间抽头为O，BD线圈的中间抽头为M），整个电机共有六条线与外界连接。AC端不能同时通电（BD端同理），否则磁极上的两个线圈产生的磁通相互抵消，只产生线圈的铜耗。因为它其实只有两个相位（AC绕组为一相，BD绕组为一相），准确的说法应是两相六线式步进电机。
 
