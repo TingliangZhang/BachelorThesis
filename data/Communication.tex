@@ -7,7 +7,7 @@
 
 发送端在发送串行数据的同时，提供一个时钟信号，并按照一定的约定（例如在时钟信号的上升沿的时候，将数据发送出去）发送数据，接收端根据发送端提供的时钟信号，以及约定，接收数据。这就是同步串行通信（Synchronous serial communication），I2C、SPI等有时钟信号的协议，都属于这种通信方式。
 
-发送端在数据发送之前和之后，通过特定形式的信号（例如START信号和STOP信号），告诉接收端，可以开始（或者停止）接收数据了。与此同时，收发两方会约定一个数据发送的速度（波特率），发送端在发送START信号之后，就按照固定的节奏发送串行数据，与此同时，接收端在收到START信号之后，也按照固定的节奏接收串行数据。这就是异步串行通信（Asynchronous serial communication），串口通信，就是这种通信方式。
+% 发送端在数据发送之前和之后，通过特定形式的信号（例如START信号和STOP信号），告诉接收端，可以开始（或者停止）接收数据了。与此同时，收发两方会约定一个数据发送的速度（波特率），发送端在发送START信号之后，就按照固定的节奏发送串行数据，与此同时，接收端在收到START信号之后，也按照固定的节奏接收串行数据。这就是异步串行通信（Asynchronous serial communication），串口通信，就是这种通信方式。
 
 UART(Universal Asynchronous Receiver/Transmitter) 即是规定编码格式、bit rate，产生通信所需的bit流的标准。
 
@@ -46,11 +46,11 @@ COM (通信端口)是最早的但仍极为常用的PC兼容机串口，不仅指
     \label{fig:USB-Transmission}
 \end{figure}
 
-USB传输协议见\url{https://en.wikipedia.org/wiki/USB_(Communications)#Protocol_layer}。
+USB传输协议见\url{https://en.wikipedia.org/wiki/USB_(Communications)#Protocol_layer}。其半双工传输模式如图~\ref{fig:USB-Transmission}。
 
-BOT传输协议：BOT (Bulk-Only Transport)，诞生于1999年，专为USB 1.1所设计，至今最快的USB 3.1都可向下兼容这个基本的BOT传输协议。在传输数据作业开始时，外接USB 3.0设备与电脑主板（USB 3.0扩展卡）之间，在同一时间单位内，每次只传输单一指令，所以速度较UASP慢，属于“半双工传输模式”，如图~\ref{fig:USB-Transmission}。
+% BOT传输协议：BOT (Bulk-Only Transport)，诞生于1999年，专为USB 1.1所设计，至今最快的USB 3.1都可向下兼容这个基本的BOT传输协议。在传输数据作业开始时，外接USB 3.0设备与电脑主板（USB 3.0扩展卡）之间，在同一时间单位内，每次只传输单一指令，所以速度较UASP慢，属于“半双工传输模式”，如图~\ref{fig:USB-Transmission}。
 
-在数据传输量大的情况下可以使用UASP传输协议(USB Attached SCSI Protocol)，需USB 3.0以上方能使用。与USB 3.0一同诞生于2008年，USB应用者论坛（USB-IF）为改良BOT传输协议过慢的缺点，将SCSI架构改进并推出UASP，包括多命令平行处理能力、任务管理与控制等机制，也支持NCQ（原生指令排序），速度比BOT传输模式快上许多，属于“全双工传输模式”。UASP的设备端桥接芯片有：LucidPort USB 300、祥硕科技ASMedia ASM1053/ASM1042、智微JMS 569、德州仪器TUSB9261等等。
+% 在数据传输量大的情况下可以使用UASP传输协议(USB Attached SCSI Protocol)，需USB 3.0以上方能使用。与USB 3.0一同诞生于2008年，USB应用者论坛（USB-IF）为改良BOT传输协议过慢的缺点，将SCSI架构改进并推出UASP，包括多命令平行处理能力、任务管理与控制等机制，也支持NCQ（原生指令排序），速度比BOT传输模式快上许多，属于“全双工传输模式”。UASP的设备端桥接芯片有：LucidPort USB 300、祥硕科技ASMedia ASM1053/ASM1042、智微JMS 569、德州仪器TUSB9261等等。
 
 % \subsection{RS-232}
 
