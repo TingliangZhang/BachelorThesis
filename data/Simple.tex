@@ -5,6 +5,21 @@
 
 \section{均值传递共识算法}
 
+\begin{figure}[htbp]
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[height=7cm]{numbers.png}
+      \caption{Cayley有向图}
+      \label{fig:Directed-Cayley-graph}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+      \centering
+      \includegraphics[height=7cm]{adjacency_matrix.png}
+      \caption{邻接矩阵}
+      \label{fig:Adjacency-matrix}
+    \end{minipage}
+\end{figure}
+
 我们使用有向图的邻接矩阵A来描述其通信拓扑：
 
 \begin{equation}
@@ -46,6 +61,22 @@ $u_{\mathrm{i}}(t)$为$x_{\mathrm{i}}(t)$的控制变量，服从：
 
 但此时收敛速度并非最快，在下一章中将会进行优化。
 
+\subsection{链式通信协议}
+
+对于一个强连通的电网，我们使用有向图的邻接矩阵A来描述其通信拓扑：
+
+\begin{equation}
+    \mathbf{A}=\left[a_{i j}\right]_{N \times N}
+\end{equation}
+
+\begin{equation}
+    a_{i j}=\left\{\begin{array}{l}
+    {1} \\
+    {0}
+    \end{array}\right.
+\end{equation}
+
+其中，1表示通信节点j能向i发送消息并被i接收。
 
 \section{算例}
 
